@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bizx.views.leaveEmployee.MyLeaveCancelPage"
+             xmlns:local="clr-namespace:bizx.customViews" xmlns:bizx="clr-namespace:bizx;assembly=bizx" Title="Leave Details" NavigationPage.HasNavigationBar="False" xmlns:behaviors="clr-namespace:bizx.Behaviors;assembly=bizx" BackgroundColor="White">
+    <StackLayout Orientation="Vertical">
+        <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HeightRequest="50" HorizontalOptions="FillAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+            <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0" >
+                      <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                       
+                    </Image>  
+                         <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                <Label x:Name="titleLbl" Text="Leave Details" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+            </Grid>
+        </StackLayout>
+        <BoxView HeightRequest="1" BackgroundColor="White"/>
+        <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical">
+                <Grid  Padding="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                    </Grid.RowDefinitions>
+                    <Label Text="Leave Type" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0"
+                           FontSize="16" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}"
+                           TextColor="{StaticResource PrimaryGray}" />
+                    <Label x:Name="leaveType" Text="{Binding leaveName}" HorizontalOptions="StartAndExpand" Grid.Row="1" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" Grid.Column="0" />
+                    <!--<Label Text="Total Days" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="1"
+                                          FontSize="16" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}"
+                                          TextColor="{StaticResource PrimaryGray}"/>
+
+                                 <Label x:Name="totalLeaveCount" Text="{Binding noOfDays, StringFormat='{0} days'}"
+                                        FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}"
+                                        VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"
+                                        Grid.Row="1" Grid.Column="1"/>-->
+                    <Label Text="Status" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="1" FontSize="16" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" />
+                    <Label x:Name="status" Text="{Binding leaveTransactionList.statusValue}" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Grid.Row="1" Grid.Column="1" />
+                </Grid>
+                <Grid  Padding="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                    </Grid.RowDefinitions>
+                    <Label Text="From Date" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" />
+                    <Label Text="To Date" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="1" FontSize="16" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" />
+                </Grid>
+                <Grid  Padding="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                    </Grid.RowDefinitions>
+                    <Label x:Name="fromDate" Text="{Binding leaveTransactionList.startDate,StringFormat='{0:dddd},'}" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Grid.Row="0" />
+                    <Label x:Name="toDate" Text="{Binding leaveTransactionList.endDate,StringFormat='{0:dddd},'}" Grid.Column="2" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Grid.Row="0" />
+                    <StackLayout Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+                        <Label x:Name="totalLeaveCount" Text="{Binding leaveTransactionList.noOfDaysStr}" Margin="0" FontSize="8" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" IsVisible="true" />
+                        <BoxView HeightRequest="1" HorizontalOptions="CenterAndExpand" BackgroundColor="{StaticResource PrimaryColor}" Margin="0" VerticalOptions="StartAndExpand" />
+                    </StackLayout>
+                    <Label x:Name="fromDate1" Text="{Binding leaveTransactionList.startDate,StringFormat='{0:dd MMM, yy}'}" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Grid.Row="1" />
+                    <Label x:Name="toDate1" Text="{Binding leaveTransactionList.endDate,StringFormat='{0:dd MMM, yy}'}" Grid.Column="2" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Grid.Row="1" />
+                </Grid>
+                <Grid BackgroundColor="{StaticResource Button}"  Padding="5" HorizontalOptions="FillAndExpand" IsVisible="false">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Employee" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="0" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" />
+                    <Label Text="Contact" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" />
+                </Grid>
+                <Grid  Padding="5" IsVisible="false">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="employeeName" Text="{Binding fullName}" FontFamily="{StaticResource NormalFont}" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="16" TextColor="{StaticResource PrimaryColor}" HorizontalOptions="StartAndExpand" />
+                    <Label x:Name="contactNoEntry" FontSize="16" Text="{Binding leaveTransactionList.contactNumber}" Grid.Column="1" HorizontalOptions="EndAndExpand" TextColor="{StaticResource PrimaryColor}" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" />
+                </Grid>
+                <Grid  Padding="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                    </Grid.RowDefinitions>
+                    <Label Text="Applied Date" HorizontalOptions="StartAndExpand" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" Grid.Row="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" />
+                    <Label x:Name="createdDate" Text="{Binding leaveTransactionList.createdOn,StringFormat='{0:ddd, dd MMM yy}'}" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Grid.Row="1" />
+                    <Label Text="Application Type" HorizontalOptions="EndAndExpand" Grid.Row="0" FontSize="16" VerticalOptions="CenterAndExpand" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" />
+                    <Label x:Name="requestType" Text="{Binding leaveTransactionList.requestType}" FontSize="16" Grid.Row="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" LineBreakMode="TailTruncation" />
+                </Grid>
+                <StackLayout Padding="5" HorizontalOptions="FillAndExpand">
+                    <Label Text="Remarks" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                </StackLayout>
+                <StackLayout Padding="5">
+                    <Label x:Name="remarksEntry" Text="{Binding leaveTransactionList.employeeRemarks}" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                </StackLayout>
+                <StackLayout x:Name="AppremarksStack" Padding="5" HorizontalOptions="FillAndExpand">
+                    <Label Text="Approval Remarks" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                </StackLayout>
+                <StackLayout Padding="5" x:Name="Appremarks">
+                    <Label x:Name="approvalRemarksEntry" Text="{Binding leaveTransactionList.approvalRemarks}" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        <StackLayout x:Name="cancelStack" BackgroundColor="{StaticResource Buttons}" Padding="5" IsVisible="false" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45" />
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Column="0">
+                    <Label Text="CANCEL LEAVE" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Cancel_Clicked" NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+        <StackLayout x:Name="cancelStack1" HorizontalOptions="FillAndExpand" VerticalOptions="End" HeightRequest="45" IsVisible="false">
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                <Button x:Name="cancelBtn" Text="Cancel Leave" VerticalOptions="CenterAndExpand" BackgroundColor="{StaticResource Button}" FontSize="16" TextColor="White" Clicked="Cancel_Clicked" />
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

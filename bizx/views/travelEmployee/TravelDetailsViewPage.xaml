@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="bizx.views.travelEmployee.TravelDetailsViewPage" NavigationPage.HasNavigationBar="False" BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HorizontalOptions="FillAndExpand" HeightRequest="50" Orientation="Vertical" VerticalOptions="Center">
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="40" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0" >
+                        <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <Label x:Name="titleLbl" Text="Travel Details" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+
+
+                    <Image Source="icons_home_all.png" x:Name="homeIcon" IsVisible="false" Grid.Column="2" Margin="0,0,20,0" HeightRequest="60"  HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Home_Click" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="White" />
+            <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="5,0,0,5" Margin="10">
+
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="25" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding fullName}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontSize="16" VerticalOptions="StartAndExpand" TextColor="{StaticResource PrimaryColor}" />
+                        <Label Text="{Binding travelPurpose}" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="0" FontSize="16" VerticalOptions="StartAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                        <Label Text="{Binding billingTypeDetailsByTravelId.projectName}" HorizontalOptions="StartAndExpand" Grid.Row="2" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                        <Label Text="{Binding travelType}" HorizontalOptions="StartAndExpand" Grid.Row="3" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                        <Label Text="{Binding billingTypeDetailsByTravelId.billableTo}" HorizontalOptions="EndAndExpand" Grid.Row="3" Grid.Column="1" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                        <StackLayout x:Name="rupeeAmount" IsVisible="{Binding itineraryDetails.isRupee}" Orientation="Horizontal" Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand">
+                            <Label Text="&#8377;" TextColor="{StaticResource Buttons}" FontSize="27" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" />
+                            <Label Text="{Binding totalAmount,StringFormat='{0:N}'}" TextColor="{StaticResource Buttons}" FontSize="27" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                        </StackLayout>
+                        <Label x:Name="dollarAmount" IsVisible="{Binding itineraryDetails.isDollar}" Text="{Binding totalAmount,StringFormat='${0:N}'}" Grid.Row="0" Grid.Column="1"  TextColor="{StaticResource Buttons}" FontSize="27" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" />
+                        <Label Text="Total Amount"  HorizontalOptions="EndAndExpand" Grid.Row="1" Grid.Column="1" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                    </Grid>
+
+                    <Frame Margin="0,5,0,5"  HasShadow="False" Padding="0" HeightRequest="30" BorderColor="{StaticResource Buttons}" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                        <StackLayout  VerticalOptions="StartAndExpand" HeightRequest="30" BackgroundColor="White">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" BackgroundColor="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="1" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="Approvals" Grid.Column="0" TextColor="{StaticResource Buttons}" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Handle_Travel_Approvals_Click" NumberOfTapsRequired="1" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+
+                                <Grid Grid.Column="1" Margin="0,0,0,0" BackgroundColor="{StaticResource Buttons}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="1" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="Details" Grid.Column="0" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                    </Label>
+                                </Grid>
+
+                                <Grid Grid.Column="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="Info" Grid.Column="0" TextColor="{StaticResource Buttons}" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Handle_Travel_Info_Click" NumberOfTapsRequired="1" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                        
+                    <StackLayout Orientation="Vertical" Padding="0">
+                        <ListView x:Name="ReservationList" Margin="0"  HasUnevenRows="True" IsVisible="true" VerticalOptions="StartAndExpand" BackgroundColor="White">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Vertical" >
+
+                                            <Grid x:Name="airportGrid" IsVisible="{Binding isAirport}" VerticalOptions="StartAndExpand">
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="25" />
+                                                </Grid.RowDefinitions>
+
+                                                <Label Text="{Binding fromAirportName}" Grid.Column="0"
+                                                       FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                                       TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand"
+                                                       HorizontalOptions="StartAndExpand" Grid.Row="0" />
+
+                                                <Label Text="{Binding toAirportName}" Grid.Column="2" 
+                                                       FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" 
+                                                       VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" 
+                                                       Grid.Row="0" />
+                                            </Grid>
+                                            <Grid >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="20" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="25" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="15" />
+                                                </Grid.RowDefinitions>
+                                                <Label x:Name="fromCountryName" Text="{Binding fromAddress}" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Grid.Row="1" />
+                                                <Label x:Name="toCountryName" Text="{Binding toAddress}" Grid.Column="2" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Grid.Row="1" />
+                                                <StackLayout Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+                                                    <BoxView HeightRequest="1" HorizontalOptions="CenterAndExpand" BackgroundColor="Black" Margin="0" VerticalOptions="CenterAndExpand" />
+                                                </StackLayout>
+                                                <Label x:Name="fromStateName" Text="{Binding departureMode,StringFormat='Travel-{0}'}" Grid.Column="0"
+                                                           FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                                           TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand"
+                                                           HorizontalOptions="StartAndExpand" Grid.Row="0" />
+
+                                                <Label x:Name="toStateName" Text="{Binding preferredDepartureTime}" Grid.Column="2" 
+                                                           FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" 
+                                                           VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" 
+                                                           Grid.Row="0" />
+                                            </Grid>
+                                        </StackLayout>
+
+                                    </ViewCell>
+                                </DataTemplate>
+
+                            </ListView.ItemTemplate>
+                        </ListView>
+                         </StackLayout>
+                        <FlexLayout Direction="Column" AlignContent="Stretch">
+                            <Label Text="User Comments"  HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding userComments}" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                            <Label Text="Reason" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding businessReason}" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                            <Label Text="Visa Category" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding VisaCategory}" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                            <Label Text="Attachments" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="No Attachments" x:Name="noAttachmentText" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" />
+                        </FlexLayout>
+                        <StackLayout  Margin="0,5,0,0" x:Name="attachmentStack" Orientation="Vertical" IsVisible="false">
+                            <Grid  x:Name="attach1" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding billingTypeDetailsByTravelId.supportingDocName}" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                                <Label Text="Download" HorizontalOptions="CenterAndExpand" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource TitleColor}" VerticalOptions="CenterAndExpand" FontSize="16">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Attachment_ItemTapped" NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </StackLayout>
+
+                     <StackLayout  Margin="0,5,0,0" x:Name="travelkyc" Orientation="Vertical" IsVisible="true" Padding="0">    
+                    <Label Text="Travel KYC Documents" x:Name="travelkycatt" IsVisible="false" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" TextColor="Red" VerticalOptions="CenterAndExpand" FontSize="16" />                                  
+                        <ListView x:Name="TravelKYCDocumentList" Margin="0,0,0,0"  VerticalOptions="FillAndExpand" BackgroundColor="White">
+                           <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        
+                                             <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    
+                                                </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding DocumentType}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontSize="16" VerticalOptions="StartAndExpand" TextColor="{StaticResource PrimaryColor}" />
+                                            <Label Text="{Binding IdentityNo}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="1" FontSize="16" TextColor="{StaticResource PrimaryColor}" />
+                                            <Label Text="{Binding Remarks}" HorizontalOptions="StartAndExpand"  Grid.Row="1" Grid.Column="0" FontSize="16" TextColor="{StaticResource PrimaryColor}" />
+                                          <Image Source="ic_search_black" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="2" VerticalOptions="CenterAndExpand">
+                                                                    <Image.GestureRecognizers>
+                                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="KYC_Attachment_Download" CommandParameter="{Binding TravelDocumentMasterId}" />
+                                                                    </Image.GestureRecognizers>
+                                                                </Image>
+                                              
+
+       
+                                            </Grid>
+                                                
+                                        
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                       
+                    </StackLayout>
+                   
+
+                     <!--<StackLayout HeightRequest="200" BackgroundColor="White"/>-->
+
+                    
+                </StackLayout>
+                 
+
+            </ScrollView>
+
+            <StackLayout BackgroundColor="{StaticResource Buttons}" x:Name="btnGrid" Padding="5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" IsVisible="true">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0">
+                        <Label Text="REJECT" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Reject_Clicked" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <BoxView BackgroundColor="White" Grid.Column="1" />
+                    <StackLayout Grid.Column="2">
+                        <Label Text="APPROVE" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="0" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Approve_Clicked" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

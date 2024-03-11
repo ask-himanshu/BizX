@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bizx.views.ProfilePage"
+             xmlns:local="clr-namespace:bizx.customViews"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:custom="clr-namespace:bizx.CustomControls;assembly=bizx"
+             xmlns:behaviors="clr-namespace:bizx.Behaviors;assembly=bizx"
+             BackgroundColor="White">
+    <ContentPage.Content>
+
+        <StackLayout Orientation="Vertical" >
+
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HorizontalOptions="FillAndExpand" HeightRequest="50" Orientation="Vertical" VerticalOptions="Center">
+
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0" >
+                      <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                       
+                    </Image>  
+                         <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label x:Name="titleLbl" Text="Profile" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+                </Grid>
+
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="White" />
+
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10">
+
+                    <!--<Label Text="Employee No" HorizontalOptions="StartAndExpand" HeightRequest="20" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryGray}"/>--> 
+
+                     
+                      <Label Text="{Binding employeeNo,Converter={StaticResource cnvEmptyToDefaultConverter}}" HorizontalOptions="StartAndExpand" HeightRequest="25" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryColor}"/>  
+                    
+
+                     <!--<Label Text="Employee Name" HorizontalOptions="StartAndExpand" HeightRequest="20" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryGray}"/>--> 
+
+                     <Label Text="{Binding fullName,Converter={StaticResource cnvEmptyToDefaultConverter}}" HorizontalOptions="StartAndExpand" HeightRequest="25" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryColor}"/> 
+
+                    <Label Text="Grade" HorizontalOptions="StartAndExpand" HeightRequest="20" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryGray}"/> 
+
+                     <Label Text="{Binding grade,Converter={StaticResource cnvEmptyToDefaultConverter}}" HorizontalOptions="StartAndExpand" HeightRequest="25" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryColor}"/> 
+
+                    <Label Text="Offilcial Mail ID" HorizontalOptions="StartAndExpand" HeightRequest="20" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryGray}"/> 
+
+                     <Label Text="{Binding officeEmailId}" HorizontalOptions="StartAndExpand" HeightRequest="25" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryColor}"/> 
+                    
+                    <Label Text="Personal Contact Number" HorizontalOptions="StartAndExpand" HeightRequest="20" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryGray}"/> 
+
+                     <Label Text="{Binding personalPhoneNo,Converter={StaticResource cnvEmptyToDefaultConverter}}" HorizontalOptions="StartAndExpand" HeightRequest="25" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryColor}"/> 
+
+                    <Label Text="Unit Location" HorizontalOptions="StartAndExpand" HeightRequest="20" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryGray}"/> 
+
+                     <Label Text="{Binding unit,Converter={StaticResource cnvEmptyToDefaultConverter}}" HorizontalOptions="StartAndExpand" HeightRequest="25" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryColor}"/> 
+
+                    <Label Text="Office Location" HorizontalOptions="StartAndExpand" HeightRequest="20" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryGray}"/> 
+
+                     <Label Text="{Binding officeLocation,Converter={StaticResource cnvEmptyToDefaultConverter}}" HorizontalOptions="StartAndExpand" HeightRequest="25" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryColor}"/>
+
+                    <Label Text="Business Unit" HorizontalOptions="StartAndExpand" HeightRequest="20" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryGray}"/> 
+
+                     <Label Text="{Binding bu,Converter={StaticResource cnvEmptyToDefaultConverter}}" HorizontalOptions="StartAndExpand" HeightRequest="25" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryColor}"/> 
+
+                    <Label Text="Sub Business Unit" HorizontalOptions="StartAndExpand" HeightRequest="20" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryGray}"/> 
+
+                     <Label Text="{Binding sbu,Converter={StaticResource cnvEmptyToDefaultConverter}}" HorizontalOptions="StartAndExpand" HeightRequest="25" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryColor}"/>
+
+                    <Label Text="Reporting Manager" HorizontalOptions="StartAndExpand" HeightRequest="20" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryGray}"/> 
+
+                     <Label Text="{Binding managerName,Converter={StaticResource cnvEmptyToDefaultConverter}}" HorizontalOptions="StartAndExpand" HeightRequest="25" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryColor}"/> 
+
+                </StackLayout>
+
+                
+
+
+            </ScrollView>
+
+             <StackLayout  x:Name="nextStack" BackgroundColor="{StaticResource Buttons}" Padding="5" IsVisible="true" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+
+            <Grid>
+
+                 <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="0">
+
+                    <Label x:Name="btnName" Text="HOME" TextColor="White" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Home_Clicked" />
+                    </StackLayout.GestureRecognizers>
+                    
+                </StackLayout>   
+            </Grid>
+
+
+            </StackLayout>
+            
+            
+
+        </StackLayout>
+        
+        
+    </ContentPage.Content>
+</ContentPage>

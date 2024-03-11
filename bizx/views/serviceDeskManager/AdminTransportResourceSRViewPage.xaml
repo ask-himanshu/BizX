@@ -1,0 +1,549 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bizx.views.serviceDeskManager.AdminTransportReourceSRViewPge"
+             NavigationPage.HasNavigationBar="False" BackgroundColor="White">
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+
+
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HorizontalOptions="FillAndExpand" HeightRequest="50" Orientation="Vertical" VerticalOptions="Center">
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                        <!--<ColumnDefinition Width="40" />-->
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0" >
+                        <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label x:Name="titleLbl" Text="Service Request" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+                    <!--<Image Source="icons_home_all.png" Grid.Column="2" Margin="0,0,20,0" HeightRequest="60"  HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Home_Click" />
+                        </Image.GestureRecognizers>
+                    </Image>-->
+                </Grid>
+            </StackLayout>
+            
+                <ScrollView>
+
+                    <StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10" Padding="5,0,5,0">
+
+                        <Grid RowSpacing="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition  Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding ServiceRequestDetail.id,StringFormat='SR-{0}' }" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                            <Button  x:Name="s1" Text="{Binding ServiceRequestDetail.srStatus}" WidthRequest="80" HeightRequest="25" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="1" BorderColor="#44c785" Padding="0"  FontSize="10" BorderWidth="1" BackgroundColor="#44c785" FontFamily="{StaticResource NormalFont}" TextColor="White"/>
+                        </Grid>
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label  Grid.Row="0" Text="{Binding ServiceRequestDetail.callerName}" HorizontalOptions="StartAndExpand"  FontSize="16" VerticalOptions="StartAndExpand" TextColor="{StaticResource PrimaryColor}" />
+                            <Label Text="{Binding ServiceRequestDetail.parentCategoryName}" Grid.Row="1"  HorizontalOptions="StartAndExpand" FontSize="16" VerticalOptions="StartAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                            <Label  Grid.Row="2" Text="{Binding ServiceRequestDetail.srLoggedTime,Converter={StaticResource cnvDateTimeConverter}}"  HorizontalOptions="StartAndExpand"  FontSize="16" VerticalOptions="StartAndExpand" TextColor="{StaticResource PrimaryGray}" />
+
+                       
+                        </Grid>
+                      <Frame Margin="0,5,0,5" x:Name="TopFrame"  HasShadow="False" Padding="0" HeightRequest="30" BorderColor="{StaticResource Buttons}" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" IsVisible="true">
+                            <StackLayout  VerticalOptions="StartAndExpand" HeightRequest="30" BackgroundColor="White">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" BackgroundColor="White">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="Approval" TextColor="{StaticResource Buttons}" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                        </Label>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Handle_SR_Approvals_Clicked" NumberOfTapsRequired="1" />
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1" Margin="0,0,0,0" BackgroundColor="{StaticResource Buttons}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Details" TextColor="White" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="Handle_SR_Details_Clicked" NumberOfTapsRequired="1" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame Margin="0,5,0,5" x:Name="BelowFrame" HasShadow="False" Padding="0" HeightRequest="30" BorderColor="{StaticResource Buttons}" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" IsVisible="false">
+                            <StackLayout  VerticalOptions="StartAndExpand" BackgroundColor="White" HeightRequest="30">
+                                <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Padding="0" BackgroundColor="White">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0" BackgroundColor="{StaticResource Buttons}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Approvals" Grid.Column="0" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="Handle_SR_Approvals_Clicked" NumberOfTapsRequired="1" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1" Margin="0,0,0,0" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Details" Grid.Column="0" TextColor="{StaticResource Buttons}" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+
+                                        </Label>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Handle_SR_Details_Clicked" NumberOfTapsRequired="1"/>
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+
+                   
+ <!--#region -->
+                    <!--AdminSR-->
+
+                   
+                      <StackLayout x:Name="SRManPowerDetails" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White" Spacing="0" IsVisible="false">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition/>
+                                  <RowDefinition />
+                                    <RowDefinition/>
+                   
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                   <ColumnDefinition Width="1.5*"/>
+                                   
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Location" Margin="0,5,0,0" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding AdditionalManpowerRequirement.location}" Grid.Row="1" Grid.Column="0"   FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center"  FontSize="16" />
+
+                   
+                                <Label Text="Catalog Name" Margin="0,5,0,0"  Grid.Row="2" Grid.Column="0"  HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding ServiceRequestDetail.catalogueName}" Grid.Row="3" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="14.5" />
+                              
+                                <Label Text="Required Date" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" Grid.Row="4" Grid.Column="0"  FontSize="14.5" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center"/>
+                                       <Label x:Name="requireDate"  Grid.Row="5" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}"  VerticalOptions="CenterAndExpand" FontSize="16" />
+
+
+                                </Grid>
+                        <FlexLayout Direction="Column" AlignContent="Stretch">
+                            
+                            <Label Text="Request Description" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding AdditionalManpowerRequirement.remarks}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                             <Label Text="Attachments" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+ 
+                        </FlexLayout>
+
+
+
+                        </StackLayout>
+
+                    
+
+
+                       
+                        <StackLayout x:Name="SRExternalMovement" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White" Spacing="0" IsVisible="false">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition/>
+                                <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition/>
+                                    
+                               
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                   <ColumnDefinition Width="1.5*"/>
+                                   <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="From Work Station" Margin="0,5,0,0" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding ExternalMovementRequest.fromWorkStation}" Grid.Row="1" Grid.Column="0"   FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center"  FontSize="16" />
+
+                                
+                                <Label Text="To Work Station" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" Grid.Row="2" Grid.Column="0"  FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding ExternalMovementRequest.toWorkStation}"   Grid.Row="3" Grid.Column="0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" FontSize="16" />
+
+                                
+                                <Label Text="Location" Margin="0,5,0,0"  Grid.Row="4" Grid.Column="0"  HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding ExternalMovementRequest.location}" Grid.Row="5" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                              
+                                <Label Text="Required Date" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" Grid.Row="6" Grid.Column="0"  FontSize="14.5" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center"/>
+                                       <Label x:Name="requiredDate"  Grid.Row="7" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}"  VerticalOptions="CenterAndExpand" FontSize="16" />
+
+
+                                </Grid>
+                        <FlexLayout Direction="Column" AlignContent="Stretch">
+                            
+                            <Label Text="Request Description" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding ExternalMovementRequest.remarks}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                            <Label Text="Attachments" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            
+                          
+                        </FlexLayout>
+
+
+
+                        </StackLayout>
+
+                    <StackLayout x:Name="SRAdhocCabRequest" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White" Spacing="0" IsVisible="false">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition/>
+                                  <RowDefinition />
+                                    <RowDefinition/>
+  				<RowDefinition />
+                                    <RowDefinition/>
+                   
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                   <ColumnDefinition Width="*"/>
+        			  <ColumnDefinition Width="*"/>
+                                   
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Employee ID" Margin="0,5,0,0" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding AdhocCabRequest.employeeID}" Grid.Row="1" Grid.Column="0"   FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center"  FontSize="16" />
+
+                   
+                                <Label Text="Employee Name" Margin="0,5,0,0"  Grid.Row="0" Grid.Column="1"  HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding AdhocCabRequest.employeeName}" Grid.Row="1" Grid.Column="1" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" FontSize="16" />
+                              
+                                <Label Text="Billable Type" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" Grid.Row="2" Grid.Column="0"  FontSize="14.5" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center"/>
+                                       <Label Text="{Binding AdhocCabRequest.billableType}" Grid.Row="3" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}"  VerticalOptions="CenterAndExpand" FontSize="16" />
+				
+
+				<Label Text="Name of Project" Margin="0,5,0,0" Grid.Row="2" Grid.Column="1" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding AdhocCabRequest.projectName}" Grid.Row="3" Grid.Column="1" HorizontalOptions="EndAndExpand"   FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center"  FontSize="16" />
+
+                   
+                                <Label Text="Departure Time" Margin="0,5,0,0"  Grid.Row="4" Grid.Column="0"  HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding AdhocCabRequest.departureTime}" Grid.Row="5" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="14.5" />
+                              
+                                <Label Text="Location" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" Grid.Row="6" Grid.Column="0"  FontSize="14.5" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center"/>
+                                       <Label Text="{Binding AdhocCabRequest.location}" Grid.Row="7" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}"  VerticalOptions="CenterAndExpand" FontSize="16" />
+
+
+                                </Grid>
+                        <FlexLayout Direction="Column" AlignContent="Stretch">
+                            
+                            
+			<Label Text="Contact information" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding AdhocCabRequest.contactNo}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                             
+<Label Text="Address with land mark" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding AdhocCabRequest.addressDetails}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                             
+<Label Text="Request Description" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding AdhocCabRequest.remarks}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                             <Label Text="Attachments" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+ 
+                        </FlexLayout>
+
+
+
+                        </StackLayout>
+
+
+                    <StackLayout x:Name="SRTransport" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White" Spacing="0" IsVisible="false">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition/>
+                                  <RowDefinition />
+                                    <RowDefinition/>
+                   
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                   <ColumnDefinition Width="1.5*"/>
+                                   
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Billable Type" Margin="0,5,0,0" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding Transportrequest.billableType}" Grid.Row="1" Grid.Column="0"   FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center"  FontSize="16" />
+
+                   
+                                <Label Text="Accepting Declaration" Margin="0,5,0,0"  Grid.Row="2" Grid.Column="0"  HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label x:Name="acceptation" Grid.Row="3" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="14.5" />
+                              
+                                <Label Text="Project Timings" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" Grid.Row="4" Grid.Column="0"  FontSize="14.5" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center"/>
+                                <Label Text="{Binding Transportrequest.projectTiming}" Grid.Row="5" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}"  VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                            
+                                </Grid>
+                        <FlexLayout Direction="Column" AlignContent="Stretch">
+                            <Label Text="Residential Address" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding Transportrequest.addressDetails}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                            <Label Text="Pick-Up Location" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding Transportrequest.pickupLocation}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                            <Label Text="Drop Location" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding Transportrequest.dropLocation}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                             
+                            <Label Text="Request Description" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding Transportrequest.remarks}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                             <Label Text="Attachments" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+ 
+                        </FlexLayout>
+
+
+
+                        </StackLayout>
+
+
+                    <StackLayout x:Name="SRSpecialRequest" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White" Spacing="0" IsVisible="false">
+
+                           
+                        <FlexLayout Direction="Column" AlignContent="Stretch">
+                           
+                            <Label Text="Billable Type" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding SpecialRequest.billableType}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                            <Label Text="Catalog Name" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label x:Name="catalogspecialsr" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                             
+                            <Label Text="Request Description" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding SpecialRequest.remarks}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                             <Label Text="Attachments" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+ 
+                        </FlexLayout>
+
+
+
+                        </StackLayout>
+
+
+                    <StackLayout x:Name="SROffsiteConferenceTraningOthers" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White" Spacing="0" IsVisible="false">
+
+                           
+                        <FlexLayout Direction="Column" AlignContent="Stretch">
+
+		                    
+                            <Label Text="Request Description" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding OffsiteConferenceTraningAndOthers.remarks}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                             <Label Text="Attachments" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+ 
+                        </FlexLayout>
+
+
+
+                        </StackLayout>
+
+                    <StackLayout x:Name="SRTransportCancellation" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White" Spacing="0" IsVisible="false">
+
+                           
+                        <FlexLayout Direction="Column" AlignContent="Stretch">
+
+		                    <Label Text="Billable Type" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding TransportCancellation.billableType}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                             
+                            <Label Text="Discontinuation Date" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label x:Name="discontinuationdate" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                            <Label Text="Catalog Name" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="Transport Cancellation Request" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                             
+                            
+                            <Label Text="Request Description" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding TransportCancellation.remarks}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                             <Label Text="Attachments" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+ 
+                        </FlexLayout>
+
+
+
+                        </StackLayout>
+                    <StackLayout x:Name="SRAwardsAndEvent" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White" Spacing="0" IsVisible="false">
+
+                            
+                        <FlexLayout Direction="Column" AlignContent="Stretch">
+                    <Label Text="Location" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding AwardsAndEvents.location}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                       <Label Text="No. Of People" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding AwardsAndEvents.peopleCount}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                               
+                            
+			<Label Text="Venue" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding AwardsAndEvents.venue}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                             
+<Label Text="Requirements" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding AwardsAndEvents.requirements}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                             
+<Label Text="Snacks" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding AwardsAndEvents.snacks}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                            <Label Text="Remarks" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding AwardsAndEvents.remarks}" Margin="0,5,0,0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                       
+                            <Label Text="Attachments" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+ 
+                        </FlexLayout>
+
+
+
+                        </StackLayout>
+
+ <!--#endregion-->
+                   
+                    
+                  <Label Text="No Attachments" x:Name="noAttachment" Margin="0,5,0,0" IsVisible="false" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" />
+
+                        <!-- ApprovalDetailList-->
+
+                        <ListView x:Name="ApprovalDetailList" HasUnevenRows="True" IsVisible="false" VerticalOptions="FillAndExpand" BackgroundColor="White">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Vertical" >
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+
+                                                </Grid.RowDefinitions>
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Text="{Binding approverName}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" />
+                                                <Label Text="{Binding approvalDate,Converter={StaticResource cnvDateTimeConverter}}" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="1" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+
+                                            </Grid>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+
+
+                                                </Grid.RowDefinitions>
+
+                                                <Label Text="{Binding role}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                                                <Label Text="{Binding status}" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                                                <Label Text="{Binding remarks}" HorizontalOptions="StartAndExpand" Grid.Row="2" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+
+                                            </Grid>
+                                        </StackLayout>
+
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    
+                                             
+                        <!--REAMRKS AND DOWNLOAD SECTION-->
+                     <Grid Margin="0,5,0,0" x:Name="attach" IsVisible="false">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding ServiceRequestDetail.filename1}"  Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                            <Label Text="Download" HorizontalOptions="EndAndExpand" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource Buttons}" VerticalOptions="CenterAndExpand" FontSize="16">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="DownloadClick" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        
+                        
+                        <StackLayout HeightRequest="200" BackgroundColor="White"/>
+
+
+                    </StackLayout>
+
+                </ScrollView>
+
+
+
+                <!--Reject and Approve tab-->
+
+                     <!--Reject and Approve tab-->
+
+            <StackLayout BackgroundColor="{StaticResource Buttons}" x:Name="btnGrid" Padding="5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" IsVisible="false">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0">
+                        <Label Text="REJECT" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Reject_Clicked" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <BoxView BackgroundColor="White" Grid.Column="1" />
+                    <StackLayout Grid.Column="2">
+                        <Label Text="APPROVE" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="0" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Approve_Clicked" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+
+
+        </StackLayout>
+
+
+
+    </ContentPage.Content>
+</ContentPage>

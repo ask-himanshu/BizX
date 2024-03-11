@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bizx.views.Pending"
+             xmlns:local="clr-namespace:bizx"
+             xmlns:view="clr-namespace:bizx.views;assembly=bizx"
+             xmlns:viewModel="clr-namespace:bizx.models;assembly=bizx"
+             Title="Pending">
+    <ContentPage.BindingContext>
+        <viewModel:EmployeeDetails/>
+    </ContentPage.BindingContext>
+    <StackLayout Spacing="0">
+        <ActivityIndicator IsRunning="True" Color ="Red" x:Name="ActivitySpinner" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        <ListView x:Name="empListView"  
+                ItemsSource="{Binding contentList}"
+                HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <view:CardViewTemplate/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+    </StackLayout>
+
+</ContentPage>

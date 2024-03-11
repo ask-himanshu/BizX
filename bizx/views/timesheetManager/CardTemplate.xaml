@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bizx.views.timesheetManager.CardTemplate">
+   <Frame IsClippedToBounds="True" HasShadow="True" BackgroundColor="White" HorizontalOptions="FillAndExpand" >
+
+            
+            <!--<Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="4.4*" />
+
+            </Grid.ColumnDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="58"/>
+                    
+                </Grid.RowDefinitions>
+            
+
+            <Frame Grid.Column="0" IsClippedToBounds="True" HasShadow="true" CornerRadius="30" BackgroundColor="{StaticResource TitleColor}">
+
+                <Label Text="{Binding firstLetter}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="28" Font="Bold"></Label>
+
+            </Frame>
+
+            </Grid>-->
+        <StackLayout HorizontalOptions="FillAndExpand">
+
+       <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" Grid.Column="1" Text="{Binding totalHours,StringFormat='Total Hours:{0}'}" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}"></Label>
+                <Label  HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"  Grid.Column="0"
+                       FontSize="16" Text="{Binding fullName}" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}">
+
+                </Label>
+            </Grid>
+             <Label  x:Name="remarksLbl"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand"
+                       FontSize="16" Text="{Binding approvalRemarks}" LineBreakMode="TailTruncation" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}">
+
+                </Label>
+            
+        </StackLayout>
+            
+            <!--<StackLayout   Orientation="Vertical" >
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center" >
+
+                        <Label    VerticalTextAlignment="Center"
+                               FontSize="16" Text="Total Hours:" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}">
+                        </Label>
+                        <Label   
+                               FontSize="16" Text="{Binding totalHours}" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}">
+                        </Label>
+
+                    </StackLayout>
+
+
+                </StackLayout>
+
+
+
+                 <Label   HorizontalTextAlignment="Start" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand"
+                       FontSize="16" Text="{Binding fullName}" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}">
+
+                </Label>
+
+                <Label  x:Name="remarksLbl"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand"
+                       FontSize="16" Text="{Binding approvalRemarks}" LineBreakMode="TailTruncation" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}">
+
+                </Label>
+
+            </StackLayout>-->
+            
+
+    </Frame>
+</ContentView>

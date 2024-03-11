@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Syncfusion.SfAutoComplete.XForms.UWP</name>
+    </assembly>
+    <members>
+        <member name="T:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteMapping">
+            <summary>
+            Sf auto complete mapping.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteMapping.GetDataTemplate">
+            <summary>
+            Gets the data template for the item template view.
+            </summary>
+            <returns>The data template.</returns>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteMapping.SetInternalProperty(Syncfusion.UI.Xaml.Controls.Input.SfTextBoxExt,System.String,System.Object)">
+            <summary>
+            Set internal value to native
+            </summary>
+            <param name="nativeAutoComplete"></param>
+            <param name="propertyName"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.previousSelectedItem">
+            <summary>
+            Gets the value of Selected item
+            </summary>
+        </member>
+        <member name="F:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.SfAutoCompleteMapping">
+            <summary>
+            The SfAutoComplete mapping.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="!:Syncfusion.SfAutoComplete.XForms.WinPhone.SfAutoCompleteRenderer"/> class.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.Dispose(System.Boolean)">
+            <summary>
+            Rasie the dispose the control
+            </summary>
+            <param name="disposing">Dispose</param>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.OnElementChanged(Xamarin.Forms.Platform.UWP.ElementChangedEventArgs{Syncfusion.SfAutoComplete.XForms.SfAutoComplete})">
+            <summary>
+            Raises the element changed event.
+            </summary>
+            <param name="e">E.</param>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.NativeAutoComplete_SuggestionsChanged(Windows.UI.Xaml.DependencyObject,Windows.UI.Xaml.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Invoked when SuggestionsChanged event is fired.
+            </summary>
+            <param name="d">The dependency object.</param>
+            <param name="e">The dependency property changed event arguments.</param>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.GetItems(System.Collections.IList)">
+            <summary>
+            Returns SelectedItem as new Collection 
+            </summary>
+            <param name="selectedObject">Selected item</param>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.GetAddedItems">
+            <summary>
+            Gets the value of added items
+            </summary>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.GetRemovedItems">
+            <summary>
+            Gets the value of removed items
+            </summary>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.TriggerSelectionChangedEvent(Syncfusion.SfAutoComplete.XForms.SelectionChangedEventArgs,System.Object,System.Object,System.Object)">
+            <summary>
+            Trigger the selection changed event.
+            </summary>
+            <param name="selectioneventArgs">Selection changed event arguments</param>
+            <param name="addedItems">Selected item value</param>
+            <param name="removedItems">Removed item value</param>
+            <param name="selectionValue">Selected item</param>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.IsValueType(System.Object)">
+            <summary>
+            Returns a boolean value indicating whether SelectedItem is value type or not
+            </summary>
+            <returns>Boolean indicating whether value type</returns>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.GetPropertyValue(System.Object,System.Reflection.TypeInfo,System.String)">
+            <summary>
+            Returns the value of a property from its type information
+            </summary>
+            <param name="selectedObject">Selected object</param>
+            <param name="info">Type information</param>
+            <param name="propertyName">Property name</param>
+            <returns>The property value</returns>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.IsNotNullAndValid(System.Object)">
+            <summary>
+            Checks whether the object is valid and collection has items
+            </summary>
+            <param name="selectedObject">The actual object</param>
+            <returns>boolean value</returns>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.UpdateSelectedIndex">
+            <summary>
+            Update the selected index value.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.GetInternalProperty(Syncfusion.UI.Xaml.Controls.Input.SfTextBoxExt,System.String)">
+            <summary>
+            Returns the value of a internal property from native
+            </summary>
+            <param name="nativeAutoComplete"></param>
+            <param name="propertyName"></param>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.OnElementPropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Raises the element property changed event.
+            </summary>
+            <param name="sender">Sender.</param>
+            <param name="e">E.</param>
+        </member>
+        <member name="M:Syncfusion.SfAutoComplete.XForms.UWP.SfAutoCompleteRenderer.GetPropertiesChanged(System.Type,System.Object)">
+            <summary>
+            Gets the properties changed.
+            </summary>
+            <returns>The properties changed.</returns>
+            <param name="type">Type.</param>
+            <param name="obj">Object.</param>
+        </member>
+    </members>
+</doc>

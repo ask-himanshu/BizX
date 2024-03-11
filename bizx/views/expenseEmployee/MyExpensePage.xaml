@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bizx.views.expenseEmployee.MyExpensePage"
+             xmlns:local="clr-namespace:bizx.customViews"
+             xmlns:bizx="clr-namespace:bizx;assembly=bizx"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HeightRequest="50" HorizontalOptions="FillAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                   <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0" >
+                      <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                       
+                    </Image>  
+                         <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label x:Name="titleLbl" Text="Expenses" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+                </Grid>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="White" />
+            <StackLayout x:Name="errorTxt" BackgroundColor="White" Margin="5" HorizontalOptions="CenterAndExpand" IsVisible="false" VerticalOptions="CenterAndExpand">
+                <Label Text="No Expense Request" TextColor="{StaticResource PrimaryColor}" FontSize="18" FontFamily="{StaticResource NormalFont}" />
+            </StackLayout>
+            <StackLayout x:Name="loadingStack" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <ActivityIndicator IsRunning="true" Color="Blue" IsEnabled="true" />
+                <Label Text="Loading" TextColor="{StaticResource PrimaryColor}" />
+            </StackLayout>
+            <ListView x:Name="ExpenseList" HasUnevenRows="True" IsVisible="false" BackgroundColor="White">
+                 <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <StackLayout HorizontalOptions="FillAndExpand">
+                                        <Frame IsClippedToBounds="true" OutlineColor="White">
+                                            <StackLayout Orientation="Vertical">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="25" />
+                                                       
+                                                    </Grid.RowDefinitions>
+                                                    <Label Text="{Binding expenseNo,StringFormat='ER-{0}'}" Grid.Row="0" Grid.Column="0" TextColor="{StaticResource PrimaryColor}" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                                                    <StackLayout x:Name="rupeeAmount" IsVisible="{Binding isRupee}" Orientation="Horizontal" Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand">
+                                                        <Label Text="&#8377;" TextColor="{StaticResource Buttons}" FontSize="20" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" />
+                                                        <Label Text="{Binding totalAmount}" TextColor="{StaticResource Buttons}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                                                    </StackLayout>
+                                                    <Label x:Name="dollarAmount" Grid.Row="0" Grid.Column="1" IsVisible="{Binding isDollar}" Text="{Binding totalAmount,StringFormat='$ {0}'}" TextColor="{StaticResource Buttons}" FontSize="20" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" />
+                                                </Grid>
+                                                 <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="25" />
+                                                    </Grid.RowDefinitions>
+                                                     <Label Text="{Binding claimType}" Grid.Row="0"  TextColor="{StaticResource PrimaryGray}" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                                                    
+                                                 </Grid>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="150" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="25" />
+                                                    </Grid.RowDefinitions>
+                                                    
+                                                    <Button Grid.Column="0" Text="{Binding statusValue}" VerticalOptions="CenterAndExpand" BorderColor="#44c785" Padding="0"  FontSize="10" BorderWidth="1" BackgroundColor="#44c785" FontFamily="{StaticResource NormalFont}" TextColor="White">
+                                                    </Button>
+                                                </Grid>
+                                            </StackLayout>
+                                        </Frame>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

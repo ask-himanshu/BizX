@@ -1,0 +1,82 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/himanshu/Downloads/Bizx_Latest_Forms 2 2 3-2 2/bizx/bizx.csproj": {}
+  },
+  "projects": {
+    "/Users/himanshu/Downloads/Bizx_Latest_Forms 2 2 3-2 2/bizx/bizx.csproj": {
+      "restore": {
+        "projectUniqueName": "/Users/himanshu/Downloads/Bizx_Latest_Forms 2 2 3-2 2/bizx/bizx.csproj",
+        "projectName": "bizx",
+        "projectPath": "/Users/himanshu/Downloads/Bizx_Latest_Forms 2 2 3-2 2/bizx/bizx.csproj",
+        "projectJsonPath": "/Users/himanshu/Downloads/Bizx_Latest_Forms 2 2 3-2 2/bizx/project.json",
+        "packagesPath": "/Users/himanshu/.nuget/packages/",
+        "projectStyle": "ProjectJson",
+        "configFilePaths": [
+          "/Users/himanshu/.nuget/NuGet/NuGet.Config"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        }
+      },
+      "dependencies": {
+        "DLToolkit.Forms.Controls.FlowListView": "[2.0.11, )",
+        "ExifLib.PCL": "[1.0.1, )",
+        "Microsoft.AppCenter": "[1.13.2, )",
+        "Microsoft.AppCenter.Analytics": "[2.0.0, )",
+        "Microsoft.AppCenter.Crashes": "[1.13.2, )",
+        "Microsoft.NETCore.Platforms": "[1.1.1, )",
+        "Microsoft.NETCore.Targets": "[1.1.3, )",
+        "Newtonsoft.Json": "[11.0.2, )",
+        "Plugin.Permissions": "[3.0.0.12, )",
+        "Rg.Plugins.Popup": "[1.1.4.168, )",
+        "SuaveControls.FloatingActionButton": "[2018.1.5, )",
+        "Syncfusion.Xamarin.SfAutoComplete": "[17.2.0.34, )",
+        "System.Collections": "[4.3.0, )",
+        "System.Collections.Concurrent": "[4.3.0, )",
+        "System.Diagnostics.Debug": "[4.3.0, )",
+        "System.Diagnostics.Tools": "[4.3.0, )",
+        "System.Diagnostics.Tracing": "[4.3.0, )",
+        "System.Globalization": "[4.3.0, )",
+        "System.Linq": "[4.3.0, )",
+        "System.Linq.Expressions": "[4.3.0, )",
+        "System.Net.Http": "[4.3.4, )",
+        "System.Net.Primitives": "[4.3.0, )",
+        "System.ObjectModel": "[4.3.0, )",
+        "System.Reflection": "[4.3.0, )",
+        "System.Reflection.Extensions": "[4.3.0, )",
+        "System.Reflection.Primitives": "[4.3.0, )",
+        "System.Resources.ResourceManager": "[4.3.0, )",
+        "System.Runtime": "[4.3.0, )",
+        "System.Runtime.Extensions": "[4.3.0, )",
+        "System.Runtime.InteropServices": "[4.3.0, )",
+        "System.Runtime.InteropServices.RuntimeInformation": "[4.3.0, )",
+        "System.Runtime.Numerics": "[4.3.0, )",
+        "System.Text.Encoding": "[4.3.0, )",
+        "System.Text.Encoding.Extensions": "[4.3.0, )",
+        "System.Text.RegularExpressions": "[4.3.0, )",
+        "System.Threading": "[4.3.0, )",
+        "System.Threading.Tasks": "[4.3.0, )",
+        "System.Xml.ReaderWriter": "[4.3.0, )",
+        "System.Xml.XDocument": "[4.3.0, )",
+        "XLabs.Core": "[2.0.5782, )",
+        "XLabs.Forms": "[2.0.5782, )",
+        "XLabs.IoC": "[2.0.5782, )",
+        "XLabs.Platform": "[2.0.5782, )",
+        "XLabs.Serialization": "[2.0.5782, )",
+        "Xam.Plugin.Connectivity": "[3.1.1, )",
+        "Xam.Plugin.LatestVersion": "[2.1.0, )",
+        "Xam.Plugins.DownloadManager": "[1.3.6, )",
+        "Xam.Plugins.Forms.ImageCircle": "[2.0.2, )",
+        "Xamarin.Essentials": "[1.7.0, )",
+        "Xamarin.Firebase.iOS.CloudMessaging": "[2.0.0, )",
+        "Xamarin.Forms": "[4.3.0.908675, )",
+        "Xamarin.Plugin.FilePicker": "[2.1.44-beta, )",
+        "runtime.native.System": "[4.3.1, )"
+      },
+      "frameworks": {
+        "portable45-net45+win8+wpa81": {}
+      }
+    }
+  }
+}

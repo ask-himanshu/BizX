@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bizx.views.leaveEmployee.MyLeavePage"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:bizx.customViews"
+             xmlns:bizx="clr-namespace:bizx;assembly=bizx"
+             Title="Apply Leave" NavigationPage.HasNavigationBar="False"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+    BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HeightRequest="50" HorizontalOptions="FillAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0" >
+                        <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label x:Name="titleLbl" Text="Apply Leave" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+                </Grid>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="White" />
+            <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+                <StackLayout Orientation="Vertical">
+                    <Grid Margin="10,7,10,7">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                            <Label Text="Leave Type"
+                           VerticalOptions="CenterAndExpand" FontSize="18" TextColor="{StaticResource PrimaryGray}"
+                            FontFamily="{StaticResource NormalFont}" />
+                            <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                        </StackLayout>
+                        <local:CustomPicker HeightRequest="35"  x:Name="leaveType" ItemDisplayBinding="{Binding leaveName}" Title="Select leave type" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerLeaveType_SelectedIndexChanged" />
+
+                    </Grid>
+                    <BoxView HeightRequest="1" x:Name="leaveCountLine" BackgroundColor="White" />
+                    <Grid x:Name="leaveCountGrid" Margin="10,7,10,7">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Leave Balance (in Days)" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="0" FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" />
+                        <Label x:Name="leaveBalance" Text="0" Grid.Row="0" Grid.Column="1" FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" />
+                    </Grid>
+                    <BoxView HeightRequest="1" BackgroundColor="White"  />
+                    <Grid Margin="10,7,10,7">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="1" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+                            <Label Text="From" FontSize="18" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" />
+                            <StackLayout Orientation="Horizontal" >
+                                <Image Source="ic_small_calendar" VerticalOptions="Center">
+                                </Image>
+                                <local:BorderlessDatePicker x:Name="fromDatePicker" TextColor="{StaticResource PrimaryColor}" HorizontalOptions="FillAndExpand" HeightRequest="50" VerticalOptions="Center" DateSelected="Handle_DateSelected_From" Date="{x:Static sys:DateTime.Now}">
+                                    <DatePicker.Format>dd MMM yyyy</DatePicker.Format>
+                                </local:BorderlessDatePicker>
+                                <BoxView WidthRequest="1" IsVisible="false" HorizontalOptions="End" VerticalOptions="FillAndExpand"  />
+                            </StackLayout>
+                        </StackLayout>
+                        <BoxView WidthRequest="1" IsVisible="true" Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#7f7f7f" />
+                        <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="2">
+                            <Label Text="To" FontSize="18" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" />
+                            <StackLayout Orientation="Horizontal" >
+                                <BoxView WidthRequest="1" IsVisible="false" HorizontalOptions="Start" VerticalOptions="FillAndExpand"  />
+                                <Image Source="ic_small_calendar" VerticalOptions="Center">
+                                </Image>
+                                <local:BorderlessDatePicker x:Name="toDatePicker" HorizontalOptions="FillAndExpand" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" HeightRequest="50" DateSelected="Handle_DateSelected_To">
+                                    <DatePicker.Format>dd MMM yyyy</DatePicker.Format>
+                                </local:BorderlessDatePicker>
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+
+
+                   <BoxView HeightRequest="1" x:Name="halfdaysessionLine" BackgroundColor="White" />
+                    <Grid x:Name="halfdaysession" Margin="10,7,10,7">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Sessions" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="0" FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" />
+                        <local:CustomPicker HeightRequest="35"
+                                    x:Name="halfdaysessionvalue"
+                                    Title="Select Session"
+                                     SelectedIndexChanged="PickerSession_SelectedIndexChanged"
+                                                BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}"
+                                    Grid.Row="1" Grid.Column="0">
+                                <local:CustomPicker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Full Day</x:String>
+                                        <x:String>Half Day/First Half</x:String>
+                                        <x:String>Half Day/Second Half</x:String>
+                                    </x:Array>
+                                </local:CustomPicker.ItemsSource>
+                            </local:CustomPicker>
+                    </Grid>
+
+                    <BoxView HeightRequest="1" BackgroundColor="White"  />
+                    <Grid Margin="10,7,10,7">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Label Text="Approver Name" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" />
+                        <Label x:Name="approverName" VerticalOptions="CenterAndExpand" Text="Himanshu Kumar" FontSize="18" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                    </Grid>
+                    <BoxView HeightRequest="1" BackgroundColor="White"  />
+                    <Grid Margin="10,7,10,7">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Total days of leave" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="0" FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" />
+                        <Label x:Name="totalDaysLeave" Text="0" Grid.Row="0" Grid.Column="1" FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" />
+                    </Grid>
+                    <BoxView HeightRequest="1" BackgroundColor="White"  />
+                    <Grid Margin="10,7,10,7">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        
+                        <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                            <Label Text="Contact Number" VerticalOptions="CenterAndExpand" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                            <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                        </StackLayout>
+
+                        <local:CustomEntry x:Name="contactNoEntry" Keyboard="Telephone" BackgroundColor="WhiteSmoke" FontSize="16" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" FontFamily="{StaticResource NormalFont}">
+                            <Entry.Behaviors>
+                                <local:EntryLengthValidatorBehavior MaxLength="11" />
+                            </Entry.Behaviors>
+                        </local:CustomEntry>
+
+                    </Grid>
+                    <BoxView HeightRequest="1" BackgroundColor="White"  />
+                    <Grid Margin="10,7,10,7">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+                        
+                        <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                            <Label Text="Contact Address" VerticalOptions="CenterAndExpand" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                            <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                        </StackLayout>
+
+                        <local:CustomEditor  x:Name="addressEntry" BackgroundColor="WhiteSmoke" HeightRequest="110" TextColor="{StaticResource PrimaryColor}" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16">
+                        </local:CustomEditor>
+
+                    </Grid>
+                    <BoxView HeightRequest="1" BackgroundColor="White"  />
+                    <Grid Margin="10,7,10,5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+                        
+                         <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                            <Label Text="Reason for applying leave" FontSize="18" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                            <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                        </StackLayout>
+
+                        <local:CustomEditor  x:Name="remarksEntry" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" HeightRequest="110" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16">
+                        </local:CustomEditor>
+
+                    </Grid>
+                    <Label Text="Want to add someone in CC?" VerticalOptions="CenterAndExpand" IsVisible="false" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" Margin="20,0,20,30">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="CC_Click" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <BoxView HeightRequest="1" BackgroundColor="White"  />
+
+
+                    <Grid Margin="10,7,10,7" IsVisible="false">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="40" />
+
+                        </Grid.RowDefinitions>
+
+
+
+                        <Label Text="CC To" FontSize="18" TextColor="{StaticResource PrimaryColor}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" />
+
+                        
+                    </Grid>
+                    <Grid Margin="10,7,10,7" IsVisible="true">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Label Text="CC To" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" />
+                        <local:CustomEntry x:Name="CCToEntry" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" Keyboard="Default" FontSize="16" TextChanged="Handle_TextChanged" Placeholder="#Search"  Grid.Row="1" Grid.Column="0" FontFamily="{StaticResource NormalFont}">
+                        </local:CustomEntry>
+                    </Grid>
+                    <Grid Margin="10,0,10,7" IsVisible="false" x:Name="FirstGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0" x:Name="firstStack">
+                            <Label x:Name="name1" TextColor="{StaticResource PrimaryColor}" VerticalTextAlignment="Center" FontSize="18" />
+                            <Image Source="ic_close_white_new_1" HorizontalOptions="End" VerticalOptions="CenterAndExpand">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_First" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1" x:Name="secondStack">
+                            <Label x:Name="name2" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="13" />
+                            <Image Source="ic_close_white_new_1" HorizontalOptions="End">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Margin="10,4,10,7" IsVisible="false" x:Name="SecondGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0" x:Name="thirdStack">
+                            <Label x:Name="name3" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="13" />
+                            <Image Source="ic_close_white_new_1" HorizontalOptions="End">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Second" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1" x:Name="fourthStack">
+                            <Label x:Name="name4" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="13" />
+                            <Image Source="ic_close_white_new_1" HorizontalOptions="End">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Third" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                    </Grid>
+                    <flv:FlowListView x:Name="NameListView" SeparatorVisibility="None" HasUnevenRows="False" IsVisible="false" FlowColumnMinWidth="150" FlowItemsSource="{Binding Employees}">
+                        <flv:FlowListView.FlowColumnTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                    <Label x:Name="name" Text="{Binding firstName}" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" FontSize="13" />
+                                    <Image Source="ic_chevron_right_black" HorizontalOptions="End">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Fourth" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </StackLayout>
+                                
+                            </DataTemplate>
+                        </flv:FlowListView.FlowColumnTemplate>
+                    </flv:FlowListView>
+                    <ListView x:Name="Employee_listView" BackgroundColor="White" IsVisible="false">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal" Margin="10,7,10,7" VerticalOptions="CenterAndExpand">
+                                        <Label TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" Text="{Binding fullName}" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>
+            <Button x:Name="submitBtn1" IsVisible="false" Text="Apply Leave" BackgroundColor="{StaticResource TitleColor}" HeightRequest="50" FontSize="16" TextColor="White" Clicked="Submit_Clicked" />
+            <StackLayout x:Name="submitBtn" BackgroundColor="{StaticResource Buttons}" Padding="5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0">
+                        <Label Text="APPLY LEAVE" TextColor="White" VerticalOptions="CenterAndExpand" FontSize="18" FontFamily="{StaticResource NormalFont}" HorizontalOptions="CenterAndExpand" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Submit_Clicked" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

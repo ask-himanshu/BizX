@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                                       x:Class="bizx.views.timesheetEmployee.SumittedTimesheetPage"
+                                       xmlns:bizx="clr-namespace:bizx;assembly=bizx"
+                                       NavigationPage.HasNavigationBar="False"
+                                       BackgroundColor="White" 
+                                       Title="My Timesheet">
+
+    <ContentPage.Content >
+
+        <StackLayout Orientation="Vertical">
+
+
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HeightRequest="50" HorizontalOptions="FillAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+
+
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+
+
+                    <Grid.ColumnDefinitions>
+                        
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="30"/>
+
+
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Source="ic_arrow_back_white.png" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+
+
+                        <Image.GestureRecognizers>
+
+
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click"/>
+
+
+                        </Image.GestureRecognizers>
+
+
+                    </Image>
+
+
+                    <Image Source="ic_save_white.png" Grid.Column="2" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" IsVisible="false">
+
+                   
+
+
+                    </Image>
+
+
+
+                    <Label x:Name="titleLbl" Text="My TimeSheet" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="CenterAndExpand" />
+                
+
+                </Grid>
+            
+
+
+        </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="White"/>
+              <ScrollView>  
+                  <StackLayout Orientation="Vertical" BackgroundColor="White" >
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="27" />
+                            <RowDefinition Height="27" />
+                            <RowDefinition Height="27" />
+                        </Grid.RowDefinitions>
+                        <Label x:Name="ProjectLbl" Grid.Row="0" TextColor="{StaticResource PrimaryGray}" VerticalTextAlignment="Center"  FontSize="18" Text="{Binding projectName}" />
+                        <Label x:Name="TaskLbl" Grid.Row="1" TextColor="{StaticResource PrimaryGray}" VerticalTextAlignment="Center" FontSize="18" Text="{Binding taskName}" />
+                        <Label x:Name="ActivityLbl" TextColor="{StaticResource PrimaryGray}" Grid.Row="2" VerticalTextAlignment="Center" FontSize="18" Text="{Binding subTaskName}" />
+
+                    </Grid>
+                    <Grid Margin="10">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+                            
+
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="*" />
+
+                        </Grid.ColumnDefinitions>
+
+                        <Label x:Name="catMon" Margin="0,5,0,5" TextColor="{StaticResource PrimaryColor}" Text="{Binding workDetails[0].TimesheetCategoryName,StringFormat='Category - {0}'}"
+        VerticalTextAlignment="Center"   FontFamily="{StaticResource NormalFont}" Grid.Row="0"  FontSize="16"></Label>
+
+<Label x:Name="cattue" Margin="0,5,0,5" TextColor="{StaticResource PrimaryColor}" Text="{Binding workDetails[1].TimesheetCategoryName,StringFormat='Category - {0}'}"
+        VerticalTextAlignment="Center"   FontFamily="{StaticResource NormalFont}" Grid.Row="3"  FontSize="16"></Label>
+
+<Label x:Name="catwed" Margin="0,5,0,5" TextColor="{StaticResource PrimaryColor}" Text="{Binding workDetails[2].TimesheetCategoryName,StringFormat='Category - {0}'}"
+        VerticalTextAlignment="Center"   FontFamily="{StaticResource NormalFont}" Grid.Row="6"  FontSize="16"></Label>
+
+<Label x:Name="catthu" Margin="0,5,0,5" TextColor="{StaticResource PrimaryColor}" Text="{Binding workDetails[3].TimesheetCategoryName,StringFormat='Category - {0}'}"
+        VerticalTextAlignment="Center"   FontFamily="{StaticResource NormalFont}" Grid.Row="9"  FontSize="16"></Label>
+
+<Label x:Name="catfri" Margin="0,5,0,5" TextColor="{StaticResource PrimaryColor}" Text="{Binding workDetails[4].TimesheetCategoryName,StringFormat='Category - {0}'}"
+        VerticalTextAlignment="Center"   FontFamily="{StaticResource NormalFont}" Grid.Row="12"  FontSize="16"></Label>
+
+<Label x:Name="catsat" Margin="0,5,0,5" TextColor="{StaticResource PrimaryColor}" Text="{Binding workDetails[5].TimesheetCategoryName,StringFormat='Category - {0}'}"
+        VerticalTextAlignment="Center"   FontFamily="{StaticResource NormalFont}" Grid.Row="15"  FontSize="16"></Label>
+
+<Label x:Name="catsun" Margin="0,5,0,5" TextColor="{StaticResource PrimaryColor}" Text="{Binding workDetails[6].TimesheetCategoryName,StringFormat='Category - {0}'}"
+        VerticalTextAlignment="Center"   FontFamily="{StaticResource NormalFont}" Grid.Row="18"  FontSize="16"></Label>
+                       
+
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Margin="0,5,0,5">
+                            <Label x:Name="Monday" FontSize="16" TextColor="{StaticResource PrimaryGray}"   VerticalOptions="Center" />
+                            <Label x:Name="hoursSpentMon"  TextColor="{StaticResource PrimaryColor}"  Text= "{Binding workDetails[0].workHours,StringFormat='- {0} hours'}" VerticalTextAlignment="Center" FontFamily="{StaticResource NormalFont}" Grid.Row="0" Grid.Column="1" FontSize="18"></Label>
+                        </StackLayout>
+                         <Label x:Name="remarksEntryMon" Margin="0,5,0,5" TextColor="{StaticResource PrimaryColor}" Text="{Binding workDetails[0].remarks,StringFormat='Remarks - {0}'}" VerticalTextAlignment="Center"   FontFamily="{StaticResource NormalFont}" Grid.Row="2"  FontSize="16"></Label>
+
+                        <StackLayout Orientation="Horizontal" Grid.Row="4">
+                            <Label x:Name="Tuesday" FontSize="16" TextColor="{StaticResource PrimaryGray}"   VerticalOptions="Center" />
+                            <Label x:Name="hoursSpentTue"  TextColor="{StaticResource PrimaryColor}"  Text= "{Binding workDetails[1].workHours,StringFormat='- {0} hours'}" VerticalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"  FontSize="18"></Label>
+                        </StackLayout>
+                         <Label x:Name="remarksEntryTue" Margin="0,5,0,5" TextColor="{StaticResource PrimaryColor}" Text="{Binding workDetails[1].remarks,StringFormat='Remarks - {0}'}" VerticalTextAlignment="Center"   FontFamily="{StaticResource NormalFont}" Grid.Row="5"  FontSize="16"></Label>
+
+                        <StackLayout Orientation="Horizontal" Margin="0,5,0,5" Grid.Row="7">
+                            <Label x:Name="Wednesday" FontSize="16" TextColor="{StaticResource PrimaryGray}"   VerticalOptions="Center" />
+                            <Label x:Name="hoursSpentWed"  TextColor="{StaticResource PrimaryColor}"  Text= "{Binding workDetails[2].workHours,StringFormat='- {0} hours'}" VerticalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"  FontSize="18"></Label>
+                        </StackLayout>
+                         <Label x:Name="remarksEntryWed" Margin="0,5,0,5" TextColor="{StaticResource PrimaryColor}" Text="{Binding workDetails[2].remarks,StringFormat='Remarks - {0}'}" VerticalTextAlignment="Center"   FontFamily="{StaticResource NormalFont}" Grid.Row="8"  FontSize="16"></Label>
+
+                        <StackLayout Orientation="Horizontal" Grid.Row="10">
+                            <Label x:Name="Thursday" FontSize="16" TextColor="{StaticResource PrimaryGray}"   VerticalOptions="Center" />
+                            <Label x:Name="hoursSpentThu"  TextColor="{StaticResource PrimaryColor}"  Text= "{Binding workDetails[3].workHours,StringFormat='- {0} hours'}" VerticalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"  FontSize="18"></Label>
+                        </StackLayout>
+                         <Label x:Name="remarksEntryThu" Margin="0,5,0,5" TextColor="{StaticResource PrimaryColor}" Text="{Binding workDetails[3].remarks,StringFormat='Remarks - {0}'}" VerticalTextAlignment="Center"   FontFamily="{StaticResource NormalFont}" Grid.Row="11"  FontSize="16"></Label>
+
+                        <StackLayout Orientation="Horizontal" Margin="0,5,0,5" Grid.Row="13">
+                            <Label x:Name="Friday" FontSize="16" TextColor="{StaticResource PrimaryGray}"   VerticalOptions="Center" />
+                            <Label x:Name="hoursSpentFri"  TextColor="{StaticResource PrimaryColor}"  Text= "{Binding workDetails[4].workHours,StringFormat='- {0} hours'}" VerticalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"  FontSize="18"></Label>
+                        </StackLayout>
+                         <Label x:Name="remarksEntryFri" Margin="0,5,0,5" TextColor="{StaticResource PrimaryColor}" Text="{Binding workDetails[4].remarks,StringFormat='Remarks - {0}'}" VerticalTextAlignment="Center"   FontFamily="{StaticResource NormalFont}" Grid.Row="14"  FontSize="16"></Label>
+
+                        <StackLayout Orientation="Horizontal" Margin="0,5,0,5" Grid.Row="16">
+                            <Label x:Name="Saturday" FontSize="16" TextColor="{StaticResource PrimaryGray}"   VerticalOptions="Center" />
+                            <Label x:Name="hoursSpentSat"  TextColor="{StaticResource PrimaryColor}"  Text= "{Binding workDetails[5].workHours,StringFormat='- {0} hours'}" VerticalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"  FontSize="18"></Label>
+                        </StackLayout>
+                         <Label x:Name="remarksEntrySat" Margin="0,5,0,5" TextColor="{StaticResource PrimaryColor}" Text="{Binding workDetails[5].remarks,StringFormat='Remarks - {0}'}" VerticalTextAlignment="Center"   FontFamily="{StaticResource NormalFont}" Grid.Row="17"  FontSize="16"></Label>
+
+                        <StackLayout Orientation="Horizontal" Grid.Row="19">
+                            <Label x:Name="Sunday" Margin="0,5,0,5" FontSize="16" TextColor="{StaticResource PrimaryGray}"   VerticalOptions="Center" />
+                            <Label x:Name="hoursSpentSun"  TextColor="{StaticResource PrimaryColor}"  Text= "{Binding workDetails[6].workHours,StringFormat='- {0} hours'}" VerticalTextAlignment="Center" FontFamily="{StaticResource NormalFont}" FontSize="18"></Label>
+                        </StackLayout>
+                         <Label x:Name="remarksEntrySun" Margin="0,5,0,5" TextColor="{StaticResource PrimaryColor}" Text="{Binding workDetails[6].remarks,StringFormat='Remarks - {0}'}" VerticalTextAlignment="Center"   FontFamily="{StaticResource NormalFont}" Grid.Row="20"  FontSize="16"></Label>
+                        </Grid>
+                </StackLayout>
+
+
+
+
+            </ScrollView>   
+
+        </StackLayout>
+
+    </ContentPage.Content>
+    
+</ContentPage>
+
+
+
+ 
+

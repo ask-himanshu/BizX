@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 x:Class="bizx.popups.TermsAndConditionPopupPage">
+    <ContentPage.Content>
+
+        <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20">
+
+            <StackLayout BackgroundColor="White">
+
+                <StackLayout BackgroundColor="{StaticResource TitleColor}" Grid.Column="1" Orientation="Horizontal" Padding="5" VerticalOptions="Center">
+
+
+                <Label Text="Terms And Condition" FontSize="18" TextColor="White" HorizontalOptions="StartAndExpand"  VerticalOptions="Center" />
+
+                 <Image Source="ic_close_white" Grid.Column="1" HorizontalOptions="EndAndExpand">
+
+                    <Image.GestureRecognizers>
+
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Cancel_Click" />
+
+                    </Image.GestureRecognizers>
+
+                </Image>
+
+            </StackLayout>
+
+                <Label Text="I certify that the time I have entered into the Spandan Time Sheet is correct and accurate, and I acknowledge that falsification of time is a violation of company policy that will result in disciplinary action up to and including termination.If also submitting time into a client Time Management System (TMS), I certify that the time I have submitted in Spandan corresponds to the hours I have submitted to the client, and acknowledge that any hours not approved by my client manager will be deducted from my paycheck.I authorize Infinite Computer Solutions, Inc. to make these payroll deductions."
+                       TextColor="{StaticResource PrimaryColor}" FontSize="18" Margin="5" />
+
+
+                <Grid Margin="5,5,0,5">
+
+                    <Grid.ColumnDefinitions>
+
+
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                        
+                    </Grid.ColumnDefinitions>
+
+
+                    <RelativeLayout Grid.Column="0">
+
+                        <Image x:Name="uncheckedBox" Source="ic_unchecked_checkbox" Margin="0,2,0,0" IsVisible="true">
+
+                            <Image.GestureRecognizers>
+
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Uncheck_Click" />
+
+
+                            </Image.GestureRecognizers>
+                            
+
+                        </Image>
+                        <Image x:Name="checkedBox" Source="ic_checked_checkbox" IsVisible="false"  Margin="0,2,0,0">
+
+                           <Image.GestureRecognizers>
+
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Check_Click" />
+
+
+                            </Image.GestureRecognizers> 
+                            
+                        </Image>
+                    </RelativeLayout>
+
+                     <Label Text="Terms and Condition" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" HorizontalOptions="StartAndExpand"/>
+                    
+                </Grid>
+
+
+                 <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" Margin="10,20,10,0">
+
+                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+
+                 <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="0" x:Name="reject_btn" IsVisible="false" Padding="10">
+
+                    <Label Text="CANCEL" TextColor="#F77816" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+
+                    <!--<StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Cancel_Click" NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>-->
+                    
+                </StackLayout>
+                
+
+
+                    
+
+                <BoxView BackgroundColor="White" Grid.Column="1"/>
+
+                <StackLayout Grid.Column="2" x:Name="approve_btn" Padding="10" Margin="10">
+
+                    <Label Text="Ok" TextColor="#F77816" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="0"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Ok_Click" NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+                    
+                </StackLayout>
+                
+            </Grid>
+                
+                <!--<Button Text="Ok" x:Name="okBtn" BackgroundColor="White" BorderWidth="0.5" BorderColor="{StaticResource PrimaryColor}" FontSize="18" WidthRequest="90" Clicked="Ok_Click"></Button>-->
+                <!--<Button Text="Disagree" x:Name="cancelBtn" TextColor="White" WidthRequest="90" FontSize="16" Clicked="Cancel_Click" IsVisible="false"></Button>-->
+
+            </StackLayout>
+                
+
+                <!--<StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" Margin="0,20,2,2">
+
+
+                    <Button Text="Ok" x:Name="okBtn" TextColor="{StaticResource PrimaryColor}" WidthRequest="90" BackgroundColor="White" BorderWidth="0.5" BorderColor="{StaticResource PrimaryColor}" FontSize="18" Clicked="Ok_Click">
+
+                    </Button>
+
+                </StackLayout>-->
+
+            </StackLayout>
+                   
+
+
+        </StackLayout>
+                
+            
+
+                
+        
+
+
+
+        
+    </ContentPage.Content>
+</pages:PopupPage>

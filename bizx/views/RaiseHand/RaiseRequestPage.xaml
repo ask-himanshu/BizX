@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="bizx.views.RaiseHand.RaiseRequestPage"
+    xmlns:local="clr-namespace:bizx.customViews;assembly=bizx"
+    NavigationPage.HasNavigationBar="False" BackgroundColor="White">
+    <ContentPage.Content>
+
+        <StackLayout Orientation="Vertical">
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HorizontalOptions="FillAndExpand" HeightRequest="50" Orientation="Vertical" VerticalOptions="Center">
+                <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="80" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0">
+                        <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="50" >
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" >
+                            <Image Source="Raise_the_Hand_White_96X48.png"  Margin="20,0,0,0"  />
+
+                        </StackLayout>
+
+
+
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="White" />
+            <Grid Margin="20,5,20,0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="250"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+
+                <Label x:Name="EmpName" Grid.Row="0"  Margin="0,0,0,5" HorizontalOptions="StartAndExpand" HeightRequest="25" FontSize="20" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryColor}"/>
+                <BoxView Grid.Row="1" HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}"/>
+
+                <Image Grid.Row="2" Source="{Binding SelectedImageName}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                </Image>
+
+                <Label Grid.Row="3" Text="{Binding SelectedCategoryText}" FontSize="22" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+
+                <BoxView Grid.Row="4" HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}"/>
+
+                <StackLayout Grid.Row="5"  Orientation="Horizontal">
+                                <Label Text="Enter Your Inputs"  FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"></Label>
+
+                                <Label Text="*" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                            </StackLayout>
+                
+                <StackLayout HeightRequest="200" Grid.Row="6" >
+                    <local:CustomEditor Placeholder="Type here" PlaceholderColor="Gray"
+                                    BackgroundColor="WhiteSmoke" Text="{Binding Description}"
+                                  TextColor="{StaticResource PrimaryColor}" FontSize="18"  HeightRequest="200" FontFamily="{StaticResource NormalFont}" >
+
+                    </local:CustomEditor>
+                </StackLayout>
+
+
+                <Button Grid.Row="7" TextColor="White" Clicked="RaiseHandRequestClick" WidthRequest="140" BackgroundColor="#7E249F" Text="Submit" VerticalOptions="CenterAndExpand" HorizontalOptions="End">
+
+                </Button>
+            </Grid>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" NavigationPage.HasNavigationBar="False" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="bizx.views.ErrorPage">
+    <ContentPage.Content>
+
+        <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Label Text="oops! No Internet" FontSize="22"  TextColor="#4c4c4c"/>
+        </StackLayout>
+
+
+        
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bizx.views.timesheetEmployee.UsSubmittedTimesheetPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
+             Title="My Timesheet">
+    <ContentPage.Content>
+
+         <StackLayout Orientation="Vertical">
+
+
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HeightRequest="50" HorizontalOptions="FillAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+
+
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+
+
+                    <Grid.ColumnDefinitions>
+                        
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="30"/>
+
+
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Source="ic_arrow_back_white.png" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+
+
+                        <Image.GestureRecognizers>
+
+
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click"/>
+
+
+                        </Image.GestureRecognizers>
+
+
+                    </Image>
+
+
+                    <Image Source="ic_save_white.png" Grid.Column="2" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" IsVisible="false">
+
+                   
+
+
+                    </Image>
+
+
+
+                    <Label x:Name="titleLbl" Text="My TimeSheet" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="CenterAndExpand" />
+                
+
+                </Grid>
+            
+
+
+        </StackLayout>
+              <ScrollView>  
+                  <StackLayout Orientation="Vertical">
+                       <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="25" />
+                        </Grid.RowDefinitions>
+                        <Label x:Name="ProjectLbl" Grid.Row="0" TextColor="{StaticResource PrimaryGray}" VerticalTextAlignment="Center"  FontSize="18" Text="{Binding projectName}" />
+                        <Label x:Name="TaskLbl" Grid.Row="1" TextColor="{StaticResource PrimaryGray}" VerticalTextAlignment="Center" FontSize="18" Text="{Binding taskName}" />
+                        <Label x:Name="ActivityLbl" TextColor="{StaticResource PrimaryGray}" Grid.Row="2" VerticalTextAlignment="Center" FontSize="18" Text="{Binding subTaskName}" />
+
+                    </Grid>
+                     <Grid Margin="10">
+
+                        <Grid.RowDefinitions>
+
+                            <RowDefinition Height="25" />
+
+                            <RowDefinition Height="25" />
+
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="*" />
+
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Orientation="Horizontal" Grid.Row="0">
+                            <Label x:Name="Monday" FontSize="16" TextColor="{StaticResource PrimaryGray}"   VerticalOptions="Center" />
+                            <Label x:Name="hoursSpentMon"  TextColor="{StaticResource PrimaryGray}"  Text= "{Binding workDetails[0].workHours,StringFormat='- {0} hours'}" VerticalTextAlignment="Center" FontFamily="{StaticResource NormalFont}" Grid.Row="0" Grid.Column="1" FontSize="18"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1">
+                            <Label x:Name="Tuesday" FontSize="16" TextColor="{StaticResource PrimaryGray}"   VerticalOptions="Center" />
+                            <Label x:Name="hoursSpentTue"  TextColor="{StaticResource PrimaryGray}"  Text= "{Binding workDetails[0].workHours,StringFormat='- {0} hours'}" VerticalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"  FontSize="18"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="2">
+                            <Label x:Name="Wednesday" FontSize="16" TextColor="{StaticResource PrimaryGray}"   VerticalOptions="Center" />
+                            <Label x:Name="hoursSpentWed"  TextColor="{StaticResource PrimaryGray}"  Text= "{Binding workDetails[0].workHours,StringFormat='- {0} hours'}" VerticalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"  FontSize="18"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="3">
+                            <Label x:Name="Thursday" FontSize="16" TextColor="{StaticResource PrimaryGray}"   VerticalOptions="Center" />
+                            <Label x:Name="hoursSpentThu"  TextColor="{StaticResource PrimaryGray}"  Text= "{Binding workDetails[0].workHours,StringFormat='- {0} hours'}" VerticalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"  FontSize="18"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="4">
+                            <Label x:Name="Friday" FontSize="16" TextColor="{StaticResource PrimaryGray}"   VerticalOptions="Center" />
+                            <Label x:Name="hoursSpentFri"  TextColor="{StaticResource PrimaryGray}"  Text= "{Binding workDetails[0].workHours,StringFormat='- {0} hours'}" VerticalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"  FontSize="18"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="5">
+                            <Label x:Name="Saturday" FontSize="16" TextColor="{StaticResource PrimaryGray}"   VerticalOptions="Center" />
+                            <Label x:Name="hoursSpentSat"  TextColor="{StaticResource PrimaryGray}"  Text= "{Binding workDetails[0].workHours,StringFormat='- {0} hours'}" VerticalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"  FontSize="18"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="6">
+                            <Label x:Name="Sunday" FontSize="16" TextColor="{StaticResource PrimaryGray}"   VerticalOptions="Center" />
+                            <Label x:Name="hoursSpentSun"  TextColor="{StaticResource PrimaryGray}"  Text= "{Binding workDetails[0].workHours,StringFormat='- {0} hours'}" VerticalTextAlignment="Center" FontFamily="{StaticResource NormalFont}" FontSize="18"></Label>
+                        </StackLayout>
+                        </Grid>
+
+                    
+
+                    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HeightRequest="40" Margin="10,0,10,0" x:Name="downloadStack" IsVisible="true" Padding="0,0,0,10">
+                        
+                        <Label x:Name="File_Name" TextColor="White" FontFamily="{StaticResource NormalFont}" FontSize="18" Text="Test File" VerticalOptions="CenterAndExpand"/>
+                    
+
+
+
+                    <Label Text="Download Attachment" x:Name="downloadFileBtn" TextColor="White"  FontSize="18"
+                                 IsVisible="true"  VerticalOptions="CenterAndExpand" Margin="10,0,0,0">
+
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Download_Click" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+
+
+                    </Label>
+                    
+                    </StackLayout>
+
+                   <!-- <Button x:Name="submitBtn" Margin="0" Clicked="Submit_Click" Text="Submit" FontSize="16" TextColor="White" BackgroundColor="{StaticResource TitleColor}"></Button>-->
+
+
+                </StackLayout>
+
+
+
+
+            </ScrollView>   
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

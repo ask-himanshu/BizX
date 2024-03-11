@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bizx.views.serviceDesk.RaiseIncidentPage"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:bizx="clr-namespace:bizx;assembly=bizx"
+             xmlns:local="clr-namespace:bizx.customViews"
+             xmlns:behaviors="clr-namespace:bizx.Behaviors;assembly=bizx">
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" Orientation="Horizontal" HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0" >
+                        <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label x:Name="titleLbl" Text="Raise Incident" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+                </Grid>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="White" />
+            <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                            <Label Text="Department" Grid.Row="0" Grid.Column="0" FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+
+                            <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="4" Grid.Column="0" Orientation="Horizontal" x:Name="RequestTypeValue">
+                        
+                            <Label Text="Request Type" Grid.Row="1" Grid.Column="0" FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+
+                            <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                            <Label Text="Workgroup"  FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+
+                            <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                            <Label Text="Category"  FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+
+                            <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                            <Label Text="Sub Category"  FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+
+                            <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                        </StackLayout>
+
+                        <local:CustomPicker HeightRequest="35" x:Name="DepartmentPicker" VerticalOptions="CenterAndExpand" ItemDisplayBinding="{Binding departmentName}" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" Title="Select Department" Grid.Row="0" Grid.Column="1" SelectedIndexChanged="PickerDepartment_SelectedIndexChanged" />
+
+                        
+
+                        <local:CustomPicker HeightRequest="35" x:Name="WorkgroupPicker" VerticalOptions="CenterAndExpand" Title="Select Workgroup" ItemDisplayBinding="{Binding workGroupName}" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="1" SelectedIndexChanged="PickerWorkgroup_SelectedIndexChanged">
+                        </local:CustomPicker>
+                     
+                        <local:CustomPicker HeightRequest="35" x:Name="categoryPicker" VerticalOptions="CenterAndExpand" Title="Select Category" Grid.Row="2" ItemDisplayBinding="{Binding categoryName}" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" Grid.Column="1" SelectedIndexChanged="PickerCategory_SelectedIndexChanged">
+                        </local:CustomPicker>
+                        <local:CustomPicker HeightRequest="35" x:Name="subCategoryPicker" VerticalOptions="CenterAndExpand" Title="Select Sub Category" Grid.Row="3" ItemDisplayBinding="{Binding categoryName}" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" Grid.Column="1" SelectedIndexChanged="PickerSubCategory_SelectedIndexChanged">
+                        </local:CustomPicker>
+                        <local:CustomPicker HeightRequest="35" x:Name="RequestPicker" Title="Select Request Type" Grid.Row="4" Grid.Column="1" 
+                                            BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryGray}"
+                                            VerticalOptions="CenterAndExpand"
+                                    SelectedIndexChanged="RequestPicker_SelectedIndexChanged">
+                            <local:CustomPicker.ItemsSource >
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Information</x:String>
+                                    <x:String>Work Request</x:String>
+                                   </x:Array>
+                            </local:CustomPicker.ItemsSource>
+                        </local:CustomPicker>
+                    </Grid>
+                    <Grid Margin="10" >
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                            <Label Text="Mobile Number" FontSize="18" TextColor="{StaticResource PrimaryGray}"
+                                    FontFamily="{StaticResource NormalFont}" />
+
+                            <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                        </StackLayout>
+
+                        <local:CustomEntry x:Name="mobileNumber" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" BorderColor="WhiteSmoke" Keyboard="Numeric" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16">
+                            <Entry.Behaviors>
+                                <local:EntryLengthValidatorBehavior MaxLength="15" MinLength="10" />
+                            </Entry.Behaviors>
+                        </local:CustomEntry>
+
+                        <Label Text="Cubicle Number" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                        <local:CustomEntry x:Name="workStationNumber" TextColor="{StaticResource PrimaryColor}" BackgroundColor="WhiteSmoke" BorderColor="WhiteSmoke" FontFamily="{StaticResource NormalFont}" Grid.Row="3" Grid.Column="0" FontSize="16">
+                            <Entry.Behaviors>
+                                <local:EntryAlphaNumericBehavior MaxLength="20"  />
+                            </Entry.Behaviors>
+                        </local:CustomEntry>
+
+                        <Label Text="Extension Number" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="4" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                        <local:CustomEntry x:Name="extensionNumber"  TextColor="{StaticResource PrimaryColor}" BackgroundColor="WhiteSmoke" BorderColor="WhiteSmoke" Keyboard="Numeric" FontFamily="{StaticResource NormalFont}" Grid.Row="5" Grid.Column="0" FontSize="16">
+                            <Entry.Behaviors>
+                                <local:EntryLengthValidatorBehavior MaxLength="4" MinLength="4" />
+                            </Entry.Behaviors>
+                        </local:CustomEntry>
+
+                    </Grid>
+                    <BoxView HeightRequest="1" BackgroundColor="White" />
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="110" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="110" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Row="0" Orientation="Horizontal">
+                            <Label Text="Symptom" FontSize="18"  TextColor="{StaticResource PrimaryGray}"
+                                FontFamily="{StaticResource NormalFont}" VerticalOptions="Center" />
+                        
+                            <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                        </StackLayout>
+
+                        <local:CustomEditor x:Name="symptom" BackgroundColor="WhiteSmoke" BorderColor="WhiteSmoke"  HeightRequest="110" FontFamily="{StaticResource NormalFont}" Grid.Row="1" FontSize="16">
+
+                        </local:CustomEditor>
+
+                        <StackLayout Grid.Row="2" Orientation="Horizontal">
+                            <Label Text="Description" FontSize="18"  TextColor="{StaticResource PrimaryGray}"  FontFamily="{StaticResource NormalFont}" VerticalOptions="Center" />
+                        
+                        
+                            <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                        </StackLayout>
+
+                        <local:CustomEditor x:Name="description" BackgroundColor="WhiteSmoke" BorderColor="WhiteSmoke"  HeightRequest="110" FontFamily="{StaticResource NormalFont}" Grid.Row="3" FontSize="16">
+
+                        </local:CustomEditor>
+                    </Grid>
+                    <BoxView HeightRequest="1" BackgroundColor="White" IsVisible="false" />
+                    <StackLayout Orientation="Horizontal" HeightRequest="40" Margin="10,7,0,7">
+                        <Button Text="Choose File" TextColor="{StaticResource PrimaryColor}" WidthRequest="120" BackgroundColor="{StaticResource BackgroundColors}" BorderWidth="1" CornerRadius="10" BorderColor="{StaticResource Button}" FontSize="18" Clicked="Attachment_Click" />
+                        <Label x:Name="File_Name" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}" Text="No File Chosen" VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HeightRequest="40" Margin="10,7,0,7">
+                        <Button Text="Choose File" TextColor="{StaticResource PrimaryColor}" WidthRequest="120" BackgroundColor="{StaticResource BackgroundColors}" BorderWidth="1" CornerRadius="10" BorderColor="{StaticResource Button}" FontSize="18" Clicked="Attachment_Click1" />
+                        <Label x:Name="File_Name1" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}" Text="No File Chosen" VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                    <Label Text="Supported file formats .pdf,.doc,.docx,.png,.jpg,.jpeg,.gif,.zip,.7z" TextColor="White" FontSize="10" Margin="0,7,0,7" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+
+                </StackLayout>
+
+            </ScrollView>
+            <StackLayout x:Name="submitBtn" BackgroundColor="{StaticResource Buttons}" Padding="5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0">
+                        <Label Text="SUBMIT" TextColor="White" VerticalOptions="CenterAndExpand" FontSize="18" FontFamily="{StaticResource NormalFont}" HorizontalOptions="CenterAndExpand" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Submit_Clicked" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

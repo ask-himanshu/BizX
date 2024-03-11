@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_PostProcessingItem Include="bizx.iOS.app/bizx.iOS">
+      <BCSymbolMapName>bizx.iOS.bcsymbolmap</BCSymbolMapName>
+      <NoDSymUtil>true</NoDSymUtil>
+      <dSYMSourcePathExists>false</dSYMSourcePathExists>
+      <NoSymbolStrip>true</NoSymbolStrip>
+      <dSYMInfoPlistRelativePath>bizx.iOS.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
+      <SymbolFile>/Users/himanshu/Downloads/Bizx_Latest_Forms 2 2 3-2 2/iOS/obj/iPhoneSimulator/Release/mtouch-symbols.list</SymbolFile>
+      <DSymName>bizx.iOS.app.dSYM</DSymName>
+      <SourceProjectPath>/Users/himanshu/Downloads/Bizx_Latest_Forms 2 2 3-2 2/iOS</SourceProjectPath>
+    </_PostProcessingItem>
+  </ItemGroup>
+</Project>

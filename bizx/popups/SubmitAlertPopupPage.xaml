@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="bizx.popups.SubmitAlertPopupPage" xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation PositionIn="Center" PositionOut="Center" ScaleIn="1.2" ScaleOut="0.8" DurationIn="400" DurationOut="300" EasingIn="SinOut" EasingOut="SinIn" HasBackgroundAnimation="True" />
+    </pages:PopupPage.Animation>
+
+
+
+         <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20">
+        <StackLayout BackgroundColor="White" Orientation="Vertical">
+           <!-- <Label Text="Alert" TextColor="{StaticResource PrimaryColor}" FontSize="Large" HorizontalOptions="Start">
+                
+            </Label>-->
+
+             <StackLayout BackgroundColor="{StaticResource TitleColor}" Grid.Column="1" Orientation="Horizontal" Padding="5" VerticalOptions="Center">
+
+
+                <Label x:Name="titleLbl" Text="Alert" FontSize="18" TextColor="White" HorizontalOptions="StartAndExpand"  VerticalOptions="Center" />
+
+                <Image Source="ic_close_white" Grid.Column="1" HorizontalOptions="EndAndExpand">
+
+                    <Image.GestureRecognizers>
+
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped" />
+
+                    </Image.GestureRecognizers>
+
+                </Image>
+
+            </StackLayout>
+                <StackLayout Padding="10">
+
+                     <Label x:Name="messageLbl" Text="Are you sure want to logout" Margin="0,10,0,0" TextColor="{StaticResource PrimaryColor}" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="Center">
+            </Label>
+                </StackLayout>
+
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" Margin="10,20,10,0">
+
+                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+
+                 <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="0" x:Name="reject_btn" IsVisible="true" Padding="10"  Margin="10">
+
+                    <Label Text="DISAGREE" TextColor="#F77816" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Cancel_Click" NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+                    
+                </StackLayout>
+                
+
+
+                    
+
+                <BoxView BackgroundColor="White" Grid.Column="1"/>
+
+                <StackLayout Grid.Column="2" x:Name="approve_btn" Padding="10"  Margin="10">
+
+                    <Label Text="AGREE" TextColor="#F77816" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="0"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Ok_Click" NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+                    
+                </StackLayout>
+                
+            </Grid>
+                
+
+
+            </StackLayout>
+            
+           
+            <!--<StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" Margin="0,20,2,2">
+                <Button Text="Disagree" x:Name="cancelBtn" TextColor="{StaticResource PrimaryColor}" WidthRequest="90" BackgroundColor="White" BorderWidth="0.5" BorderColor="{StaticResource PrimaryColor}" FontSize="18" Clicked="Cancel_Click">
+                </Button>
+                <Button Text="Agree" x:Name="okBtn" TextColor="{StaticResource PrimaryColor}" WidthRequest="90" BackgroundColor="White" BorderWidth="0.5" BorderColor="{StaticResource PrimaryColor}" FontSize="18" Clicked="Ok_Click">
+                </Button>
+            </StackLayout>-->
+        </StackLayout>
+     </StackLayout>
+</pages:PopupPage>

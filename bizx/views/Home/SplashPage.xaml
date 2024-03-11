@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             BackgroundColor="White"
+             x:Class="bizx.views.SplashPage"
+             >
+
+    <StackLayout x:Name="mainLayout" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+
+       <!-- <StackLayout Padding="20" >
+            <Image Source="splash_screen.png"  ></Image>
+        </StackLayout>-->
+
+        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0">
+            <Image Source="logo_bizx.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  ></Image>
+                
+        </StackLayout>
+       <!-- <Image Source="splash_screen.png"  ></Image>-->
+       
+    </StackLayout>
+</ContentPage>

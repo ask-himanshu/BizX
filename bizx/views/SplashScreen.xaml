@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bizx.views.SplashScreen"
+             BackgroundColor="White">
+    <!--<RelativeLayout >
+        <Image Source="Bizx.png" 
+                RelativeLayout.WidthConstraint=
+                  "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                RelativeLayout.HeightConstraint=
+                  "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+        <Grid RelativeLayout.WidthConstraint=
+              "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint=
+              "{ConstraintExpression Type=RelativeToParent, Property=Height}">
+
+            <Label Text="Welcome to BizX" VerticalOptions="EndAndExpand" HorizontalOptions="Center" TextColor="#2196F3" FontSize="20" />
+        </Grid>
+    </RelativeLayout>-->
+
+    <StackLayout x:Name="mainLayout" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+
+        <StackLayout Padding="60">
+            <Image Source="Bizx.png" ></Image>
+        </StackLayout>
+
+        <StackLayout>
+            <Label x:Name ="welcomeText" Text="Welcome to BizX" VerticalOptions="EndAndExpand" HorizontalOptions="Center"  FontSize="20" />
+        </StackLayout>
+        
+        
+        
+        
+    </StackLayout>
+    
+</ContentPage>

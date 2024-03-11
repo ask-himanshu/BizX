@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="bizx.views.timesheetManager.PendingEmployeeDetails"
+             xmlns:local="clr-namespace:bizx.views.timesheetManager"
+             xmlns:view="clr-namespace:bizx.views.timesheetManager;assembly=bizx"
+             xmlns:bizx.customViews="clr-namespace:bizx.customViews;assembly=bizx"
+             BackgroundColor="White"
+             Title="Pending">
+   
+    <StackLayout Spacing="0">
+        <ActivityIndicator IsRunning="True" Color ="Blue" x:Name="ActivitySpinner" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        <ListView x:Name="empListView"  
+                ItemsSource="{Binding contentList}"
+                HasUnevenRows="True">
+               
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell >
+                        
+                        <view:CardTemplate/>
+                        </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+    </StackLayout>
+                    
+   
+</ContentPage>

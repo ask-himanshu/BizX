@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:bizx"
+             xmlns:viewModel="clr-namespace:bizx.models;assembly=bizx"
+             Title="Employee Timesheet"
+             BackgroundColor="White"
+             x:Class="bizx.views.TimeSheetDetailPage">
+
+
+  
+    <ScrollView>
+        <StackLayout Orientation="Vertical" >
+
+        <ListView x:Name="TimesheetDetailList"  ItemsSource="{Binding timesheetList}" Margin="10" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell x:Name="outerListviewCell" >
+                        <ViewCell.View >
+                            <ContentView Padding="0">
+                                <StackLayout Orientation="Vertical">
+                                        <BoxView  HeightRequest="1" WidthRequest="300" BackgroundColor="Gray"/>
+                                        <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                            
+                                            <Label Grid.Column="0"  FontAttributes="None" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"
+                                    FontSize="Small" Text="Task Name" Margin="0,0,0,20"  >
+                                        </Label>
+                                        <!--<Label Grid.Column="1" FontAttributes="None" HorizontalTextAlignment="End" VerticalTextAlignment="Center"
+                                    FontSize="Small" Text="{Binding taskName}" TextColor="#686262" Margin="0,0,0,20" >
+                                                
+                                                
+                                            </Label>-->
+                                        <Label Grid.Column="1"  FontAttributes="None" HorizontalTextAlignment="End" VerticalTextAlignment="Center"
+                                    FontSize="Small" Text="{Binding taskName}" Margin="0,0,0,20"  >
+                                        </Label>
+
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0"  FontAttributes="None" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"
+                                    FontSize="Small" Text="Sub-Task Name" Margin="0,0,0,20" ></Label>
+
+                                        <Label Grid.Column="1" FontAttributes="None" HorizontalTextAlignment="End" VerticalTextAlignment="Center"
+                                    FontSize="Small" Text="{Binding subTaskName, Mode = TwoWay}" TextColor="#686262" Margin="0,0,0,20" ></Label>
+
+                                    </Grid>
+                                        <BoxView  HeightRequest="1" WidthRequest="300" BackgroundColor="Gray"/>
+                                        <StackLayout Orientation="Vertical">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding workDetails[0].workDay,StringFormat='{0:ddd, MMM d, yyyy}'}"  FontSize="Small"/>
+
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                                                <Label FontAttributes="None"  FontSize="Small" Text="No.of hours"/>
+
+                                                <Label FontAttributes="None"  FontSize="Small" Text="{Binding workDetails[0].workHours}"  />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <Label HorizontalOptions="FillAndExpand" FontAttributes="None"
+                                    FontSize="Small" Text="{Binding workDetails[0].remarks}" />
+                                    </StackLayout>
+                                    
+                                    <StackLayout Orientation="Vertical">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding workDetails[1].workDay,StringFormat='{0:ddd, MMM d, yyyy}'}"  FontSize="Small"/>
+
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center" >
+                                                <Label FontAttributes="None"  FontSize="Small" Text="No.of hours"/>
+
+                                                <Label FontAttributes="None"  FontSize="Small" Text="{Binding workDetails[1].workHours}"  />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <Label HorizontalOptions="FillAndExpand" FontAttributes="None"
+                                    FontSize="Small" Text="{Binding workDetails[1].remarks}" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding workDetails[2].workDay,StringFormat='{0:ddd, MMM d, yyyy}'}"  FontSize="Small"/>
+
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                                                <Label FontAttributes="None"  FontSize="Small" Text="No.of hours"/>
+
+                                                <Label FontAttributes="None"  FontSize="Small" Text="{Binding workDetails[2].workHours}"  />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <Label HorizontalOptions="FillAndExpand" FontAttributes="None"
+                                    FontSize="Small" Text="{Binding workDetails[2].remarks}" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding workDetails[3].workDay,StringFormat='{0:ddd, MMM d, yyyy}'}"  FontSize="Small"/>
+
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                                                <Label FontAttributes="None"  FontSize="Small" Text="No.of hours"/>
+
+                                                <Label FontAttributes="None"  FontSize="Small" Text="{Binding workDetails[3].workHours}"  />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <Label HorizontalOptions="FillAndExpand" FontAttributes="None"
+                                    FontSize="Small" Text="{Binding workDetails[3].remarks}" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding workDetails[4].workDay,StringFormat='{0:ddd, MMM d, yyyy}'}"  FontSize="Small"/>
+
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                                                <Label FontAttributes="None"  FontSize="Small" Text="No.of hours"/>
+
+                                                <Label FontAttributes="None"  FontSize="Small" Text="{Binding workDetails[4].workHours}"  />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <Label HorizontalOptions="FillAndExpand" FontAttributes="None"
+                                    FontSize="Small" Text="{Binding workDetails[4].remarks}" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding workDetails[5].workDay,StringFormat='{0:ddd, MMM d, yyyy}'}"  FontSize="Small"/>
+
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center" >
+                                                <Label FontAttributes="None"  FontSize="Small" Text="No.of hours"/>
+
+                                                <Label FontAttributes="None"  FontSize="Small" Text="{Binding workDetails[5].workHours}"  />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <Label HorizontalOptions="FillAndExpand" FontAttributes="None"
+                                    FontSize="Small" Text="{Binding workDetails[5].remarks}" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding workDetails[6].workDay,StringFormat='{0:ddd, MMM d, yyyy}'}"  FontSize="Small"/>
+
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center" >
+                                                <Label FontAttributes="None"  FontSize="Small" Text="No.of hours"/>
+
+                                                <Label FontAttributes="None"  FontSize="Small" Text="{Binding workDetails[6].workHours}"  />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <Label HorizontalOptions="FillAndExpand" FontAttributes="None"
+                                    FontSize="Small" Text="{Binding workDetails[6].remarks}" />
+                                    </StackLayout>
+
+                                    <!--<ListView ItemsSource="{Binding workDetails}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell x:Name="subModuleName">
+
+                                                    <StackLayout Orientation="Vertical">
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label Text="{Binding workDay,StringFormat='{0:ddd, MMM d, yyyy}'}"  FontSize="Small"/>
+
+                                                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="0,0,10,0">
+                                                                <Label FontAttributes="None"  FontSize="Small" Text="No.of hours"/>
+
+                                                                <Label FontAttributes="None"  FontSize="Small" Text="{Binding workHours}"  />
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                        <Label HorizontalOptions="FillAndExpand" FontAttributes="None"
+                                    FontSize="Small" Text="{Binding remarks}" />
+                                                    </StackLayout>
+
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>-->
+                                        <BoxView  HeightRequest="1" WidthRequest="300" BackgroundColor="Gray"/>
+                                    </StackLayout>
+
+                                <!--</Frame>-->
+                            </ContentView>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+
+        <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand"  >
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Button Text="Reject" x:Name="reject_btn" Clicked="Reject_Click" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Button Text="Approve" x:Name="approve_btn" Clicked="Approve_Click" />
+            </StackLayout>
+        </StackLayout>
+
+    </StackLayout>
+    </ScrollView>
+</ContentPage>

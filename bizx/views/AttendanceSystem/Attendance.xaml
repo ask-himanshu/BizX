@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="bizx.views.AttendanceSystem.Attendance"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:local="clr-namespace:bizx.customViews"
+    NavigationPage.HasNavigationBar="False" BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Spacing="0">
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HorizontalOptions="FillAndExpand" HeightRequest="50" Orientation="Vertical" VerticalOptions="Center">
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="30" />
+                        
+                        
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0" >
+                        <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label x:Name="titleLbl" Text="Attendance System" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+                     <StackLayout Grid.Column="2" >
+                        <Image Source="ic_search_black.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="History_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    
+                </Grid>
+            </StackLayout>
+        <BoxView HeightRequest="1" BackgroundColor="White" />
+            <ScrollView>
+                <StackLayout Orientation="Vertical" Spacing="0">
+               <Grid Margin="20,5,20,0">
+                   
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            
+                            <RowDefinition Height="1"/>
+                        </Grid.RowDefinitions>
+                   
+
+                        <Label x:Name="empname" Grid.Row="0"  Margin="0,0,0,5" HorizontalOptions="StartAndExpand" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryColor}"/>
+                        <Label x:Name="empno" Grid.Row="1"  Margin="0,0,0,5" HorizontalOptions="StartAndExpand"  FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource PrimaryColor}"/>
+                   
+                   
+
+                   <BoxView Grid.Row="2" HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}"/>
+      
+                    </Grid>
+
+
+
+                    <StackLayout x:Name="starter" Spacing="0" Margin="20,5,20,0" IsVisible="true">
+                        <Grid RowSpacing="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+
+                            <Label Text="Date" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16"
+                                TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label x:Name="startindate"  Grid.Row="0" Grid.Column="1" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="16" />
+                         <Label Text="Time" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16"
+                                TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label x:Name="startintime"  Grid.Row="1" Grid.Column="1" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="16" />
+
+                            </Grid>
+
+                    </StackLayout>
+         
+
+
+
+                    <StackLayout x:Name="punchin" Spacing="0" Margin="20,0,20,0" IsVisible="false" >
+                        <Grid RowSpacing="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                        <Label Text="Date" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16"
+                                TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label x:Name="punchindate"  Grid.Row="0" Grid.Column="1" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="16" />
+                         <Label Text="Punched In Time" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16"
+                                TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label x:Name="punchintime"  Grid.Row="1" Grid.Column="1" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="16" />
+
+                            
+
+
+                            </Grid>
+
+                    </StackLayout>
+
+
+                    <StackLayout x:Name="status1" Spacing="0" Margin="20,0,20,0" IsVisible="false" >
+                        <Grid RowSpacing="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                        <Label Text="Punch-InTime" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16"
+                                TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label x:Name="punchindate1"  Grid.Row="0" Grid.Column="1" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="16" />
+                         <Label Text="Current Worked Hours" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16"
+                                TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center"/>
+                            <Label x:Name="current"  Grid.Row="1" Grid.Column="1" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="16"  />
+
+                            </Grid>
+
+                    </StackLayout>
+
+                    <StackLayout x:Name="status2" Spacing="0" Margin="20,0,20,0" IsVisible="false" >
+                        <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                  
+                                    
+                                    
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                   
+                                </Grid.ColumnDefinitions>
+
+
+                       <Label Text="Date" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16"
+                                TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label x:Name="status2date"  Grid.Row="0" Grid.Column="1" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="16" />
+
+
+                        <Label Text="Punch-In Time" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16"
+                                TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label x:Name="status2intime"  Grid.Row="1" Grid.Column="1" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="16" />
+
+                            <Label Text="Punch-Out Time" HorizontalOptions="StartAndExpand" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16"
+                                TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label x:Name="status2outtime" Grid.Row="2" Grid.Column="1" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="16" />
+
+                         <Label Text="Total Worked Hours" HorizontalOptions="StartAndExpand" Grid.Row="3" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16"
+                                TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label x:Name="worked"  Grid.Row="3" Grid.Column="1" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="16" />
+
+                            </Grid>
+
+                    </StackLayout>
+
+                       
+                       
+
+
+                    <StackLayout x:Name="punchout" Spacing="0" Margin="20,0,20,0" IsVisible="false">
+                        <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+
+                            <Label Text="Date" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16"
+                                TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label x:Name="pdate"  Grid.Row="0" Grid.Column="1" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryColor}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                             <Label Text="Punched-In Time" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16"
+                                TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label x:Name="pin"  Grid.Row="1" Grid.Column="1" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryColor}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                         <Label Text="Punched-Out Time" HorizontalOptions="StartAndExpand" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16"
+                                TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label x:Name="punchouttime"  Grid.Row="2" Grid.Column="1" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryColor}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                         <Label Text="Total Worked Hours" HorizontalOptions="StartAndExpand" Grid.Row="3" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16"
+                                TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label x:Name="workedtime"  Grid.Row="3" Grid.Column="1" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="16" />
+                      </Grid>
+                    </StackLayout>
+
+
+
+                    <StackLayout Margin="20,0,20,0" >
+                        <Label x:Name="MeesageLabel" FontSize="16" TextColor="Orange"></Label>
+                    </StackLayout>
+
+                    </StackLayout>
+
+                
+                </ScrollView>
+            
+
+
+    
+            
+                    <StackLayout x:Name="insubmitBtn" BackgroundColor="{StaticResource Buttons}" Padding="5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" IsVisible="false">
+                        <Label Text="PUNCH IN" TextColor="White" VerticalOptions="CenterAndExpand"
+                               FontSize="16" FontFamily="{StaticResource NormalFont}" HorizontalOptions="CenterAndExpand"  HeightRequest="40" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PUNCHIN" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                    
+                    <StackLayout x:Name="outsubmitBtn" BackgroundColor="{StaticResource Buttons}" Padding="5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" IsVisible="false" >
+                        <Label Text="PUNCH OUT" TextColor="White" VerticalOptions="CenterAndExpand"
+                               FontSize="16" FontFamily="{StaticResource NormalFont}" HorizontalOptions="CenterAndExpand" HeightRequest="40" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PUNCHOUT" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+              
+            </StackLayout>
+   
+           
+    </ContentPage.Content>
+</ContentPage>
+
+   

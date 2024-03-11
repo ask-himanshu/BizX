@@ -1,0 +1,938 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4E63C067-FFE8-477E-9745-C9FE7D93A885}</ProjectGuid>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <UseMSBuildEngine>true</UseMSBuildEngine>
+    <OutputType>Library</OutputType>
+    <RootNamespace>bizx</RootNamespace>
+    <AssemblyName>bizx</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <AlertReport>prompt</AlertReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <AlertReport>prompt</AlertReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App.xaml" />
+    <EmbeddedResource Include="views\timesheetManager\AllEmployeeDetails.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\timesheetManager\ApprovedEmployeeDetails.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\timesheetManager\PendingEmployeeDetails.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\timesheetManager\ManagerTabPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\timesheetManager\EmployeeTimesheetDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\timesheetManager\CardTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\timesheetManager\SubmitEmployeeDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popups\MesagePopupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popups\RejectRemarkPopupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popups\LogoutPopupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popups\LoginSuccesPopupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popups\PopupLoadingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\timesheetEmployee\MyTimesheetPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\timesheetEmployee\EmployeeTimesheetListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\timesheetEmployee\SumittedTimesheetPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popups\SubmitAlertPopupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popups\GenericAlertPopupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popups\ListViewPopupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popups\UploadPopupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\timesheetEmployee\UsEmployeeTimesheetPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\leaveEmployee\MyLeavePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\leaveEmployee\MyLeaveListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\leaveEmployee\MyLeaveCancelPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\leaveManager\MyTeamLeavePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\leaveManager\EmployeeLeaveDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popups\LeaveRejectPopupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\timesheetManager\ToolbarPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\timesheetEmployee\SavedTimesheetPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popups\CCMailPopupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\ErrorPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\travelEmployee\TravelRequestPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popups\TermsAndConditionPopupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\timesheetEmployee\UsSubmittedTimesheetPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popups\DeletePopupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\travelManager\TravelApproverDashboard.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\travelEmployee\MyTravelRequestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\expenseEmployee\CreateExpensePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\expenseManager\PendingExpensePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\expenseEmployee\MyExpensePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popups\ExpenseAlertPopupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\expenseEmployee\DraftExpensePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popups\ExpensePopupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\visaEmployee\ApplyVisaPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\visaEmployee\MyVisaListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\visaEmployee\VisaDetailViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\visaManager\PendingVisaListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDesk\RaiseIncidentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDesk\IncidentListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDesk\IncidentDetailViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Home\MyModulePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDesk\RaiseServiceRequestPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDesk\ServiceRequestListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDesk\ServiceRequestDetailViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDeskManager\PendingServiceRequestListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Home\ChangePasswordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\expenseManager\ExpenseReceiptDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\expenseManager\ExpenseDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\expenseManager\ExpenseApprovalsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\DashBoardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDeskManager\SRApprovalsViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDeskManager\SRViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDesk\AssignSRViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDesk\SRApprovalPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDesk\SRPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\travelEmployee\TravelDetailsViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\travelEmployee\TravelApprovalsViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\expenseEmployee\MyExpenseDetailViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\expenseEmployee\MyExpenseDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\expenseEmployee\MyExpenseReceiptViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\expenseEmployee\MyExpenseApprovalViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\travelEmployee\TrvaelInfoViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\visaEmployee\VisaApprovalsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\rinManager\PendingRINListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\offerManager\PendingOfferListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\rinManager\RINDetailsViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\rinManager\RINApprovalViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\rinManager\RINInfoViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\expenseManager\PendingExpenseDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\offerManager\OfferRINDetailsViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\offerManager\CandidateDetailsViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\offerManager\OfferApprovalViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\timesheetManager\TimesheetListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\singaporeView\timesheet\TimesheetEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\singaporeView\timesheet\TimesheetClaimViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\RaiseHand\CategoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\RaiseHand\RaiseRequestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\RaiseHand\ViewRaiseHandDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\RaiseHand\MyRaiseHandRequestListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\RaiseHand\PendingRaiseHandRequestListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\RaiseHand\ManagerViewDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\RaiseHand\AllRaiseHandRequestListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\CovidVaccination\VaccinationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Home\ProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Home\LoginFormPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Home\SplashPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDeskManager\CommonSRViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\AttendanceSystem\Attendance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\AttendanceSystem\AttendanceListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDeskManager\SalaryAdvanceApprovalViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDeskManager\QualityandCompliance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDeskManager\AdminSRViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDeskManager\AdminTransportResourceSRViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\serviceDeskManager\ITSGSRViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Home\AddressCheckDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Home\LocationPreference.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\travelEmployee\TravelRequestPageUS.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="interfaces\INetworkConnection.cs" />
+    <Compile Include="services\RestService.cs" />
+    <Compile Include="utility\Constants.cs" />
+    <Compile Include="utility\Util.cs" />
+    <Compile Include="utility\NetworkCheck.cs" />
+    <Compile Include="viewModel\ExpenseViewModels\MyExpensePageViewModel.cs" />
+    <Compile Include="viewModel\OfferViewModels\PendingOfferListPageViewModel.cs" />
+    <Compile Include="viewModel\RaiseHand\AllRaiseHandRequestListPageViewModel.cs" />
+    <Compile Include="viewModel\RaiseHand\MyRaiseHandRequestListPageViewModel.cs" />
+    <Compile Include="viewModel\RaiseHand\PendingRaiseHandRequestListPageViewModel.cs" />
+    <Compile Include="viewModel\RINViewModels\PendingRINListPageViewModel.cs" />
+    <Compile Include="viewModel\ServiceDeskViewModels\IncidentListPageViewModel.cs" />
+    <Compile Include="viewModel\VisaViewModels\MyVisaListPageViewModel.cs" />
+    <Compile Include="viewModel\VisaViewModels\visaManger\PendingVisaListPageViewModel.cs" />
+    <Compile Include="views\leaveManager\ObseravableCollection.cs" />
+    <Compile Include="views\serviceDeskManager\AdminApprovalViewPage.xaml.cs">
+      <DependentUpon>AdminApprovalViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\timesheetManager\AllEmployeeDetails.xaml.cs">
+      <DependentUpon>AllEmployeeDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\timesheetManager\ApprovedEmployeeDetails.xaml.cs">
+      <DependentUpon>ApprovedEmployeeDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\timesheetManager\PendingEmployeeDetails.xaml.cs">
+      <DependentUpon>PendingEmployeeDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\timesheetManager\ManagerTabPage.xaml.cs">
+      <DependentUpon>ManagerTabPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\timesheetManager\EmployeeTimesheetDetailPage.xaml.cs">
+      <DependentUpon>EmployeeTimesheetDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\timesheetManager\CardTemplate.xaml.cs">
+      <DependentUpon>CardTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\timesheetManager\SubmitEmployeeDetails.xaml.cs">
+      <DependentUpon>SubmitEmployeeDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="popups\MesagePopupPage.xaml.cs">
+      <DependentUpon>MesagePopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="popups\RejectRemarkPopupPage.xaml.cs">
+      <DependentUpon>RejectRemarkPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="popups\LogoutPopupPage.xaml.cs">
+      <DependentUpon>LogoutPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="popups\LoginSuccesPopupPage.xaml.cs">
+      <DependentUpon>LoginSuccesPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="popups\PopupLoadingPage.xaml.cs">
+      <DependentUpon>PopupLoadingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customViews\CustomLabel.cs" />
+    <Compile Include="customViews\CustomNavigationPage.cs" />
+    <Compile Include="views\timesheetEmployee\MyTimesheetPage.xaml.cs">
+      <DependentUpon>MyTimesheetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customViews\CustomEntry.cs" />
+    <Compile Include="customViews\CustomEditor.cs" />
+    <Compile Include="customViews\CustomPicker.cs" />
+    <Compile Include="views\timesheetEmployee\EmployeeTimesheetListPage.xaml.cs">
+      <DependentUpon>EmployeeTimesheetListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customViews\NullableDatePicker.cs" />
+    <Compile Include="views\timesheetEmployee\SumittedTimesheetPage.xaml.cs">
+      <DependentUpon>SumittedTimesheetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="popups\SubmitAlertPopupPage.xaml.cs">
+      <DependentUpon>SubmitAlertPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="popups\GenericAlertPopupPage.xaml.cs">
+      <DependentUpon>GenericAlertPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customViews\BorderlessDatePicker.cs" />
+    <Compile Include="interfaces\INavigationActionBarConfig.cs" />
+    <Compile Include="customViews\ShowHidePasswordEntry.cs" />
+    <Compile Include="customViews\ShowHiddenEntryEffect.cs" />
+    <Compile Include="customViews\TabNavigationPage.cs" />
+    <Compile Include="popups\ListViewPopupPage.xaml.cs">
+      <DependentUpon>ListViewPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="popups\UploadPopupPage.xaml.cs">
+      <DependentUpon>UploadPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\timesheetEmployee\UsEmployeeTimesheetPage.xaml.cs">
+      <DependentUpon>UsEmployeeTimesheetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\leaveEmployee\MyLeavePage.xaml.cs">
+      <DependentUpon>MyLeavePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\leaveEmployee\MyLeaveListPage.xaml.cs">
+      <DependentUpon>MyLeaveListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customViews\EntryLengthValidatorBehavior.cs" />
+    <Compile Include="customViews\EntryLengthEditorBehavior.cs" />
+    <Compile Include="views\leaveEmployee\MyLeaveCancelPage.xaml.cs">
+      <DependentUpon>MyLeaveCancelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\leaveManager\MyTeamLeavePage.xaml.cs">
+      <DependentUpon>MyTeamLeavePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\leaveManager\EmployeeLeaveDetailsPage.xaml.cs">
+      <DependentUpon>EmployeeLeaveDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="popups\LeaveRejectPopupPage.xaml.cs">
+      <DependentUpon>LeaveRejectPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customViews\HorizontalListView.cs" />
+    <Compile Include="views\timesheetManager\ToolbarPage.xaml.cs">
+      <DependentUpon>ToolbarPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\timesheetEmployee\SavedTimesheetPage.xaml.cs">
+      <DependentUpon>SavedTimesheetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="popups\CCMailPopupPage.xaml.cs">
+      <DependentUpon>CCMailPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\ErrorPage.xaml.cs">
+      <DependentUpon>ErrorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\travelEmployee\TravelRequestPage.xaml.cs">
+      <DependentUpon>TravelRequestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\BindableRadioGroup.cs" />
+    <Compile Include="CustomControls\CustomRadioButton.cs" />
+    <Compile Include="Extensions\BindableObjectExtensions.cs" />
+    <Compile Include="Events\EventArgs{T}.cs" />
+    <Compile Include="Events\EventExtensions.cs" />
+    <Compile Include="popups\TermsAndConditionPopupPage.xaml.cs">
+      <DependentUpon>TermsAndConditionPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\timesheetEmployee\UsSubmittedTimesheetPage.xaml.cs">
+      <DependentUpon>UsSubmittedTimesheetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="popups\DeletePopupPage.xaml.cs">
+      <DependentUpon>DeletePopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\travelManager\TravelApproverDashboard.xaml.cs">
+      <DependentUpon>TravelApproverDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\travelEmployee\MyTravelRequestPage.xaml.cs">
+      <DependentUpon>MyTravelRequestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\expenseEmployee\CreateExpensePage.xaml.cs">
+      <DependentUpon>CreateExpensePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\expenseManager\PendingExpensePage.xaml.cs">
+      <DependentUpon>PendingExpensePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\expenseEmployee\MyExpensePage.xaml.cs">
+      <DependentUpon>MyExpensePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="popups\ExpenseAlertPopupPage.xaml.cs">
+      <DependentUpon>ExpenseAlertPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\expenseEmployee\DraftExpensePage.xaml.cs">
+      <DependentUpon>DraftExpensePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="popups\ExpensePopupPage.xaml.cs">
+      <DependentUpon>ExpensePopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customViews\StringToColorConverter.cs" />
+    <Compile Include="customViews\BorderlessEntry.cs" />
+    <Compile Include="interfaces\IQuitApplication.cs" />
+    <Compile Include="customViews\BorderlessDatePickerCenter.cs" />
+    <Compile Include="views\visaEmployee\ApplyVisaPage.xaml.cs">
+      <DependentUpon>ApplyVisaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\visaEmployee\MyVisaListPage.xaml.cs">
+      <DependentUpon>MyVisaListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\visaEmployee\VisaDetailViewPage.xaml.cs">
+      <DependentUpon>VisaDetailViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\visaManager\PendingVisaListPage.xaml.cs">
+      <DependentUpon>PendingVisaListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="models\visa\VisaModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="views\serviceDesk\RaiseIncidentPage.xaml.cs">
+      <DependentUpon>RaiseIncidentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="models\serviceManagement\ServiceManagementModel.cs" />
+    <Compile Include="views\serviceDesk\IncidentListPage.xaml.cs">
+      <DependentUpon>IncidentListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\serviceDesk\IncidentDetailViewPage.xaml.cs">
+      <DependentUpon>IncidentDetailViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="utility\FileSaver.cs" />
+    <Compile Include="interfaces\IAndroidPDFWriter.cs" />
+    <Compile Include="interfaces\IFile.cs" />
+    <Compile Include="interfaces\IosPDFWriter.cs" />
+    <Compile Include="customViews\EntryAutoComplete.cs" />
+    <Compile Include="customViews\ItemsStack.cs" />
+    <Compile Include="customViews\CustomSwitch.cs" />
+    <Compile Include="views\Home\MyModulePage.xaml.cs">
+    </Compile>
+    <Compile Include="views\serviceDesk\RaiseServiceRequestPage.xaml.cs">
+      <DependentUpon>RaiseServiceRequestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\serviceDesk\ServiceRequestListPage.xaml.cs">
+      <DependentUpon>ServiceRequestListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\serviceDesk\ServiceRequestDetailViewPage.xaml.cs">
+      <DependentUpon>ServiceRequestDetailViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\serviceDeskManager\PendingServiceRequestListPage.xaml.cs">
+      <DependentUpon>PendingServiceRequestListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\Home\ChangePasswordPage.xaml.cs">
+      <DependentUpon>ChangePasswordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="interfaces\IFCMReceiver.cs" />
+    <Compile Include="interfaces\IForceKeyboardDismissalService.cs" />
+    <Compile Include="customViews\DatetimeToStringConverter.cs" />
+    <Compile Include="customViews\NullableValueToDefaultConverter.cs" />
+    <Compile Include="customViews\EmptyValueToDefaultConverter.cs" />
+    <Compile Include="customViews\ShadowedFrame.cs" />
+    <Compile Include="customViews\SearchMode.cs" />
+    <Compile Include="customViews\NullableValueToDefaultTextConverter.cs" />
+    <Compile Include="customViews\BorderlessDatePickerNew.cs" />
+    <Compile Include="views\expenseManager\ExpenseReceiptDetailsPage.xaml.cs">
+      <DependentUpon>ExpenseReceiptDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\expenseManager\ExpenseDetailPage.xaml.cs">
+      <DependentUpon>ExpenseDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\expenseManager\ExpenseApprovalsPage.xaml.cs">
+      <DependentUpon>ExpenseApprovalsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\serviceDeskManager\SRApprovalsViewPage.xaml.cs">
+      <DependentUpon>SRApprovalsViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\serviceDeskManager\SRViewPage.xaml.cs">
+      <DependentUpon>SRViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\serviceDesk\AssignSRViewPage.xaml.cs">
+      <DependentUpon>AssignSRViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\serviceDesk\SRApprovalPage.xaml.cs">
+      <DependentUpon>SRApprovalPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\serviceDesk\SRPage.xaml.cs">
+      <DependentUpon>SRPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\travelEmployee\TravelDetailsViewPage.xaml.cs">
+      <DependentUpon>TravelDetailsViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\travelEmployee\TravelApprovalsViewPage.xaml.cs">
+      <DependentUpon>TravelApprovalsViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\expenseEmployee\MyExpenseDetailViewPage.xaml.cs">
+      <DependentUpon>MyExpenseDetailViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\expenseEmployee\MyExpenseDetailPage.xaml.cs">
+      <DependentUpon>MyExpenseDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\expenseEmployee\MyExpenseReceiptViewPage.xaml.cs">
+      <DependentUpon>MyExpenseReceiptViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\expenseEmployee\MyExpenseApprovalViewPage.xaml.cs">
+      <DependentUpon>MyExpenseApprovalViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\travelEmployee\TrvaelInfoViewPage.xaml.cs">
+      <DependentUpon>TrvaelInfoViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\visaEmployee\VisaApprovalsPage.xaml.cs">
+      <DependentUpon>VisaApprovalsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\rinManager\PendingRINListPage.xaml.cs">
+      <DependentUpon>PendingRINListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\offerManager\PendingOfferListPage.xaml.cs">
+      <DependentUpon>PendingOfferListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\rinManager\RINDetailsViewPage.xaml.cs">
+      <DependentUpon>RINDetailsViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\rinManager\RINApprovalViewPage.xaml.cs">
+      <DependentUpon>RINApprovalViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="models\Offer\OfferModel.cs" />
+    <Compile Include="models\RIN\BasicInformationModel.cs" />
+    <Compile Include="views\rinManager\RINInfoViewPage.xaml.cs">
+      <DependentUpon>RINInfoViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\expenseManager\PendingExpenseDetailPage.xaml.cs">
+      <DependentUpon>PendingExpenseDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\offerManager\OfferRINDetailsViewPage.xaml.cs">
+      <DependentUpon>OfferRINDetailsViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\offerManager\CandidateDetailsViewPage.xaml.cs">
+      <DependentUpon>CandidateDetailsViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\offerManager\OfferApprovalViewPage.xaml.cs">
+      <DependentUpon>OfferApprovalViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\timesheetManager\TimesheetListPage.xaml.cs">
+      <DependentUpon>TimesheetListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\singaporeView\timesheet\TimesheetEmployeeView.xaml.cs">
+      <DependentUpon>TimesheetEmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="models\singaporeModel\timesheet\TimesheetModel.cs" />
+    <Compile Include="views\singaporeView\timesheet\TimesheetClaimViewPage.xaml.cs">
+      <DependentUpon>TimesheetClaimViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\RaiseHand\CategoryPage.xaml.cs">
+      <DependentUpon>CategoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="models\RaiseHand\RaiseHandModel.cs" />
+    <Compile Include="views\RaiseHand\RaiseRequestPage.xaml.cs">
+      <DependentUpon>RaiseRequestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\RaiseHand\ViewRaiseHandDetailsPage.xaml.cs">
+      <DependentUpon>ViewRaiseHandDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\RaiseHand\MyRaiseHandRequestListPage.xaml.cs">
+      <DependentUpon>MyRaiseHandRequestListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\RaiseHand\PendingRaiseHandRequestListPage.xaml.cs">
+      <DependentUpon>PendingRaiseHandRequestListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\RaiseHand\ManagerViewDetailsPage.xaml.cs">
+      <DependentUpon>ManagerViewDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\RaiseHand\AllRaiseHandRequestListPage.xaml.cs">
+      <DependentUpon>AllRaiseHandRequestListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\CovidVaccination\VaccinationPage.xaml.cs">
+      <DependentUpon>VaccinationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="viewModel\CovidVaccinationViewModels\VaccinationViewModel.cs" />
+    <Compile Include="models\CovidVaccination\VaccinationMasterModel.cs" />
+    <Compile Include="viewModel\SingaporeViewModels\LoadSGTimesheetViewModel.cs" />
+    <Compile Include="viewModel\SingaporeViewModels\LoadSGTimesheetViewModelTS2.cs" />
+    <Compile Include="viewModel\SingaporeViewModels\SingaporeTimeSheetClaimAttachmentViewModel.cs" />
+    <Compile Include="viewModel\OthersViewModels\AutoCompleteViewModel.cs" />
+    <Compile Include="viewModel\OthersViewModels\MainPageViewModel.cs" />
+    <Compile Include="viewModel\OthersViewModels\RadioGroupDemoViewModel.cs" />
+    <Compile Include="viewModel\OthersViewModels\ViewModelLocator.cs" />
+    <Compile Include="views\Home\ProfilePage.xaml.cs">
+      <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\Home\LoginFormPage.xaml.cs">
+      <DependentUpon>LoginFormPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\Home\SplashPage.xaml.cs">
+      <DependentUpon>SplashPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="models\Expense\expenseEmployee\AddExpenseDetail.cs" />
+    <Compile Include="models\Expense\expenseEmployee\AddExpenseResponse.cs" />
+    <Compile Include="models\Expense\expenseEmployee\CategoryByTenantMasterId.cs" />
+    <Compile Include="models\Expense\expenseEmployee\GetAllExpenseByExpenseMasterIdModel.cs" />
+    <Compile Include="models\Expense\expenseEmployee\GetExpenseDashboardByUId.cs" />
+    <Compile Include="models\Expense\expenseManager\ExpenseDetailModel.cs" />
+    <Compile Include="models\Leave\leaveEmployee\AddLeaveTransactionModel.cs" />
+    <Compile Include="models\Leave\leaveEmployee\AddLeaveTransactionResponseModel.cs" />
+    <Compile Include="models\Leave\leaveEmployee\DateValidationCheckResponse.cs" />
+    <Compile Include="models\Leave\leaveEmployee\EmployeeLeaveDataModel.cs" />
+    <Compile Include="models\Leave\leaveEmployee\EmployeesFilterByNameNumberModel.cs" />
+    <Compile Include="models\Leave\leaveEmployee\GetBusinessDaysResponse.cs" />
+    <Compile Include="models\Leave\leaveEmployee\GetLeaveDetailsByEmployeeModel.cs" />
+    <Compile Include="models\Leave\leaveEmployee\LeaveConfigurationModel.cs" />
+    <Compile Include="models\Leave\leaveManager\ApproveCancelLeaveByManagerRequestModel.cs" />
+    <Compile Include="models\Leave\leaveManager\ApproveCancelLeaveByManagerResponseModel.cs" />
+    <Compile Include="models\Leave\leaveManager\GetAllLeaves.cs" />
+    <Compile Include="models\Timesheet\timesheetEmployee\ActivityModel.cs" />
+    <Compile Include="models\Timesheet\timesheetEmployee\EmployeeTimesheetDetail.cs" />
+    <Compile Include="models\Timesheet\timesheetEmployee\ProjectModel.cs" />
+    <Compile Include="models\Timesheet\timesheetEmployee\RemoveTimesheetRowById.cs" />
+    <Compile Include="models\Timesheet\timesheetEmployee\RemoveTimesheetRowByIdResponse.cs" />
+    <Compile Include="models\Timesheet\timesheetEmployee\SaveTimesheetModel.cs" />
+    <Compile Include="models\Timesheet\timesheetEmployee\SaveTimesheetResponseModel.cs" />
+    <Compile Include="models\Timesheet\timesheetEmployee\SubmitTimesheetRequestModel.cs" />
+    <Compile Include="models\Timesheet\timesheetEmployee\TaskModel.cs" />
+    <Compile Include="models\Timesheet\timesheetEmployee\WeekTray.cs" />
+    <Compile Include="models\Timesheet\timesheetManager\ChangeTimesheetStatusModel.cs" />
+    <Compile Include="models\Timesheet\timesheetManager\ChangeTimesheetStatusResponseModel.cs" />
+    <Compile Include="models\Timesheet\timesheetManager\EmployeeDetials.cs" />
+    <Compile Include="models\Timesheet\timesheetManager\TimesheetDetailModel.cs" />
+    <Compile Include="models\Timesheet\timesheetManager\TimesheetDetailRequestModel.cs" />
+    <Compile Include="models\Travel\travelEmployee\GetAllCities.cs" />
+    <Compile Include="models\Travel\travelEmployee\GetAllClients.cs" />
+    <Compile Include="models\Travel\travelEmployee\GetAllTravelRequestsByEmployee.cs" />
+    <Compile Include="models\Travel\travelEmployee\GetCountry.cs" />
+    <Compile Include="models\Travel\travelEmployee\GetEmloyeesInUID.cs" />
+    <Compile Include="models\Travel\travelEmployee\GetProjectsByClient.cs" />
+    <Compile Include="models\Travel\travelEmployee\GetUnitLocations.cs" />
+    <Compile Include="models\Travel\travelEmployee\InsertTravelRequest.cs" />
+    <Compile Include="models\Travel\travelEmployee\InsertTravelRequestModel.cs" />
+    <Compile Include="models\Travel\travelEmployee\TravelApprovalHierarchy.cs" />
+    <Compile Include="models\Travel\travelManager\ApproveTravelRequestModel.cs" />
+    <Compile Include="models\Travel\travelManager\GetTravelApprovalRequestByApprovarId.cs" />
+    <Compile Include="models\Travel\travelManager\GetTravelRequestById.cs" />
+    <Compile Include="models\Travel\travelManager\ReservationDetailsByTravelId.cs" />
+    <Compile Include="models\Travel\travelManager\TravelApprovalHierarchy.cs" />
+    <Compile Include="models\Travel\travelManager\TravelRequestResponse.cs" />
+    <Compile Include="models\Common\EmpDetailModel.cs" />
+    <Compile Include="models\Common\GetCurrencyMasters.cs" />
+    <Compile Include="models\Common\GetHierarchyGridResponse.cs" />
+    <Compile Include="models\Common\GetHierarchyModel.cs" />
+    <Compile Include="models\Common\HomePageModel.cs" />
+    <Compile Include="models\Common\LoginRequestModel.cs" />
+    <Compile Include="models\Common\LoginResponseModel.cs" />
+    <Compile Include="models\Common\ModuleModel.cs" />
+    <Compile Include="models\Common\ProjectModel.cs" />
+    <Compile Include="models\Common\SubModuleModel.cs" />
+    <Compile Include="views\serviceDeskManager\CommonSRViewPage.xaml.cs">
+      <DependentUpon>CommonSRViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="models\Attendance \Attendance.cs" />
+    <Compile Include="views\AttendanceSystem\Attendance.xaml.cs" />
+    <Compile Include="customViews\DecimalToTimeConverter.cs" />
+    <Compile Include="customViews\DateTimeconvertor.cs" />
+    <Compile Include="views\AttendanceSystem\AttendanceListPage.xaml.cs">
+      <DependentUpon>AttendanceListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\DashBoardPage.xaml.cs" />
+    <Compile Include="Behaviors\EmptyEntryValidatorBehavior.cs" />
+    <Compile Include="models\Generic\GenericModel.cs" />
+    <Compile Include="viewModel\GenericViewModel\GenericViewModel.cs" />
+    <Compile Include="customViews\EntryLengthTimeValidatorBehavior.cs" />
+    <Compile Include="customViews\EntryAlphaNumericBehavior.cs" />
+    <Compile Include="views\serviceDeskManager\SalaryAdvanceApprovalViewPage.xaml.cs">
+      <DependentUpon>SalaryAdvanceApprovalViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\serviceDeskManager\QualityandCompliance.xaml.cs">
+      <DependentUpon>QualityandCompliance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\serviceDeskManager\AdminSRViewPage.xaml.cs">
+      <DependentUpon>AdminSRViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\serviceDeskManager\AdminTransportResourceSRViewPage.xaml.cs">
+      <DependentUpon>AdminTransportResourceSRViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customViews\BooleantoTrueValue.cs" />
+    <Compile Include="views\serviceDeskManager\ITSGSRViewPage.xaml.cs">
+      <DependentUpon>ITSGSRViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\Home\AddressCheckDetailsPage.xaml.cs">
+      <DependentUpon>AddressCheckDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="models\Common\AddressDetails.cs" />
+    <Compile Include="models\Common\EntityDetailModel.cs" />
+    <Compile Include="views\Home\LocationPreference.xaml.cs">
+      <DependentUpon>LocationPreference.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\travelEmployee\TravelRequestPageUS.xaml.cs">
+      <DependentUpon>TravelRequestPageUS.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="models\Leave\leaveEmployee\ResginationMasterModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="viewModel\LeaveViewModels\" />
+    <Folder Include="viewModel\TimesheetViewModels\" />
+    <Folder Include="viewModel\TravelViewModels\" />
+    <Folder Include="views\AttendanceSystem\" />
+    <Folder Include="models\Attendance \" />
+    <Folder Include="Behaviors\" />
+    <Folder Include="models\Generic\" />
+    <Folder Include="viewModel\GenericViewModel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="views\serviceDeskManager\AdminApprovalViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+</Project>

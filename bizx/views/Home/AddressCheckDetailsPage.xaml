@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="bizx.views.Home.AddressCheckDetailsPage"
+    xmlns:local="clr-namespace:bizx.customViews"
+    NavigationPage.HasNavigationBar="False" BackgroundColor="White">
+
+    <ContentPage.Content>
+
+        <StackLayout Orientation="Vertical">
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HorizontalOptions="FillAndExpand" HeightRequest="50" Orientation="Vertical" VerticalOptions="Center">
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="30" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    
+                    <Label x:Name="title" Text="Current Physical Location" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+                     
+                </Grid>
+            </StackLayout>
+            <ScrollView>
+                <StackLayout>
+             <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                <Label Text="Current Address" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+                 
+                <local:CustomEditor  x:Name="Address" Placeholder="Enter your Full Address" HeightRequest="115" BorderColor="WhiteSmoke"  BackgroundColor="WhiteSmoke"  FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16" TextColor="{StaticResource PrimaryColor}">
+
+                            </local:CustomEditor>
+                        </Grid>
+                    <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Country" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke" x:Name="country" ItemDisplayBinding="{Binding name}" Title="Select your Country" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerCountry_SelectedIndexChanged" />
+                        </Grid>
+
+            <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                <Label Text="State" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                
+                <local:CustomPicker HeightRequest="35" FontSize="14" BackgroundColor="WhiteSmoke" x:Name="accState" ItemDisplayBinding="{Binding name}" Title="Select your State" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerAccState_SelectedIndexChanged" />
+                        </Grid>
+
+            <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                <Label Text="City" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+               
+                <local:CustomPicker HeightRequest="35" FontSize="14" BackgroundColor="WhiteSmoke" x:Name="accCity" ItemDisplayBinding="{Binding name}" Title="Select your City" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerAccCity_SelectedIndexChanged" />
+                        </Grid>
+
+            <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                    <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            
+                             <Label Text="Pin Code" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0"  VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+
+                            <local:CustomEntry  x:Name="pincode" BackgroundColor="WhiteSmoke" BorderColor="WhiteSmoke" Keyboard="Numeric" Placeholder="Enter Pin Code"
+                                                FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand"
+                                                Grid.Row="1" Grid.Column="0" FontSize="14">
+                                <Entry.Behaviors>
+                                    <local:EntryLengthValidatorBehavior MaxLength="10" />
+                                </Entry.Behaviors>
+                            </local:CustomEntry>
+                        </Grid>
+           
+
+            <Grid Margin="20,7,20,7">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <StackLayout Grid.Row="0" Orientation="Horizontal">
+                            <Label Text="Accommodation Type" MaxLines="2"
+                                    Margin="0,0,0,5" HorizontalOptions="StartAndExpand"  FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                    TextColor="{StaticResource PrimaryColor}"/>
+                          
+                        </StackLayout>
+
+
+                        <local:CustomPicker Grid.Row="1" HeightRequest="35" x:Name="accomdationpicker" Title="Select"
+                                            BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryGray}"
+                                            VerticalOptions="CenterAndExpand"
+                                    SelectedIndexChanged="Accomdation_pickerIndexChange">
+                            <local:CustomPicker.ItemsSource >
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Own House</x:String>
+                                    <x:String>Rented</x:String>
+                                    </x:Array>
+                            </local:CustomPicker.ItemsSource>
+                        </local:CustomPicker>
+
+                    </Grid>
+                    
+               </StackLayout>
+                    
+                 </ScrollView>
+               <StackLayout Margin="20,7,20,7">
+                 <Label x:Name="MessageLabel" FontSize="12" TextColor="Red"></Label>
+
+            </StackLayout>
+              
+                       
+                    
+
+            <StackLayout x:Name="submitBtn" BackgroundColor="{StaticResource Buttons}" Padding="5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                        <Label Text="SUBMIT" TextColor="White" VerticalOptions="CenterAndExpand"
+                               FontSize="18" FontFamily="{StaticResource NormalFont}" HorizontalOptions="CenterAndExpand" HeightRequest="40" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Update_Address" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+
+            <StackLayout x:Name="dummysubmitBtn" BackgroundColor="{StaticResource Buttons}" Padding="5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" IsVisible="false">
+                        <Label Text="SUBMIT" TextColor="White" VerticalOptions="CenterAndExpand"
+                               FontSize="18" FontFamily="{StaticResource NormalFont}" HorizontalOptions="CenterAndExpand" HeightRequest="40" />
+                       
+                                        </StackLayout>
+        </StackLayout>
+            
+    </ContentPage.Content>
+</ContentPage>

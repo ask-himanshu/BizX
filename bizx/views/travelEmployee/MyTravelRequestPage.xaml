@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="bizx.views.travelEmployee.MyTravelRequestPage" xmlns:local="clr-namespace:bizx.customViews" xmlns:bizx="clr-namespace:bizx;assembly=bizx" NavigationPage.HasNavigationBar="False" BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HeightRequest="50" HorizontalOptions="FillAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0" >
+                      <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                       
+                    </Image>  
+                         <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label x:Name="titleLbl" Text="Travel Request" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+                </Grid>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="White" />
+            <StackLayout x:Name="errorTxt" Margin="5" HorizontalOptions="CenterAndExpand" IsVisible="false" VerticalOptions="CenterAndExpand">
+                <Label Text="No Travel Request" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" FontSize="20" x:Name="errorLbl" FontFamily="{StaticResource NormalFont}" />
+            </StackLayout>
+            <StackLayout x:Name="loadingStack" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <ActivityIndicator IsRunning="true" Color="Blue" IsEnabled="true" />
+                <Label Text="Loading" TextColor="{StaticResource PrimaryColor}" />
+            </StackLayout>
+            <ListView x:Name="TravelList" ItemsSource="{Binding TravelList}" HasUnevenRows="True" IsVisible="false" BackgroundColor="White">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell x:Name="outerListviewCell">
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <StackLayout HorizontalOptions="FillAndExpand">
+                                        <Frame IsClippedToBounds="true" BackgroundColor="White" OutlineColor="White">
+                                            <StackLayout Orientation="Vertical">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1.2*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="25" />
+                                                        <RowDefinition Height="25" />
+                                                    </Grid.RowDefinitions>
+                                                    <Label Text="{Binding travelRequestId,StringFormat='TR-{0}'}" Grid.Row="0" Grid.Column="0" TextColor="{StaticResource PrimaryColor}" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                                                    <Label Text="{Binding travelType}" Grid.Row="1" LineBreakMode="TailTruncation" Grid.Column="0" TextColor="{StaticResource PrimaryGray}" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" IsVisible="true" />
+                                                    <Label Text="{Binding dateOfRequest,StringFormat='{0:dd MMM yyyy}'}" Grid.Column="1" Grid.Row="0" TextColor="{StaticResource PrimaryGray}" FontSize="16" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" />
+                                                </Grid>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="120" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="22" />
+                                                    </Grid.RowDefinitions>
+                                                    
+                                                    <Button Grid.Column="0" Text="{Binding statusText}" VerticalOptions="CenterAndExpand" BorderColor="#44c785"  Padding="0"  FontSize="10" BorderWidth="1" BackgroundColor="#44c785" FontFamily="{StaticResource NormalFont}" TextColor="White">
+                                                    </Button>
+                                                </Grid>
+                                            </StackLayout>
+                                        </Frame>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

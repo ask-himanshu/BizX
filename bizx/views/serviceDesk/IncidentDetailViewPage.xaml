@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bizx.views.serviceDesk.IncidentDetailViewPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HorizontalOptions="FillAndExpand" HeightRequest="50" Orientation="Vertical" VerticalOptions="Center">
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0" >
+                        <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label x:Name="titleLbl" Text="Incident Details" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+                </Grid>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="White" />
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10" Padding="5,0,5,0">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start" >
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                <Label Text="{Binding data.id,StringFormat='Incident-{0}'}" HorizontalOptions="StartAndExpand"  FontSize="16"
+                                   VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" />
+
+
+
+                                <Label Text="Department"   HorizontalOptions="StartAndExpand"
+                                       FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}"  />
+                                <Label Text="{Binding data.departmentName}" 
+                                       HorizontalOptions="StartAndExpand"  FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}"  />
+
+
+                                <Label Text="Category"  HorizontalOptions="StartAndExpand"
+                                       FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}"  />
+                                <Label Text="{Binding data.categoryName,Converter={StaticResource cnvNullToDefaultConverter}}"
+                                       HorizontalOptions="StartAndExpand"  FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}"  />
+
+
+
+                                <Label Text="Assigned To"   HorizontalOptions="StartAndExpand"
+                                       FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}"  />
+                                <Label Text="{Binding data.assignedExecutiveName,Converter={StaticResource cnvNullToDefaultConverter}}" 
+                                       HorizontalOptions="StartAndExpand"  FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}"  />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                                <Label Text="{Binding data.loggedTime,Converter={StaticResource cnvDateTimeConverter}}"
+                                   HorizontalOptions="EndAndExpand" FontSize="16" VerticalOptions="CenterAndExpand"
+                                   TextColor="{StaticResource PrimaryGray}" />
+
+                                <Label Text="Status"   HorizontalOptions="EndAndExpand"
+                                       FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}"  />
+                                <Label Text="{Binding data.incidentStatus}" 
+                                       HorizontalOptions="EndAndExpand"  FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}"  />
+                                <Label Text="Resolution"  HorizontalOptions="EndAndExpand"
+                                       FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}"  />
+                                <Label Text="{Binding data.resolutionDeadline,Converter={StaticResource cnvDateTimeConverter}}" 
+                                       HorizontalOptions="EndAndExpand"  FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}"  />
+
+                            </StackLayout>
+
+                        </StackLayout>
+                        <FlexLayout Direction="Column" AlignContent="Stretch" >
+
+
+                            <Label Text="Symptom" Grid.Row="0"   HorizontalOptions="StartAndExpand"
+
+                               FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}"  />
+
+                            <Label Text="{Binding data.symptom}" Grid.Row="1" Margin="0,5,0,0"   HorizontalOptions="StartAndExpand"
+
+                               FontSize="16" VerticalOptions="CenterAndExpand"  TextColor="{StaticResource PrimaryColor}"  />
+
+                            <Label Text="Description" Grid.Row="2" Margin="0,5,0,0"  HorizontalOptions="StartAndExpand"
+
+                               FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}"  />
+
+                            <Label Text="{Binding data.description}" Grid.Row="3" Margin="0,5,0,0" HorizontalOptions="StartAndExpand"
+
+                               FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}"  />
+                            <Label Text="Attachment" Grid.Row="2" Margin="0,5,0,0"  HorizontalOptions="StartAndExpand"
+
+                               FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}"  />
+
+                            <Label Text="No Attachments" x:Name="noAttachmentText" IsVisible="false" Margin="0,5,0,0"
+                               HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16"
+                               TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" />
+
+                        </FlexLayout>
+                        <StackLayout x:Name="attachmentStack" Margin="0,5,0,0">
+                            <Grid  x:Name="attach1" IsVisible="false">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding data.filename1}" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                                <Label Text="Download" HorizontalOptions="EndAndExpand" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource TitleColor}" VerticalOptions="CenterAndExpand" FontSize="16">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Download1_Clicked" NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                            <Grid  x:Name="attach2" IsVisible="false" Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding data.filename2}" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                                <Label Text="Download" HorizontalOptions="EndAndExpand" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource TitleColor}" VerticalOptions="CenterAndExpand" FontSize="16">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Download2_Clicked" NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </StackLayout>
+
+
+
+
+
+                        <!--<StackLayout HeightRequest="20"  HorizontalOptions="FillAndExpand">
+
+                        <Label Text="Attachments" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource Buttons}" VerticalOptions="Center" />
+
+                    </StackLayout>
+                      <StackLayout HeightRequest="20" x:Name="noAttachmentText" IsVisible="false" HorizontalOptions="FillAndExpand">
+                          <Label Text="No Attachments"   HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                      </StackLayout>
+                    <StackLayout   Padding="5" Orientation="Vertical">
+
+                        <Grid Margin="0,0,0,0" x:Name="attach1" IsVisible="false">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions> 
+                                
+                                <Label  Text="{Binding data.filename1}" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                                <Label  Text="Download" HorizontalOptions="CenterAndExpand" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Download1_Clicked" NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+
+                                </Label>
+                            
+                            </Grid>
+
+                        <Grid Margin="0,0,0,0" x:Name="attach2" IsVisible="false">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions> 
+                                
+                                 <Label  Text="{Binding data.filename2}" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                                <Label  Text="Download" HorizontalOptions="CenterAndExpand" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Download2_Clicked" NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+
+                                </Label>
+                            
+                            </Grid>
+
+                         
+                    </StackLayout>-->
+
+                    </StackLayout>
+
+                </ScrollView>
+
+                <StackLayout x:Name="submitBtn" IsVisible="false" BackgroundColor="{StaticResource Buttons}" Padding="5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45" />
+                        </Grid.RowDefinitions>
+                        <StackLayout Grid.Column="0">
+                            <Label Text="Re-Open" TextColor="White" VerticalOptions="CenterAndExpand" FontSize="16" FontFamily="{StaticResource NormalFont}" HorizontalOptions="CenterAndExpand" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Submit_Clicked" NumberOfTapsRequired="1" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

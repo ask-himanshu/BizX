@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             x:Class="bizx.views.Home.MyModulePage">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HeightRequest="50" HorizontalOptions="FillAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="80" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0" >
+                        <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Image Source="logo_bizx.png" Grid.Column="1" Grid.Row="0" Margin="20,0,0,0" Aspect="AspectFill"  VerticalOptions="Center"/>
+                </Grid>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="White"/>
+
+
+            <StackLayout x:Name="loadingStack" HorizontalOptions="CenterAndExpand" IsVisible="true" VerticalOptions="CenterAndExpand">
+
+                <ActivityIndicator IsRunning="true" IsEnabled="true" Color="Blue" />
+
+                <Label Text="Loading" TextColor="{StaticResource PrimaryColor}" />
+
+            </StackLayout>
+            <flv:FlowListView x:Name="HomeListView" SeparatorVisibility="Default" SeparatorColor="White"
+                              IsVisible="false" FlowItemTapped="Handle_ItemTapped_List" HasUnevenRows="False"
+                              FlowColumnMinWidth="160" MinimumHeightRequest="160" BackgroundColor="White"
+                              RowHeight="160"  Margin="1"
+                              HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <flv:FlowListView.FlowColumnTemplate>
+                    <DataTemplate>
+                        <StackLayout BackgroundColor="{StaticResource PrimaryGray}" Padding="0,0,1,1" Orientation="Vertical"
+                                                Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                            <StackLayout Orientation="Vertical" Padding="15,15,15,5"
+                                                     VerticalOptions="FillAndExpand" BackgroundColor="White">
+
+                                <Image Source="{Binding iconUrl}"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+
+                                </Image>
+                                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                    <Label x:Name="subModuleName" FontSize="18"  TextColor="{StaticResource PrimaryColor}" HorizontalTextAlignment="Start"  FontFamily="{StaticResource BoldFont}" Text="{Binding subModuleName}">
+                                    </Label>
+                                </StackLayout>
+                            </StackLayout>
+                           
+                            
+                        </StackLayout>
+                    </DataTemplate>
+                </flv:FlowListView.FlowColumnTemplate>
+            </flv:FlowListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

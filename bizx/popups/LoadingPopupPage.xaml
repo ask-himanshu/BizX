@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages: xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="bizx.popups.LoadingPopupPage">
+    <ContentPage.Content>
+    </ContentPage.Content>
+</ContentPage>

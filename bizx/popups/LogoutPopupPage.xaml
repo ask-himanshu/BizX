@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="bizx.popups.LogoutPopupPage" xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation PositionIn="Center" PositionOut="Center" ScaleIn="1.2" ScaleOut="0.8" DurationIn="400" DurationOut="300" EasingIn="SinOut" EasingOut="SinIn" HasBackgroundAnimation="True" />
+    </pages:PopupPage.Animation>
+    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20" >
+        <StackLayout BackgroundColor="White" Orientation="Vertical" HeightRequest="180" HorizontalOptions="CenterAndExpand"
+                     VerticalOptions="CenterAndExpand">
+           <!-- <Label Text="Alert" TextColor="{StaticResource PrimaryColor}" FontSize="Large" HorizontalOptions="Start">
+                
+            </Label>-->
+
+             <StackLayout IsVisible="false" BackgroundColor="{StaticResource TitleColor}" Grid.Column="1" Orientation="Horizontal" Padding="5" VerticalOptions="Center">
+
+
+                <Label x:Name="titleLbl" Text="Alert" FontSize="18" TextColor="White" HorizontalOptions="StartAndExpand"  VerticalOptions="Center" />
+
+                <Image Source="ic_close_white" Grid.Column="1" HorizontalOptions="EndAndExpand">
+
+                    <Image.GestureRecognizers>
+
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped" />
+
+                    </Image.GestureRecognizers>
+
+                </Image>
+
+            </StackLayout>
+
+            <StackLayout Padding="10" HeightRequest="90" Margin="0,30,0,0"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                
+            
+
+                <Label x:Name="messageLbl" Text="Are you sure want to logout" TextColor="#4c4c4c" FontSize="20">
+
+                </Label>
+
+            </StackLayout>
+            <!--<BoxView BackgroundColor="{StaticResource PrimaryColor}" HeightRequest="1" VerticalOptions="EndAndExpand"/>-->
+            <!--<StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand">-->
+
+                
+                <!--<Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+                 <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*"/>
+
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>-->
+
+                <!--<StackLayout Orientation="Horizontal" HeightRequest="70" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    
+                
+
+                <StackLayout x:Name="reject_btn" Margin="50,0,0,0"  >
+
+                    <Label Text="CANCEL" TextColor="#F77816" WidthRequest="150" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                         VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Cancel_Click" NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+                    
+                </StackLayout>
+                    
+                
+
+                <StackLayout x:Name="approve_btn"  Margin="50,0,0,0">
+
+                    <Label Text="LOGOUT" TextColor="#F77816" VerticalOptions="CenterAndExpand" FontSize="18" WidthRequest="150" HorizontalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}"
+                       />
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Ok_Click" NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+                    
+                </StackLayout>
+                </StackLayout>-->
+            <!--</Grid>-->
+                
+                <!--<Button Text="Disagree" x:Name="cancelBtn"  WidthRequest="90" BackgroundColor="White" BorderWidth="0.5" BorderColor="{StaticResource PrimaryColor}" FontSize="18" Clicked="Cancel_Click">
+                </Button>
+                <Button Text="Agree" x:Name="okBtn" WidthRequest="90" BackgroundColor="White" BorderWidth="0.5" BorderColor="{StaticResource PrimaryColor}" FontSize="18" Clicked="Ok_Click">
+                </Button>-->
+                <!--<StackLayout Orientation="Vertical"  HorizontalOptions="EndAndExpand">
+                   
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical"  HorizontalOptions="EndAndExpand" >
+                    
+                </StackLayout>-->
+           
+       <!-- </StackLayout>-->
+        <StackLayout BackgroundColor="{StaticResource Buttons}" x:Name="btnGrid" Padding="5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+
+            <Grid>
+
+                 <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="0">
+
+                    <Label Text="CANCEL" TextColor="White" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+
+                   <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Cancel_Click" NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+                    
+                </StackLayout>
+                
+                <BoxView BackgroundColor="White" Grid.Column="1"/>
+
+                <StackLayout Grid.Column="2">
+
+                    <Label Text="LOGOUT" TextColor="White" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="0"/>
+
+                   <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Ok_Click" NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+                    
+                </StackLayout>
+                
+            </Grid>
+            
+        </StackLayout>
+         </StackLayout>   
+    </StackLayout>
+</pages:PopupPage>

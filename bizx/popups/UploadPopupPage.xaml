@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:bizx.customViews;assembly=bizx" xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" x:Class="bizx.popups.UploadPopupPage" xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation PositionIn="Center" PositionOut="Center" ScaleIn="1.2" ScaleOut="0.8" DurationIn="400" DurationOut="300" EasingIn="SinOut" EasingOut="SinIn" HasBackgroundAnimation="True" />
+    </pages:PopupPage.Animation>
+    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20">
+        <StackLayout BackgroundColor="White" Orientation="Vertical" WidthRequest="300">
+            <Grid BackgroundColor="{StaticResource TitleColor}" Padding="10,5,5,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Attachment" Grid.Column="0" FontSize="20" TextColor="White" VerticalOptions="Center" />
+                <Image Source="ic_close_white" Grid.Column="1" HorizontalOptions="End">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ClickTap" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <Grid Padding="10,5,5,5" Margin="10,10,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <local:CustomEntry x:Name="EntryFileName" IsEnabled="false" Grid.Column="0" Grid.Row="0" FontSize="18">
+                </local:CustomEntry>
+                <Label x:Name="LblFileName" IsVisible="false" Grid.Column="0" FontSize="18" />
+            </Grid>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" Margin="10,20,10,0">
+
+                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+
+                 <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="2"   Padding="10">
+
+                    <Label Text="UPLOAD" TextColor="#F77816" x:Name="reject_btn" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                       VerticalOptions="CenterAndExpand" IsVisible="true" HorizontalOptions="CenterAndExpand" />
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Upload_Click" NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+                    
+                </StackLayout>
+                
+
+
+                    
+
+                <BoxView BackgroundColor="White" Grid.Column="1"/>
+
+                <StackLayout Grid.Column="0"  Padding="10">
+
+                    <Label Text="Choose File" TextColor="#F77816" x:Name="approve_btn" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="0"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Choose_Click" NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+                    
+                </StackLayout>
+                
+            </Grid>
+                
+                <!--<Button Text="Ok" x:Name="okBtn" BackgroundColor="White" BorderWidth="0.5" BorderColor="{StaticResource PrimaryColor}" FontSize="18" WidthRequest="90" Clicked="Ok_Click"></Button>-->
+                <!--<Button Text="Disagree" x:Name="cancelBtn" TextColor="White" WidthRequest="90" FontSize="16" Clicked="Cancel_Click" IsVisible="false"></Button>-->
+
+            </StackLayout>
+            
+            <!--<Button x:Name="chooseBtn" Margin="30,0,30,10" WidthRequest="120" HorizontalOptions="End" Grid.Column="1" Clicked="Choose_Click" Text="Choose File" BackgroundColor="White" BorderWidth="0.5" BorderColor="{StaticResource PrimaryColor}" FontSize="18">
+            </Button>-->
+            <!--<Label x:Name="LblSuccessMsg" Margin="10" Text="File selected uccessfully" IsVisible="false" TextColor="Lime" FontSize="16"></Label>-->
+        </StackLayout>
+    </StackLayout>
+</pages:PopupPage>

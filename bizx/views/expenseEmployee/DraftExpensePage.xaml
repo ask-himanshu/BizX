@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bizx.views.expenseEmployee.DraftExpensePage"
+             xmlns:local="clr-namespace:bizx.customViews"
+              
+             NavigationPage.HasNavigationBar="False"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             
+             BackgroundColor="White">
+
+    
+    <ContentPage.Content>
+
+        <StackLayout Orientation="Vertical">
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HeightRequest="50" HorizontalOptions="FillAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0" >
+                      <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                       
+                    </Image>  
+                         <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label x:Name="titleLbl" Text="Claim Expense" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+                </Grid>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="White" />
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical" Margin="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2.4*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Expense No" Grid.Row="0" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                        <Label Text="BU" Grid.Row="1" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                        <Label Text="SBU" Grid.Row="2" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                        <Label x:Name="buLbl" Grid.Row="1" VerticalTextAlignment="Center" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" FontSize="16" IsVisible="true" />
+                        <Label x:Name="sbuLbl" Grid.Row="2" TextColor="{StaticResource PrimaryColor}" Grid.Column="1" VerticalTextAlignment="Center" FontSize="16" IsVisible="true" />
+                        <Label x:Name="expenseId" Grid.Row="0" TextColor="{StaticResource PrimaryColor}" Grid.Column="1" VerticalTextAlignment="Center" FontSize="16" IsVisible="true" />
+                    </Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2.4*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                            <Label Text="Client/Dept"  FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" />
+
+                            <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                            <Label Text="Claim Type"  FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" />
+
+                            <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                        </StackLayout>
+                        <StackLayout Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                            <Label Text="Billability"  FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" />
+
+                            <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                        </StackLayout>
+                        <StackLayout Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                            <Label Text="Currency" FontSize="16" TextColor="{StaticResource PrimaryGray}"  VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+
+                            <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                        </StackLayout>
+                        <Label Text="Currency" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="3" Grid.Column="0" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+                        <local:CustomPicker HeightRequest="35"  x:Name="ClientPicker" BackgroundColor="WhiteSmoke" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" SelectedIndexChanged="PickerClient_SelectedIndexChanged" ItemDisplayBinding="{Binding clientName}" Title="Select Client" Grid.Row="0" Grid.Column="1">
+                        </local:CustomPicker>
+                        <local:CustomPicker HeightRequest="35"  x:Name="ClaimPicker" BackgroundColor="WhiteSmoke" Title="Select Claim Type" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" SelectedIndexChanged="PickerClaim_SelectedIndexChanged" Grid.Row="1" Grid.Column="1">
+                            <local:CustomPicker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Corporate Card Settlement</x:String>
+                                    <x:String>Expense claim</x:String>
+                                </x:Array>
+                            </local:CustomPicker.ItemsSource>
+                        </local:CustomPicker>
+                        <local:CustomPicker HeightRequest="35"  x:Name="BillabilityPicker" BackgroundColor="WhiteSmoke" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" Title="Select Billability" Grid.Row="2" SelectedIndexChanged="PickerBillability_SelectedIndexChanged" Grid.Column="1">
+                            <local:CustomPicker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Billable</x:String>
+                                    <x:String>Non Billable</x:String>
+                                </x:Array>
+                            </local:CustomPicker.ItemsSource>
+                        </local:CustomPicker>
+                        <local:CustomPicker HeightRequest="35"  x:Name="currencyType" BackgroundColor="WhiteSmoke" Title="Select Currency" ItemDisplayBinding="{Binding attributeElementName}" TextColor="{StaticResource PrimaryColor}" Grid.Column="1" SelectedIndexChanged="CurrencyType_SelectedIndexChanged" Grid.Row="3" VerticalOptions="CenterAndExpand" />
+                    </Grid>
+                    <StackLayout x:Name="bill1" Orientation="Vertical">
+                        <Grid BackgroundColor="{StaticResource Button}" Margin="0,7,0,7" Padding="5" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Bill #1" TextColor="White" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="0" VerticalOptions="Center" />
+                            <Label Text="ADD" TextColor="White" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="1" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Handle_Add_Click" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.4*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Project"  FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" />
+
+                                <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                            </StackLayout>
+                            <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Category" LineBreakMode="TailTruncation"   FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" />
+
+                                <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                            </StackLayout>
+                            <local:CustomPicker HeightRequest="35"  x:Name="ProjectPicker" BackgroundColor="WhiteSmoke" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" SelectedIndexChanged="PickerProject_SelectedIndexChanged" ItemDisplayBinding="{Binding projectName}" Title="Select Project" Grid.Row="0" Grid.Column="1">
+                            </local:CustomPicker>
+                            <local:CustomPicker HeightRequest="35"  x:Name="CategoryPicker" BackgroundColor="WhiteSmoke" Title="Select Expense Category" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" SelectedIndexChanged="PickerCategory_SelectedIndexChanged" ItemDisplayBinding="{Binding categoryName}" Grid.Row="1" Grid.Column="1">
+                            </local:CustomPicker>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.4*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Amount" FontSize="16" TextColor="{StaticResource PrimaryGray}"  VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+
+                                <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                            </StackLayout>
+                            <local:CustomEntry x:Name="amtEntry" Keyboard="Numeric" BackgroundColor="WhiteSmoke"
+                                               Placeholder="Enter Amount" FontFamily="{StaticResource NormalFont}"
+                                               TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand"
+                                               Grid.Row="0" Grid.Column="1" FontSize="16">
+                                <Entry.Behaviors>
+                                    <local:EntryLengthValidatorBehavior MaxLength="10" />
+                                </Entry.Behaviors>
+                            </local:CustomEntry>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.4*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" VerticalOptions="CenterAndExpand">
+                                <Image Source="ic_small_calendar" IsVisible="false">
+                                </Image>
+                                <Label Text="Expense Date" Grid.Column="0" VerticalTextAlignment="Center" FontSize="16" TextColor="{StaticResource PrimaryGray}">
+                                </Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Image Source="ic_left_arrow" IsVisible="false">
+                                </Image>
+                                <local:BorderlessDatePicker x:Name="datePickerAndroid" BackgroundColor="WhiteSmoke" HeightRequest="35" HorizontalOptions="FillAndExpand" Grid.Column="1" VerticalOptions="CenterAndExpand" DateSelected="Handle_DateSelected" Date="{x:Static sys:DateTime.Now}" MaximumDate="{x:Static sys:DateTime.Now}">
+                                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                                </local:BorderlessDatePicker>
+                                <DatePicker x:Name="datePickerIos" IsVisible="false" Grid.Column="1" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" DateSelected="Handle_DateSelected" Date="{x:Static sys:DateTime.Now}" MaximumDate="{x:Static sys:DateTime.Now}">
+                                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                                </DatePicker>
+                                <Image Source="ic_keyboard_arrow_down_black" IsVisible="false" Margin="0,5,0,0" VerticalOptions="CenterAndExpand">
+                                </Image>
+                            </StackLayout>
+                        </Grid>
+                    
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+                        <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Details" FontSize="16" TextColor="{StaticResource PrimaryGray}"  VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+
+                                <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                            </StackLayout>
+                        <local:CustomEditor  x:Name="detailEntry" HeightRequest="100" BackgroundColor="WhiteSmoke" BorderColor="WhiteSmoke" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16" TextColor="{StaticResource PrimaryColor}">
+                            
+                        </local:CustomEditor>
+                    </Grid>
+                    </StackLayout>
+                    <!-- bill1 ends -->
+                    <!--        biil2   starts             -->
+                    <StackLayout x:Name="bill2" Orientation="Vertical" IsVisible="false">
+                        <Grid BackgroundColor="{StaticResource Button}" Margin="0,7,0,7" Padding="5" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Bill #2" TextColor="White" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="0" VerticalOptions="Center" />
+                             <Label Text="REMOVE" TextColor="White" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="1" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Handle_Remove_Click1" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.4*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Project" Grid.Row="0" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" />
+                            <Label Text="Category" Grid.Row="1" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" />
+                            <local:CustomPicker HeightRequest="35"  x:Name="ProjectPicker1" BackgroundColor="WhiteSmoke" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" SelectedIndexChanged="PickerProject_SelectedIndexChanged1" ItemDisplayBinding="{Binding projectName}" Title="Select Project" Grid.Row="0" Grid.Column="1">
+                            </local:CustomPicker>
+                            <local:CustomPicker HeightRequest="35"  x:Name="CategoryPicker1" BackgroundColor="WhiteSmoke" Title="Select Expense Category" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" SelectedIndexChanged="PickerCategory_SelectedIndexChanged1" ItemDisplayBinding="{Binding categoryName}" Grid.Row="1" Grid.Column="1">
+                            </local:CustomPicker>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.4*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Amount" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomEntry x:Name="amtEntry1" BackgroundColor="WhiteSmoke" Keyboard="Numeric" Placeholder="Enter Amount" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1" FontSize="16">
+                                <Entry.Behaviors>
+                                    <local:EntryLengthValidatorBehavior MaxLength="10" />
+                                </Entry.Behaviors>
+                            </local:CustomEntry>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.4*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" VerticalOptions="CenterAndExpand">
+                                <Image Source="ic_small_calendar" IsVisible="false">
+                                </Image>
+                                <Label Text="Expense Date" Grid.Column="0" VerticalTextAlignment="Center" FontSize="16" TextColor="{StaticResource PrimaryGray}">
+                                </Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Image Source="ic_left_arrow" IsVisible="false">
+                                </Image>
+                                <local:BorderlessDatePicker x:Name="datePickerAndroid1" HeightRequest="35" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" Grid.Column="1" VerticalOptions="CenterAndExpand" DateSelected="Handle_DateSelected1" Date="{x:Static sys:DateTime.Now}" MaximumDate="{x:Static sys:DateTime.Now}">
+                                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                                </local:BorderlessDatePicker>
+                                <DatePicker x:Name="datePickerIos1" IsVisible="false" HorizontalOptions="FillAndExpand" BackgroundColor="WhiteSmoke" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand"  DateSelected="Handle_DateSelected1" Date="{x:Static sys:DateTime.Now}" MaximumDate="{x:Static sys:DateTime.Now}">
+                                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                                </DatePicker>
+                                <Image Source="ic_keyboard_arrow_down_black" IsVisible="false" Margin="0,5,0,0" VerticalOptions="CenterAndExpand">
+                                </Image>
+                            </StackLayout>
+                        </Grid>
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+
+                                <RowDefinition Height="40" />
+
+                                <RowDefinition Height="100" />
+
+                            </Grid.RowDefinitions> 
+
+                            <Label Text="Details" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0"
+                                   Grid.Column="0" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}"/>
+
+                           <local:CustomEditor  x:Name="detailEntry1" HeightRequest="100" BackgroundColor="WhiteSmoke"
+                                               FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0"
+                                               FontSize="18" TextColor="{StaticResource PrimaryColor}">
+
+                            </local:CustomEditor>
+                  
+
+                    </Grid>
+                    </StackLayout>
+                    <!--    bill2 ends                    -->
+                    <!--              bill3 starts          -->
+                    <StackLayout x:Name="bill3" Orientation="Vertical" IsVisible="false">
+                        <Grid BackgroundColor="{StaticResource Button}" Margin="0,7,0,7" Padding="5" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Bill #3" TextColor="White" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="0" VerticalOptions="Center" />
+                            <Label Text="REMOVE" TextColor="White" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="1" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Handle_Remove_Click2" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.4*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Project" Grid.Row="0" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" />
+                            <Label Text="Category" Grid.Row="1" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" />
+                            <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke"  x:Name="ProjectPicker2" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" SelectedIndexChanged="PickerProject_SelectedIndexChanged2" ItemDisplayBinding="{Binding projectName}" Title="Select Project" Grid.Row="0" Grid.Column="1">
+                            </local:CustomPicker>
+                            <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke" x:Name="CategoryPicker2" Title="Select Expense Category" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" SelectedIndexChanged="PickerCategory_SelectedIndexChanged2" ItemDisplayBinding="{Binding categoryName}" Grid.Row="1" Grid.Column="1">
+                            </local:CustomPicker>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.4*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Amount" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomEntry x:Name="amtEntry2" Keyboard="Numeric" Placeholder="Enter Amount" BackgroundColor="WhiteSmoke" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1" FontSize="18">
+                                <Entry.Behaviors>
+                                    <local:EntryLengthValidatorBehavior MaxLength="10" />
+                                </Entry.Behaviors>
+                            </local:CustomEntry>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.4*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" VerticalOptions="CenterAndExpand">
+                                <Image Source="ic_small_calendar" IsVisible="false">
+                                </Image>
+                                <Label Text="Expense Date" Grid.Column="0" VerticalTextAlignment="Center" FontSize="16" TextColor="{StaticResource PrimaryGray}">
+                                </Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Image Source="ic_left_arrow" IsVisible="false">
+                                </Image>
+                                <local:BorderlessDatePicker x:Name="datePickerAndroid2" BackgroundColor="WhiteSmoke" HeightRequest="35" HorizontalOptions="FillAndExpand"  Grid.Column="1" VerticalOptions="CenterAndExpand" DateSelected="Handle_DateSelected2" Date="{x:Static sys:DateTime.Now}" MaximumDate="{x:Static sys:DateTime.Now}">
+                                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                                </local:BorderlessDatePicker>
+                                <DatePicker x:Name="datePickerIos2" IsVisible="false" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand"  DateSelected="Handle_DateSelected2" Date="{x:Static sys:DateTime.Now}" MaximumDate="{x:Static sys:DateTime.Now}">
+                                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                                </DatePicker>
+                                <Image Source="ic_keyboard_arrow_down_black" IsVisible="false" Margin="0,5,0,0" VerticalOptions="CenterAndExpand">
+                                </Image>
+                            </StackLayout>
+                        </Grid>
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+
+                                <RowDefinition Height="40" />
+
+                                <RowDefinition Height="100" />
+
+                            </Grid.RowDefinitions> 
+
+                            <Label Text="Expense Details" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0"
+                                   Grid.Column="0" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}"/>
+
+                           <local:CustomEditor  x:Name="detailEntry2" HeightRequest="100" BackgroundColor="WhiteSmoke"
+                                               FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0"
+                                               FontSize="16" TextColor="{StaticResource PrimaryColor}">
+
+                                
+                            </local:CustomEditor>
+                  
+
+                    </Grid>
+                    </StackLayout>
+                    <!--        bill3 ends                -->
+                    <!--        bill4 starts                    -->
+                    <StackLayout x:Name="bill4" Orientation="Vertical" IsVisible="false">
+                        <Grid BackgroundColor="{StaticResource Button}" Margin="0,7,0,7" Padding="5" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Bill #4" TextColor="White" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="0" VerticalOptions="Center" />
+                            <Label Text="REMOVE" TextColor="White" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="1" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Handle_Remove_Click3" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.4*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Project" Grid.Row="0" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" />
+                            <Label Text="Category" Grid.Row="1" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" />
+                            <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke"  x:Name="ProjectPicker3" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" SelectedIndexChanged="PickerProject_SelectedIndexChanged3" ItemDisplayBinding="{Binding projectName}" Title="Select Project" Grid.Row="0" Grid.Column="1">
+                            </local:CustomPicker>
+                            <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke"  x:Name="CategoryPicker3" Title="Select Expense Category" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" SelectedIndexChanged="PickerCategory_SelectedIndexChanged3" ItemDisplayBinding="{Binding categoryName}" Grid.Row="1" Grid.Column="1">
+                            </local:CustomPicker>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.4*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Amount" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomEntry x:Name="amtEntry3" Keyboard="Numeric" Placeholder="Enter Amount" BackgroundColor="WhiteSmoke" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1" FontSize="16">
+                                <Entry.Behaviors>
+                                    <local:EntryLengthValidatorBehavior MaxLength="10" />
+                                </Entry.Behaviors>
+                            </local:CustomEntry>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.4*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" VerticalOptions="CenterAndExpand">
+                                <Image Source="ic_small_calendar" IsVisible="false">
+                                </Image>
+                                <Label Text="Expense Date" Grid.Column="0" VerticalTextAlignment="Center" FontSize="16"
+                                       TextColor="{StaticResource PrimaryGray}">
+                                </Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Image Source="ic_left_arrow" IsVisible="false">
+                                </Image>
+                                <local:BorderlessDatePicker x:Name="datePickerAndroid3" BackgroundColor="WhiteSmoke" HeightRequest="35" HorizontalOptions="FillAndExpand"  Grid.Column="1" VerticalOptions="CenterAndExpand" DateSelected="Handle_DateSelected3" Date="{x:Static sys:DateTime.Now}" MaximumDate="{x:Static sys:DateTime.Now}">
+                                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                                </local:BorderlessDatePicker>
+                                <DatePicker x:Name="datePickerIos3" IsVisible="false" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand"  DateSelected="Handle_DateSelected3" Date="{x:Static sys:DateTime.Now}" MaximumDate="{x:Static sys:DateTime.Now}">
+                                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                                </DatePicker>
+                                <Image Source="ic_keyboard_arrow_down_black" IsVisible="false" Margin="0,5,0,0" VerticalOptions="CenterAndExpand">
+                                </Image>
+                            </StackLayout>
+                        </Grid>
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+
+                                <RowDefinition Height="40" />
+
+                                <RowDefinition Height="100" />
+
+                            </Grid.RowDefinitions> 
+
+                            <Label Text="Details" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0"
+                                   Grid.Column="0" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}"/>
+
+                           <local:CustomEditor  x:Name="detailEntry3" HeightRequest="100" BackgroundColor="WhiteSmoke"
+                                               FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0"
+                                               FontSize="16" TextColor="{StaticResource PrimaryColor}">
+
+                            </local:CustomEditor>
+                  
+
+                    </Grid>
+                    </StackLayout>
+                    <!--        bill4 ends                    -->
+                    <!--       bill5 starts             -->
+                    <StackLayout x:Name="bill5" Orientation="Vertical" IsVisible="false">
+                        <Grid BackgroundColor="{StaticResource Button}" Margin="0,7,0,7" Padding="5" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Bill #5" TextColor="White" HorizontalOptions="StartAndExpand"
+                                   FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="0" VerticalOptions="Center" />
+                            <Label Text="REMOVE" TextColor="White" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="1" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Handle_Remove_Click4" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.4*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Project" Grid.Row="0" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" />
+                            <Label Text="Category" Grid.Row="1" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}"
+                                   TextColor="{StaticResource PrimaryGray}" VerticalOptions="CenterAndExpand" />
+                            <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke"  x:Name="ProjectPicker4" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" SelectedIndexChanged="PickerProject_SelectedIndexChanged4" ItemDisplayBinding="{Binding projectName}" Title="Select Project" Grid.Row="0" Grid.Column="1">
+                            </local:CustomPicker>
+                            <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke"  x:Name="CategoryPicker4" Title="Select Expense Category" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" SelectedIndexChanged="PickerCategory_SelectedIndexChanged4" ItemDisplayBinding="{Binding categoryName}" Grid.Row="1" Grid.Column="1">
+                            </local:CustomPicker>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.4*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Amount" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomEntry x:Name="amtEntry4" Keyboard="Numeric" Placeholder="Enter Amount" BackgroundColor="WhiteSmoke" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1" FontSize="16">
+                                <Entry.Behaviors>
+                                    <local:EntryLengthValidatorBehavior MaxLength="10" />
+                                </Entry.Behaviors>
+                            </local:CustomEntry>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.4*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" VerticalOptions="CenterAndExpand">
+                                <Image Source="ic_small_calendar" IsVisible="false">
+                                </Image>
+                                <Label Text="Expense Date" Grid.Column="0" VerticalTextAlignment="Center" FontSize="16" TextColor="{StaticResource PrimaryGray}">
+                                </Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Image Source="ic_left_arrow" IsVisible="false">
+                                </Image>
+                                <local:BorderlessDatePicker x:Name="datePickerAndroid4" BackgroundColor="WhiteSmoke" HeightRequest="35" HorizontalOptions="FillAndExpand"  Grid.Column="1" VerticalOptions="CenterAndExpand" DateSelected="Handle_DateSelected4" Date="{x:Static sys:DateTime.Now}" MaximumDate="{x:Static sys:DateTime.Now}">
+                                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                                </local:BorderlessDatePicker>
+                                <DatePicker x:Name="datePickerIos4" IsVisible="false" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand"  DateSelected="Handle_DateSelected4" Date="{x:Static sys:DateTime.Now}" MaximumDate="{x:Static sys:DateTime.Now}">
+                                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                                </DatePicker>
+                                <Image Source="ic_keyboard_arrow_down_black" IsVisible="false" Margin="0,5,0,0" VerticalOptions="CenterAndExpand">
+                                </Image>
+                            </StackLayout>
+                        </Grid>
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+
+                                <RowDefinition Height="40" />
+
+                                <RowDefinition Height="100" />
+
+                            </Grid.RowDefinitions> 
+
+                            <Label Text="Details" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0"
+                                   Grid.Column="0" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}"/>
+
+                           <local:CustomEditor  x:Name="detailEntry4" HeightRequest="100" BackgroundColor="WhiteSmoke"
+                                               FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0"
+                                               FontSize="16" TextColor="{StaticResource PrimaryColor}">
+
+                                 
+                            </local:CustomEditor>
+                  
+
+                    </Grid>
+                    </StackLayout>
+                    <!--       bill5 ends             -->
+                    <StackLayout x:Name="attach1" Orientation="Vertical" IsVisible="true">
+
+                         <Grid BackgroundColor="{StaticResource Button}" Margin="0,7,0,7" Padding="5" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Attachment #1" TextColor="White" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="0" VerticalOptions="Center" />
+                            <Label Text="ADD" TextColor="White" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="1" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Handle_Attach_Click" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+
+                        <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+                        <Label Text="Documents Description" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+                        <local:CustomEditor  x:Name="docDescEntry" HeightRequest="100" BackgroundColor="WhiteSmoke"
+                                             FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0"
+                                             FontSize="16" TextColor="{StaticResource PrimaryColor}">
+                            
+                        </local:CustomEditor>
+                    </Grid>
+                    <StackLayout Orientation="Horizontal" HeightRequest="40" Margin="0,7,0,7">
+                        <Button Text="Choose File" TextColor="{StaticResource PrimaryColor}" WidthRequest="120" BackgroundColor="{StaticResource BackgroundColors}" BorderWidth="1" CornerRadius="10" BorderColor="{StaticResource Button}" FontSize="16" Clicked="Attachment_ClickAsync" />
+                        <Label x:Name="File_Name" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}" Text="No File Chosen" VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout x:Name="attach2" Orientation="Vertical" IsVisible="false">
+                    <Grid BackgroundColor="{StaticResource Button}" Margin="0,7,0,7" Padding="5" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Attachment #2" TextColor="White" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="0" VerticalOptions="Center" />
+                            <Label Text="REMOVE" TextColor="White" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="1" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Handle_Delete_Click1" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+                        <Label Text="Documents Description" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+                        <local:CustomEditor  x:Name="docDescEntry1" HeightRequest="100" FontSize="16" BackgroundColor="WhiteSmoke" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0"  TextColor="{StaticResource PrimaryColor}">
+                            
+                        </local:CustomEditor>
+                    </Grid>
+                    <StackLayout Orientation="Horizontal" HeightRequest="40" Margin="0,7,0,7">
+                        <Button Text="Choose File" TextColor="{StaticResource PrimaryColor}" WidthRequest="120" BackgroundColor="{StaticResource BackgroundColors}" BorderWidth="1" CornerRadius="10" BorderColor="{StaticResource Button}" FontSize="16" Clicked="Attachment_Click1" />
+                        <Label x:Name="File_Name1" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}" Text="No File Chosen" VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout x:Name="attach3" Orientation="Vertical" IsVisible="false">
+                    <Grid BackgroundColor="{StaticResource Button}" Margin="0,7,0,7" Padding="5" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Attachment #3" TextColor="White" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="0" VerticalOptions="Center" />
+                            <Label Text="REMOVE" TextColor="White" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="1" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Handle_Delete_Click2" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+                        <Label Text="Documents Description" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+                        <local:CustomEditor  x:Name="docDescEntry2" HeightRequest="100" BackgroundColor="WhiteSmoke" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16" TextColor="{StaticResource PrimaryColor}">
+                           
+                        </local:CustomEditor>
+                    </Grid>
+                    <StackLayout Orientation="Horizontal" HeightRequest="40" Margin="0,7,0,7">
+                        <Button Text="Choose File" TextColor="{StaticResource PrimaryColor}" WidthRequest="120" BackgroundColor="{StaticResource BackgroundColors}" BorderWidth="1" CornerRadius="10" BorderColor="{StaticResource Button}" FontSize="16" Clicked="Attachment_Click2" />
+                        <Label x:Name="File_Name2" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}" Text="No File Chosen" VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout x:Name="attach4" Orientation="Vertical" IsVisible="false">
+                    <Grid BackgroundColor="{StaticResource Button}" Margin="0,7,0,7" Padding="5" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Attachment #4" TextColor="White" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="0" VerticalOptions="Center" />
+                            <Label Text="REMOVE" TextColor="White" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="1" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Handle_Delete_Click3" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+                        <Label Text="Documents Description" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+                        <local:CustomEditor  x:Name="docDescEntry3" HeightRequest="100" BackgroundColor="WhiteSmoke" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16" TextColor="{StaticResource PrimaryColor}">
+                         
+                        </local:CustomEditor>
+                    </Grid>
+                    <StackLayout Orientation="Horizontal" HeightRequest="40" Margin="0,7,0,7">
+                        <Button Text="Choose File" TextColor="{StaticResource PrimaryColor}" WidthRequest="120" BackgroundColor="{StaticResource BackgroundColors}" BorderWidth="1" CornerRadius="10" BorderColor="{StaticResource Button}" FontSize="16" Clicked="Attachment_Click3" />
+                        <Label x:Name="File_Name3" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}" Text="No File Chosen" VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout x:Name="attach5" Orientation="Vertical" IsVisible="false">
+                    <Grid BackgroundColor="{StaticResource Button}" Margin="0,7,0,7" Padding="5" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Attachment #5" TextColor="White" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="0" VerticalOptions="Center" />
+                            <Label Text="REMOVE" TextColor="White" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="1" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Handle_Delete_Click4" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+                        <Label Text="Documents Description" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+                        <local:CustomEditor  x:Name="docDescEntry4" HeightRequest="100" BackgroundColor="WhiteSmoke" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16" TextColor="{StaticResource PrimaryColor}">
+                           
+                        </local:CustomEditor>
+                    </Grid>
+                    <StackLayout Orientation="Horizontal" HeightRequest="40" Margin="0,7,0,7">
+                        <Button Text="Choose File" TextColor="{StaticResource PrimaryColor}" WidthRequest="120" BackgroundColor="{StaticResource BackgroundColors}" BorderWidth="1" CornerRadius="10" BorderColor="{StaticResource Button}" FontSize="16" Clicked="Attachment_Click4" />
+                        <Label x:Name="File_Name4" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}" Text="No File Chosen" VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                    </StackLayout>
+
+
+                </StackLayout>
+            </ScrollView>
+            <StackLayout BackgroundColor="{StaticResource Buttons}" x:Name="btnGrid" Padding="5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45" />
+                    </Grid.RowDefinitions>
+                    <Label Text="UPDATE AND SUBMIT" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="0" />
+                       
+                    <!--<StackLayout Grid.Column="0">
+                        <Label Text="SAVE DRAFT" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Draft_Save_Click" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>-->
+                    <!--<BoxView BackgroundColor="White" Grid.Column="1" />
+                    <StackLayout Grid.Column="2">-->
+                        <!--<Label Text="SUBMIT" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="0" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Submit_Click" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>-->
+                    <!--</StackLayout>-->
+                </Grid>
+                 <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Submit_Click" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

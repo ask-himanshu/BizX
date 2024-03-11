@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "369961428912",
+    "firebase_url": "https://bizx-93ea7.firebaseio.com",
+    "project_id": "bizx-93ea7",
+    "storage_bucket": "bizx-93ea7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369961428912:android:36d119ecafa6fac1",
+        "android_client_info": {
+          "package_name": "com.bizx.infinite.bizx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369961428912-fserlh1pii75hki2bsmkugdghqrinl8q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2ATQQdTxgBy70b0Py515bE9QCH8ufFT0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

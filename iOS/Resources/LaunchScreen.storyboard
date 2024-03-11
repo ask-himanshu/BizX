@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="X5k-f2-b5h">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="gAE-YM-kbH">
+            <objects>
+                <viewController id="X5k-f2-b5h" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y8P-hJ-Z43"/>
+                        <viewControllerLayoutGuide type="bottom" id="9ZL-r4-8FZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yd7-JS-zBw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" image="Icon-60.png" translatesAutoresizingMaskIntoConstraints="NO" id="23" ambiguous="YES">
+                                <rect key="frame" x="270" y="270" width="60" height="60"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20392156862745098" green="0.59607843137254901" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="23" firstAttribute="centerY" secondItem="yd7-JS-zBw" secondAttribute="centerY" priority="1" id="39"/>
+                            <constraint firstItem="23" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX" priority="1" id="41"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XAI-xm-WK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="349" y="339"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Bizx.png" width="301" height="111"/>
+        <image name="Pass.png" width="36" height="36"/>
+        <image name="Person.png" width="36" height="36"/>
+        <image name="ic_action_keyboard_arrow_right.png" width="36" height="36"/>
+        <image name="Home.png" width="36" height="36"/>
+        <image name="ic_action_expand_more.png" width="24" height="24"/>
+        <image name="ic_action_more_vert.png" width="24" height="24"/>
+        <image name="ic_add_white.png" width="48" height="48"/>
+        <image name="ic_close_white_24dp.png" width="36" height="36"/>
+        <image name="ic_date_range.png" width="36" height="36"/>
+        <image name="ic_done_all_white.png" width="72" height="72"/>
+        <image name="ic_left_arrow.png" width="24" height="24"/>
+        <image name="ic_log_off.png" width="26" height="26"/>
+        <image name="ic_log_out.png" width="50" height="50"/>
+        <image name="ic_no_internet.png" width="100" height="100"/>
+        <image name="ic_note_add_white.png" width="72" height="72"/>
+        <image name="ic_right_arrow.png" width="24" height="24"/>
+        <image name="ic_save_white.png" width="72" height="72"/>
+        <image name="ic_small_calendar.png" width="24" height="24"/>
+        <image name="left_arrow.png" width="24" height="24"/>
+        <image name="LogOut.png" width="36" height="36"/>
+        <image name="right_arrow.png" width="24" height="24"/>
+        <image name="icon.png" width="301" height="111"/>
+    </resources>
+</document>

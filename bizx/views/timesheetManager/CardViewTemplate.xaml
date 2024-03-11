@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bizx.views.CardViewTemplate">
+    <Frame IsClippedToBounds="True"
+         HasShadow="True"
+         BackgroundColor="White" >
+        <Frame.OutlineColor>
+            <OnPlatform x:TypeArguments="Color"
+                  Android="Gray"
+                  iOS="Gray"/>
+        </Frame.OutlineColor>
+        <!--<Frame.Margin>
+            <OnPlatform x:TypeArguments="Thickness"
+                  Android="7" iOS="7"/>
+        </Frame.Margin>-->
+        <Frame.Padding>
+            <OnPlatform x:TypeArguments="Thickness"
+                  Android="5" iOS="5"/>
+        </Frame.Padding>
+        <StackLayout Orientation="Horizontal">
+
+
+            <Grid VerticalOptions="CenterAndExpand"
+            Padding="0"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="Transparent">
+                <Grid.RowDefinitions>
+                    <!--<RowDefinition Height="2*" />-->
+                    <RowDefinition Height="*" />
+                    <!--<RowDefinition Height="40" />-->
+                </Grid.RowDefinitions>
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Padding="10,0,10,0">
+
+                    <!--<Label FontAttributes="None"
+               Grid.Row="1"
+               HorizontalTextAlignment="Start"
+               VerticalTextAlignment="Start"
+               FontSize="Small"
+               Text="Employee ID        :" TextColor="Black" >
+
+                    </Label>-->
+                    <Label FontAttributes="None"
+               Grid.Row="1"
+                          
+               HorizontalTextAlignment="Start"
+               VerticalTextAlignment="Start"
+               Font="Bold,16" 
+               Text="{Binding employeeNo, Mode = TwoWay}" TextColor="Gray" >
+                                
+                    </Label>
+
+                    <StackLayout  HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" >
+                        <Label FontAttributes="None"
+               Grid.Row="1"
+               HorizontalTextAlignment="Start"
+               VerticalTextAlignment="Start"
+               FontSize="Small"
+               Text="{Binding createdOn,StringFormat='{0:ddd, MMM d, yyyy}'}" TextColor="Indigo" >
+                        </Label>
+                    </StackLayout>
+
+                </StackLayout>
+                <Grid Grid.Row="1">
+                    <StackLayout Orientation="Horizontal" Padding="10,0,0,0">
+                        <!--<Label FontAttributes="None"
+               Grid.Row="1"
+               HorizontalTextAlignment="Start"
+               VerticalTextAlignment="Start"
+               FontSize="Small"
+               Text="Employee Name :" TextColor="Black"  >
+
+                        </Label>-->
+                        <Label FontAttributes="None"
+               Grid.Row="1"
+               HorizontalTextAlignment="Start"
+               VerticalTextAlignment="Start"
+              
+                 Font="Bold,16"              
+               Text="{Binding fullName, Mode = TwoWay} " TextColor="Gray">
+
+                        </Label>
+                    </StackLayout>
+                </Grid>
+
+                <Grid Grid.Row="2"
+              BackgroundColor="Transparent"
+              Padding="10,0,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" />
+                    <StackLayout Orientation="Horizontal">
+                        <!--<Label FontAttributes="None"
+               Grid.Row="1"
+               HorizontalTextAlignment="Start"
+               VerticalTextAlignment="Start"
+               FontSize="Small"
+               Text="Remarks              :" TextColor="Black" >
+                        </Label>-->
+
+                        <Label Grid.Row="0"
+                 Grid.Column="0"
+                               FontSize="16" 
+                 Text="{Binding approvalRemarks}" HorizontalOptions="Start" VerticalOptions="Start"/>
+                    </StackLayout>
+                </Grid>
+
+            </Grid>
+        </StackLayout>
+    </Frame>
+   
+</ContentView>

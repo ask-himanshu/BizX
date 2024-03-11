@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:bizx.customViews;assembly=bizx" x:Class="bizx.App">
+    <Application.Resources>
+        <!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <!--<OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
+               <On Platform="Android" Value="Roboto-Bold.ttf#Roboto-Bold" />
+               <On Platform="iOS" Value="Roboto-Bold.ttf#Roboto-Bold" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="NormalFont">
+                <On Platform="Android" Value="Roboto-Regular.ttf#Roboto-Regular" />
+                <On Platform="iOS" Value="Roboto-Regular" />
+
+            </OnPlatform>-->
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
+               <On Platform="Android" Value="Arimo-Bold.ttf#Arimo-Bold" />
+               <On Platform="iOS" Value="Arimo-Bold.ttf#Arimo-Bold" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="NormalFont">
+                <On Platform="Android" Value="Arimo-Regular.ttf#Arimo-Regular" />
+                <On Platform="iOS" Value="Arimo-Regular.ttf#Arimo-Regular" />
+
+            </OnPlatform>
+            
+            <!--<Color x:Key="BackgroundColor">#fafafa</Color> -->
+            <Color x:Key="BackgroundColor">#284280</Color>
+            <Color x:Key="BackgroundColors">#fffff</Color> 
+            <Color x:Key="TitleColor">#0889CD</Color>
+            <Color x:Key="Button">#5C5C5E</Color>
+             <Color x:Key="Buttons">#0889CD</Color>
+            <Color x:Key="Card">#182538</Color>
+            <Color x:Key="Strip">#0ed133</Color>
+            <Color x:Key="PrimaryColor">#404040</Color>
+            <Color x:Key="PrimaryGray">#808080</Color>
+            <Color x:Key="PrimaryWhite">#FFFFFF</Color>
+            <Color x:Key="HighlightErrorColor">#FF0000</Color>
+            <!--<OnPlatform x:TypeArguments="Font" Android="18" iOS="18" x:Key="LargeTextFontSize" />
+            <OnPlatform x:TypeArguments="Font" Android="16" iOS="16" x:Key="MediumTextFontSize" />
+            <OnPlatform x:TypeArguments="Font" Android="14" iOS="14" x:Key="SmallTextFontSize" />
+             <OnPlatform x:TypeArguments="Font" Android="12" iOS="12" x:Key="ButtonTextFontSize" />-->
+
+            <local:DatetimeToStringConverter x:Key="cnvDateTimeConverter"></local:DatetimeToStringConverter>
+            <local:DateTimeconvertor x:Key="cnvDateConverter"></local:DateTimeconvertor>
+            <local:BooleantoTrueValue x:Key="cnvBooleantoTrueValue"></local:BooleantoTrueValue>
+
+            <local:NullableValueToDefaultConverter x:Key="cnvNullToDefaultConverter"></local:NullableValueToDefaultConverter>
+            <local:EmptyValueToDefaultConverter x:Key="cnvEmptyToDefaultConverter"></local:EmptyValueToDefaultConverter>
+            <local:DecimalToTimeConverter x:Key="cnvDecimalTimeConverter"></local:DecimalToTimeConverter>
+            
+ 
+</ResourceDictionary>
+
+        
+
+    </Application.Resources>
+</Application>

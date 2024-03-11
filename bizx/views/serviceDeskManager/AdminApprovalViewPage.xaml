@@ -1,0 +1,916 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bizx.views.serviceDeskManager.AdminApprovalViewPage"
+             NavigationPage.HasNavigationBar="False" BackgroundColor="White">
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+
+
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HorizontalOptions="FillAndExpand" HeightRequest="50" Orientation="Vertical" VerticalOptions="Center">
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                        <!--<ColumnDefinition Width="40" />-->
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0" >
+                        <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label x:Name="titleLbl" Text="Service Request" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+                    <!--<Image Source="icons_home_all.png" Grid.Column="2" Margin="0,0,20,0" HeightRequest="60"  HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Home_Click" />
+                        </Image.GestureRecognizers>
+                    </Image>-->
+                </Grid>
+            </StackLayout>
+            <StackLayout x:Name="admin" IsVisible="false" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                <ScrollView>
+
+                    <StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10" Padding="5,0,5,0">
+
+                        <Grid RowSpacing="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition  Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding CourierParcelRequestDetails.serviceManagementMasterId,StringFormat='SR-{0}' }" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                            <Button  x:Name="s1" Text="{Binding ServiceRequestDetail.srStatus}" WidthRequest="80" HeightRequest="25" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="1" BorderColor="#44c785" Padding="0"  FontSize="10" BorderWidth="1" BackgroundColor="#44c785" FontFamily="{StaticResource NormalFont}" TextColor="White"/>
+                        </Grid>
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label x:Name="CallerEmployeeName" Grid.Row="0" Text="{Binding ServiceRequestDetail.callerName}" HorizontalOptions="StartAndExpand"  FontSize="16" VerticalOptions="StartAndExpand" TextColor="{StaticResource PrimaryColor}" />
+                            <Label x:Name="par" Text="{Binding ServiceRequestDetail.parentCategoryName}" Grid.Row="1"  HorizontalOptions="StartAndExpand" FontSize="16" VerticalOptions="StartAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                            <Label x:Name="log" Grid.Row="2" Text="{Binding ServiceRequestDetail.srLoggedTime,Converter={StaticResource cnvDateTimeConverter}}"  HorizontalOptions="StartAndExpand"  FontSize="16" VerticalOptions="StartAndExpand" TextColor="{StaticResource PrimaryGray}" />
+
+                        </Grid>
+                        <Frame Margin="0,5,0,5" x:Name="TopFrame"  HasShadow="False" Padding="0" HeightRequest="30" BorderColor="{StaticResource Buttons}" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" IsVisible="true">
+                            <StackLayout  VerticalOptions="StartAndExpand" HeightRequest="30" BackgroundColor="White">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" BackgroundColor="White">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="Approval" TextColor="{StaticResource Buttons}" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                        </Label>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Handle_SR_Approvals_Clicked" NumberOfTapsRequired="1" />
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1" Margin="0,0,0,0" BackgroundColor="{StaticResource Buttons}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Details" TextColor="White" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="Handle_SR_Details_Clicked" NumberOfTapsRequired="1" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame Margin="0,5,0,5" x:Name="BelowFrame" HasShadow="False" Padding="0" HeightRequest="30" BorderColor="{StaticResource Buttons}" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" IsVisible="false">
+                            <StackLayout  VerticalOptions="StartAndExpand" BackgroundColor="White" HeightRequest="30">
+                                <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Padding="0" BackgroundColor="White">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0" BackgroundColor="{StaticResource Buttons}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Approvals" Grid.Column="0" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="Handle_SR_Approvals_Clicked" NumberOfTapsRequired="1" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1" Margin="0,0,0,0" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Details" Grid.Column="0" TextColor="{StaticResource Buttons}" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+
+                                        </Label>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Handle_SR_Details_Clicked" NumberOfTapsRequired="1"/>
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+
+
+
+
+
+
+                        <!--SR Detail Page View-->
+
+                        <StackLayout x:Name="SRDetails" Orientation="Vertical" VerticalOptions="FillAndExpand" BackgroundColor="White" Spacing="0" IsVisible="true">
+
+                            <Grid RowSpacing="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition  Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Quantity" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding CourierParcelRequestDetails.quantity}"  Grid.Row="1" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Billable Type" HorizontalOptions="EndAndExpand" Margin="0,5,0,0" Grid.Row="2" Grid.Column="1" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label  x:Name="bill" Text="{Binding CourierParcelRequestDetails.billableType}" HorizontalOptions="EndAndExpand"  Grid.Row="3" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" FontSize="16" />
+
+                                <Label Text="Courier Type" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding CourierParcelRequestDetails.courierType}"  Grid.Row="3" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Reciever Name" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="1" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" HorizontalTextAlignment="Center"/>
+                                <Label x:Name ="name" Text="{Binding CourierParcelRequestDetails.receiverName}" HorizontalOptions="EndAndExpand"  Grid.Row="1" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" FontSize="16" />
+
+                                <Label Text="City" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" Grid.Row="4" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding CourierParcelRequestDetails.city}" Grid.Row="5" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Pincode" HorizontalOptions="EndAndExpand" Margin="0,5,0,0" Grid.Row="4" Grid.Column="1" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label x:Name="pin" Text="{Binding CourierParcelRequestDetails.pinCode}" HorizontalOptions="EndAndExpand"  Grid.Row="5" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" FontSize="16" />
+
+
+                                <Label Text="Contact Number" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" Grid.Row="6" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding CourierParcelRequestDetails.contactNumber}"  Grid.Row="7" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Courier Contains" Margin="0,5,0,0" HorizontalOptions="EndAndExpand" Grid.Row="6" Grid.Column="1" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label x:Name="COURIER" Text="{Binding CourierParcelRequestDetails.courierContains}" HorizontalOptions="EndAndExpand"  Grid.Row="7" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" FontSize="16" />
+
+                            </Grid>
+
+
+                        </StackLayout>
+
+
+                        <!-- ApprovalDetailList-->
+
+                        <ListView x:Name="ApprovalDetailList" HasUnevenRows="True" IsVisible="false" VerticalOptions="FillAndExpand" BackgroundColor="White">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Vertical" >
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+
+                                                </Grid.RowDefinitions>
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Text="{Binding approverName}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" />
+                                                <Label Text="{Binding approvalDate,Converter={StaticResource cnvDateTimeConverter}}" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="1" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+
+                                            </Grid>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+
+
+                                                </Grid.RowDefinitions>
+
+                                                <Label Text="{Binding role}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                                                <Label Text="{Binding status}" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                                                <Label Text="{Binding remarks}" HorizontalOptions="StartAndExpand" Grid.Row="2" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+
+                                            </Grid>
+                                        </StackLayout>
+
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <!-- TIMELINE DETAILS -->
+
+                        <StackLayout x:Name="timeline1" IsVisible="false" BackgroundColor="White" >
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition  Width="*" />
+                                </Grid.ColumnDefinitions>
+
+
+                                <Label Text="Response Time" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Row="0" Grid.Column="0" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding ServiceRequestDetail.responseTime ,Converter={StaticResource cnvDateTimeConverter}}" Grid.Row="1" Grid.Column="0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Response Deadline" HorizontalOptions="EndAndExpand"  FontFamily="{StaticResource NormalFont}" Grid.Row="0" Grid.Column="1" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding ServiceRequestDetail.responseTime,Converter={StaticResource cnvDateTimeConverter,}}" HorizontalOptions="EndAndExpand" Grid.Row="1" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Resolution Time" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Row="2" Grid.Column="0" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label  Text="{Binding ServiceRequestDetail.resolutionTime,Converter={StaticResource cnvDateTimeConverter}}" Grid.Row="3" Grid.Column="0"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Resolution Deadline" FontFamily="{StaticResource NormalFont}" HorizontalOptions="EndAndExpand" FontSize="16" TextColor="{StaticResource PrimaryGray}" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" />
+                                <Label Text="{Binding ServiceRequestDetail.resolutionDeadline,Converter={StaticResource cnvDateTimeConverter}}" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" Grid.Row="3" Grid.Column="1"  VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}"  FontSize="16" />
+
+                            </Grid>
+
+                        </StackLayout>
+
+                        <!--Address Section-->
+                        <Label Text="Address" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+
+                        <Label Text="{Binding CourierParcelRequestDetails.address}"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                        <Label Text="Mailing Address" Margin="0,5,0,0" HorizontalOptions="StartAndExpand"  FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                        <Label Text="{Binding CourierParcelRequestDetails.mailingAddress}"  FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                        <!--REAMRKS AND DOWNLOAD SECTION-->
+                        <FlexLayout Direction="Column" AlignContent="Stretch" x:Name="remarksColumn">
+                            <Label Text="Remarks" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding CourierParcelRequestDetails.remarks}" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                            <Label Text="Attachments" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="No Attachments" x:Name="noAttachmentText" Margin="0,5,0,0" IsVisible="false" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" />
+
+                        </FlexLayout>
+
+                        <StackLayout x:Name="attachmentStack" Margin="0,5,0,0" Orientation="Vertical">
+
+                            <Grid Margin="0,10,0,0" x:Name="attach1" IsVisible="false">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding CourierParcelRequestDetails.attachmentFileName1}" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                                <Label Text="Download" HorizontalOptions="EndAndExpand" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource Buttons}" VerticalOptions="CenterAndExpand" FontSize="16">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Download1_Clicked" NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+
+                            <Grid Margin="0,10,0,0" x:Name="attach2" IsVisible="false">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding CourierParcelRequestDetails.attachmentFileName2}" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                                <Label Text="Download" HorizontalOptions="EndAndExpand" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource Buttons}" VerticalOptions="CenterAndExpand" FontSize="16">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Download2_Clicked" NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </StackLayout>
+
+                        <StackLayout HeightRequest="200" BackgroundColor="White"/>
+
+
+                    </StackLayout>
+
+                </ScrollView>
+
+
+
+                <!--Reject and Approve tab-->
+
+            </StackLayout>
+            <StackLayout x:Name="groupId" IsVisible="false" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                <ScrollView>
+
+                    <StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10" Padding="5,0,5,0">
+
+                        <Grid RowSpacing="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition  Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding GroupEmailByServiceManagementDetail.serviceManagementMasterId,StringFormat='SR-{0}' }" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                            <Button  x:Name="s2" Text="{Binding ServiceRequestDetail.srStatus}" WidthRequest="80" HeightRequest="25" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="1" BorderColor="#44c785" Padding="0"  FontSize="10" BorderWidth="1" BackgroundColor="#44c785" FontFamily="{StaticResource NormalFont}" TextColor="White"/>
+                        </Grid>
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label x:Name="CallerEmployeeName1" Grid.Row="0" Text="{Binding ServiceRequestDetail.callerName}" HorizontalOptions="StartAndExpand"  FontSize="16" VerticalOptions="StartAndExpand" TextColor="{StaticResource PrimaryColor}" />
+                            <Label Text="{Binding ServiceRequestDetail.parentCategoryName}" Grid.Row="1" HorizontalOptions="StartAndExpand" FontSize="16" VerticalOptions="StartAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                            <Label Grid.Row="2" Text="{Binding ServiceRequestDetail.srLoggedTime,Converter={StaticResource cnvDateTimeConverter}}"  HorizontalOptions="StartAndExpand"  FontSize="16" VerticalOptions="StartAndExpand" TextColor="{StaticResource PrimaryGray}" />
+
+                        </Grid>
+                        <Frame Margin="0,5,0,5" x:Name="TopFrame1"  HasShadow="False" Padding="0" HeightRequest="30" BorderColor="{StaticResource Buttons}" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" IsVisible="true">
+                            <StackLayout  VerticalOptions="StartAndExpand" HeightRequest="30" BackgroundColor="White">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" BackgroundColor="White">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="Approval" TextColor="{StaticResource Buttons}" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+
+                                        </Label>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Handle_SR_Approvals_Clicked1" NumberOfTapsRequired="1" />
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1" Margin="0,0,0,0" BackgroundColor="{StaticResource Buttons}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Details" TextColor="White" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+
+                                        </Label>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Handle_SR_Details_Clicked1" NumberOfTapsRequired="1"/>
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame Margin="0,5,0,5" x:Name="BelowFrame1" HasShadow="False" Padding="0" HeightRequest="30" BorderColor="{StaticResource Buttons}" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" IsVisible="false">
+                            <StackLayout  VerticalOptions="StartAndExpand" BackgroundColor="White" HeightRequest="30">
+                                <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Padding="0" BackgroundColor="White">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0" BackgroundColor="{StaticResource Buttons}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Approvals" Grid.Column="0" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="Handle_SR_Approvals_Clicked1" NumberOfTapsRequired="1" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1" Margin="0,0,0,0" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Details" Grid.Column="0" TextColor="{StaticResource Buttons}" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+
+                                        </Label>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Handle_SR_Details_Clicked1" NumberOfTapsRequired="1"/>
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+
+
+
+
+
+                        <!--SR Detail Page View-->
+
+                        <StackLayout x:Name="SRDetails1" Orientation="Vertical" VerticalOptions="FillAndExpand" BackgroundColor="White" Spacing="0" IsVisible="true">
+
+                            <Grid RowSpacing="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+
+
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition  Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Group ID Name" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding GroupEmailByServiceManagementDetail.groupIdName}"  Grid.Row="1" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Location" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label  Text="{Binding GroupEmailByServiceManagementDetail.location}" Grid.Row="3" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Sub Category" HorizontalOptions="EndAndExpand" Margin="0,5,0,0" Grid.Row="2" Grid.Column="1" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label  x:Name="sub" Text="{Binding ServiceRequestDetail.categoryName}" HorizontalOptions="EndAndExpand"  Grid.Row="3" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+
+                                <Label Text="Phone Number" HorizontalOptions="EndAndExpand" Margin="0,5,0,0" Grid.Row="0" Grid.Column="1" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <StackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="EndAndExpand" >
+                                    <Label x:Name="phone" Text="{Binding empDetailResponse.mobileNo}"
+                                           FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="EndAndExpand" FontSize="16" />
+
+                                </StackLayout>
+
+
+
+                            </Grid>
+
+                            <Label Text="Email Ids" HorizontalOptions="StartAndExpand" Margin="0,5,0,0"
+                                   FontFamily="{StaticResource NormalFont}" FontSize="16" VerticalOptions="CenterAndExpand"
+                                   TextColor="{StaticResource PrimaryGray}" HorizontalTextAlignment="Start"/>
+
+                            <Label x:Name ="email" Text="{Binding GroupEmailByServiceManagementDetail.emailIds}"
+                                   HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Margin="0,5,0,5"
+                                   FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}"
+                                    FontSize="16" />
+
+
+
+                        </StackLayout>
+
+
+                        <!-- ApprovalDetailList-->
+
+                        <ListView x:Name="ApprovalDetailList1" HasUnevenRows="True" IsVisible="false" VerticalOptions="FillAndExpand" BackgroundColor="White">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Vertical" >
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+
+                                                </Grid.RowDefinitions>
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Text="{Binding approverName}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" />
+                                                <Label Text="{Binding approvalDate,Converter={StaticResource cnvDateTimeConverter}}" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="1" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+
+                                            </Grid>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+
+
+                                                </Grid.RowDefinitions>
+
+                                                <Label Text="{Binding role}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                                                <Label Text="{Binding status}" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                                                <Label Text="{Binding remarks}" HorizontalOptions="StartAndExpand" Grid.Row="2" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+
+                                            </Grid>
+
+                                        </StackLayout>
+
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+
+
+                        <StackLayout x:Name="timeline2" IsVisible="false" Orientation="Vertical" VerticalOptions="FillAndExpand" BackgroundColor="White" Spacing="0">
+
+
+                            <Grid RowSpacing="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition  Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="Response Time"  Margin="0,5,0,5" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding ServiceRequestDetail.responseTime,Converter={StaticResource cnvDateTimeConverter}}"  Grid.Row="1" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Response Deadline"  Margin="0,5,0,5" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="1" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding ServiceRequestDetail.responseDeadline,Converter={StaticResource cnvDateTimeConverter}}"  Grid.Row="1" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="16" />
+
+                                <Label Text="Resolution Time" HorizontalOptions="StartAndExpand" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label  Text="{Binding ServiceRequestDetail.resolutionTime,Converter={StaticResource cnvDateTimeConverter}}"  Grid.Row="3" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Resolution Deadline" HorizontalOptions="EndAndExpand" Grid.Row="2" Grid.Column="1" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding ServiceRequestDetail.resolutionDeadline,Converter={StaticResource cnvDateTimeConverter}}"  Grid.Row="3" Grid.Column="1" FontFamily="{StaticResource NormalFont}"  VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" HorizontalOptions="EndAndExpand" FontSize="16" />
+                            </Grid>
+
+
+                        </StackLayout>
+
+
+
+
+                        <!--REAMRKS AND DOWNLOAD SECTION-->
+
+                        <FlexLayout Direction="Column" AlignContent="Stretch" x:Name="remarksColumn1">
+                            <Label Text="Remarks" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding ServiceRequestDetail.srDescription}" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                            <Label Text="Attachments" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="No Attachments" x:Name="noAttachmentText1" Margin="0,5,0,0" IsVisible="false" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" />
+                        </FlexLayout>
+
+
+
+                        <Grid Margin="0,5,0,0" x:Name="attach11" IsVisible="false">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding GroupEmailByServiceManagementDetail.attachmentFileName}" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                            <Label Text="Download" HorizontalOptions="EndAndExpand" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource Buttons}" VerticalOptions="CenterAndExpand" FontSize="16">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Download1_Clicked1" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+
+
+                        <StackLayout HeightRequest="200" BackgroundColor="White"/>
+
+                        <!--Reject and Approve tab-->
+
+                    </StackLayout>
+
+                </ScrollView>
+
+
+            </StackLayout>
+            <StackLayout x:Name="itResource" IsVisible="false" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ScrollView>
+
+                    <StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10" Padding="5,0,5,0">
+                        <Grid RowSpacing="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition  Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding GetServiceManagementResourceRequestDetail.serviceManagementMasterId,StringFormat='SR-{0}' }" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                            <Button  x:Name="s3" Text="{Binding ServiceRequestDetail.srStatus}" HeightRequest="25" WidthRequest="80" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="1" BorderColor="#44c785" Padding="0"  FontSize="10" BorderWidth="1" BackgroundColor="#44c785" FontFamily="{StaticResource NormalFont}" TextColor="White"/>
+                        </Grid>
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label x:Name="CallerEmployeeName2" Grid.Row="0" Text="{Binding ServiceRequestDetail.callerName}" HorizontalOptions="StartAndExpand"  FontSize="16" VerticalOptions="StartAndExpand" TextColor="{StaticResource PrimaryColor}" />
+                            <Label x:Name="p1" Text="{Binding ServiceRequestDetail.parentCategoryName}" Grid.Row="1"  HorizontalOptions="StartAndExpand" FontSize="16" VerticalOptions="StartAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                            <Label x:Name="t1" Grid.Row="2" Text="{Binding ServiceRequestDetail.srLoggedTime,Converter={StaticResource cnvDateTimeConverter}}"   HorizontalOptions="StartAndExpand"  FontSize="16" VerticalOptions="StartAndExpand" TextColor="{StaticResource PrimaryGray}" />
+
+                        </Grid>
+                        <Frame Margin="0,5,0,5" x:Name="TopFrame2"  HasShadow="False" Padding="0" HeightRequest="30" BorderColor="{StaticResource Buttons}" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" IsVisible="true">
+                            <StackLayout  VerticalOptions="StartAndExpand" HeightRequest="30" BackgroundColor="White">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" BackgroundColor="White">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="Approval" TextColor="{StaticResource Buttons}" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+
+                                        </Label>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Handle_SR_Approvals_Clicked2" NumberOfTapsRequired="1" />
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1" Margin="0,0,0,0" BackgroundColor="{StaticResource Buttons}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Details" TextColor="White" Grid.Column="0" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+
+                                        </Label>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Handle_SR_Details_Clicked2" NumberOfTapsRequired="1"/>
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame Margin="0,5,0,5" x:Name="BelowFrame2" HasShadow="False" Padding="0" HeightRequest="30" BorderColor="{StaticResource Buttons}" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" IsVisible="false">
+                            <StackLayout  VerticalOptions="StartAndExpand" BackgroundColor="White" HeightRequest="30">
+                                <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Padding="0" BackgroundColor="White">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0" BackgroundColor="{StaticResource Buttons}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Approvals" Grid.Column="0" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="Handle_SR_Approvals_Clicked2" NumberOfTapsRequired="1" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1" Margin="0,0,0,0" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Details" Grid.Column="0" TextColor="{StaticResource Buttons}" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+
+                                        </Label>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Handle_SR_Details_Clicked2" NumberOfTapsRequired="1"/>
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+
+
+
+
+                        <!--SR Detail Page View-->
+
+                        <StackLayout x:Name="SRDetails2" Orientation="Vertical" VerticalOptions="FillAndExpand" BackgroundColor="White" Spacing="0" IsVisible="true">
+
+                            <Grid RowSpacing="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+
+
+
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition  Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="Employee Name" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label x:Name="first" Text="{Binding GetServiceManagementResourceRequestDetail.firstName}"  Grid.Row="1" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Engagement Type" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label  Text="{Binding GetServiceManagementResourceRequestDetail.engagementType}" Grid.Row="3" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Project" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" Grid.Row="4" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label  Text="{Binding GetServiceManagementResourceRequestDetail.departmentProjectDetails}" Grid.Row="5" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Client Location" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" Grid.Row="6" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label  x:Name="cli" Text="{Binding GetServiceManagementResourceRequestDetail.clientLocation}" Grid.Row="7" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+
+
+
+                                <Label Text="Reporting Manager" HorizontalOptions="EndAndExpand" Margin="0,5,0,0" Grid.Row="0" Grid.Column="1" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label  x:Name="rm" Text="{Binding GetServiceManagementResourceRequestDetail.lastName}" HorizontalOptions="EndAndExpand"  Grid.Row="1" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Location" HorizontalOptions="EndAndExpand" Margin="0,5,0,0" Grid.Row="2" Grid.Column="1" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label  x:Name="loc" Text="{Binding GetServiceManagementResourceRequestDetail.location}" HorizontalOptions="EndAndExpand"  Grid.Row="3" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Mobile Number" HorizontalOptions="EndAndExpand" Margin="0,5,0,0" Grid.Row="4" Grid.Column="1" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label  x:Name="mob" Text="{Binding GetServiceManagementResourceRequestDetail.mobileNo}" HorizontalOptions="EndAndExpand"  Grid.Row="5" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <!--<Label Text="Engagement Type" HorizontalOptions="EndAndExpand" Grid.Row="6" Grid.Column="1" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" HorizontalTextAlignment="Center"/>
+                                <Label x:Name ="eng" Text="{Binding GetServiceManagementResourceRequestDetail.engagementType}" HorizontalOptions="EndAndExpand"  Grid.Row="7" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" FontSize="16" />-->
+
+
+
+
+                            </Grid>
+
+
+                        </StackLayout>
+
+
+                        <!-- ApprovalDetailList-->
+
+                        <ListView x:Name="ApprovalDetailList2" HasUnevenRows="True" IsVisible="false" VerticalOptions="FillAndExpand" BackgroundColor="White">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Vertical" >
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+
+                                                </Grid.RowDefinitions>
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Text="{Binding approverName}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" />
+                                                <Label Text="{Binding approvalDate,Converter={StaticResource cnvDateTimeConverter}}" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="1" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+
+                                            </Grid>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+
+
+                                                </Grid.RowDefinitions>
+
+                                                <Label Text="{Binding role}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                                                <Label Text="{Binding status}" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+                                                <Label Text="{Binding remarks}" HorizontalOptions="StartAndExpand" Grid.Row="2" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryGray}" />
+
+                                            </Grid>
+                                        </StackLayout>
+
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+
+
+                        <StackLayout x:Name="timeline3" IsVisible="false" Orientation="Vertical" VerticalOptions="FillAndExpand" BackgroundColor="White" Spacing="0">
+
+                            <Grid RowSpacing="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition  Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="Response Time"  Margin="0,5,0,5" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding ServiceRequestDetail.responseTime,Converter={StaticResource cnvDateTimeConverter}}"  Grid.Row="1" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Response Deadline"  Margin="0,5,0,5" HorizontalOptions="EndAndExpand" Grid.Row="0" Grid.Column="1" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding ServiceRequestDetail.responseDeadline,Converter={StaticResource cnvDateTimeConverter}}"  Grid.Row="1" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="16" />
+
+                                <Label Text="Resolution Time"  HorizontalOptions="StartAndExpand" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label  Text="{Binding ServiceRequestDetail.resolutionTime,Converter={StaticResource cnvDateTimeConverter}}"  Grid.Row="3" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+
+                                <Label Text="Resolution Deadline" HorizontalOptions="EndAndExpand" Grid.Row="2" Grid.Column="1" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                                <Label Text="{Binding ServiceRequestDetail.resolutionDeadline,Converter={StaticResource cnvDateTimeConverter}}"  Grid.Row="3" Grid.Column="1" FontFamily="{StaticResource NormalFont}"  VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" HorizontalOptions="EndAndExpand" FontSize="16" />
+
+                            </Grid>
+
+
+                        </StackLayout>
+
+
+                        <!--REAMRKS AND DOWNLOAD SECTION-->
+
+
+                        <FlexLayout Direction="Column" AlignContent="Stretch" x:Name="remarksColumn2">
+                            <Label Text="Remarks" Margin="0,5,0,0" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="{Binding GetServiceManagementResourceRequestDetail.remarks}" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                            <Label Text="Attachments" HorizontalOptions="StartAndExpand" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center" />
+                            <Label Text="No Attachments" x:Name="noAttachmentText2" Margin="0,5,0,0" IsVisible="false" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" />
+                        </FlexLayout>
+
+
+                        <Grid Margin="0,5,0,0" x:Name="attach22" IsVisible="false">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding GetServiceManagementResourceRequestDetail.fileName}" Grid.Column="0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontSize="16" />
+                            <Label Text="Download" HorizontalOptions="EndAndExpand" Grid.Column="1" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource Buttons}" VerticalOptions="CenterAndExpand" FontSize="16">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Download1_Clicked2" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+
+                        <StackLayout HeightRequest="200" BackgroundColor="White"/>
+
+                    </StackLayout>
+
+                </ScrollView>
+
+            </StackLayout>
+
+
+
+            <!--Reject and Approve tab-->
+
+            <StackLayout BackgroundColor="{StaticResource Buttons}" x:Name="btnGrid" Padding="5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" IsVisible="false">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0">
+                        <Label Text="REJECT" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Reject_Clicked" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <BoxView BackgroundColor="White" Grid.Column="1" />
+                    <StackLayout Grid.Column="2">
+                        <Label Text="APPROVE" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="0" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Approve_Clicked" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+
+
+        </StackLayout>
+
+
+
+    </ContentPage.Content>
+</ContentPage>

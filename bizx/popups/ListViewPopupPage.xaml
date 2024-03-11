@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" x:Class="bizx.popups.ListViewPopupPage">
+    <StackLayout VerticalOptions="Center" Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="30,60,30,150">
+        <StackLayout BackgroundColor="White">
+            <ListView x:Name="Module_listView" ItemsSource="{Binding subModules}">
+                <ListView.Header>
+                    <Grid BackgroundColor="White" Padding="10,5,5,5" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Sub-Modules" Grid.Column="0" FontSize="20" TextColor="White" VerticalOptions="Center" />
+                        <Image Source="ic_close_white" Grid.Column="1" HorizontalOptions="End" IsVisible="false">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ClickTap" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="40">
+
+                            <Grid  Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="{Binding iconUrl}" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+
+                                <Label TextColor="{StaticResource PrimaryColor}" FontSize="18" Grid.Column="1" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" Text="{Binding subModuleName}"/>
+
+                                <Image Source="ic_arrow_right" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                                
+                            </Grid>
+
+                           </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout BackgroundColor="White" x:Name="btnGrid" Padding="5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+
+            <Grid>
+
+                 <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="0" IsVisible="false">
+
+                    <Label Text="REJECT" TextColor="White" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+
+                    <!--<StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Reject_Clicked" NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>-->
+                    
+                </StackLayout>
+                
+                <BoxView BackgroundColor="White" Grid.Column="1"/>
+
+                <StackLayout Grid.Column="2" Padding="10">
+
+                    <Label Text="CANCEL" TextColor="#F77816" FontSize="18" FontFamily="{StaticResource BoldFont}"
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Grid.Column="0"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ClickTap" NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+                    
+                </StackLayout>
+                
+            </Grid>
+            
+        </StackLayout>
+        </StackLayout>
+
+
+        
+    </StackLayout>
+</pages:PopupPage>

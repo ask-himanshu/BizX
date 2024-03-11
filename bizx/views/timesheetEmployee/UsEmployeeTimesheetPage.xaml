@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bizx.views.timesheetEmployee.UsEmployeeTimesheetPage"
+             xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
+             xmlns:local="clr-namespace:bizx.customViews;assembly=bizx"
+             xmlns:bizx="clr-namespace:bizx;assembly=bizx"
+             NavigationPage.HasNavigationBar="False"
+             Title="My Timesheet"
+             BackgroundColor="White"
+             BindingContext="timesheetDetails">
+
+
+   <!-- <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Save" Clicked="Save_Click" Icon="ic_save_white" />
+        <ToolbarItem Name="Attach" x:Name="attachIcon" Icon="ic_attach_file_white" Clicked="Attachment_Click" />
+    </ContentPage.ToolbarItems>-->
+    
+    <ContentPage.Content >
+
+        <StackLayout Orientation="Vertical">
+             <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HorizontalOptions="FillAndExpand" HeightRequest="50" Orientation="Horizontal"  VerticalOptions="Center">
+
+
+                <Grid Margin="5" HorizontalOptions="FillAndExpand">
+
+
+                    <Grid.ColumnDefinitions>
+                        
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+
+
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                    </Grid.RowDefinitions>
+
+
+                    <Image Source="ic_arrow_back_white.png" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+
+
+                        <Image.GestureRecognizers>
+
+
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click"/>
+
+
+                        </Image.GestureRecognizers>
+
+
+                    </Image>
+
+
+                    <!--<Image Source="ic_save_white.png" Grid.Column="2" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" IsVisible="true">
+                     <Image.GestureRecognizers>
+
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Save_Click"/>
+
+                    </Image.GestureRecognizers>
+                    </Image>-->
+
+                    <!--<Image Source="ic_attach_file_white.png" Grid.Column="3" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" IsVisible="true">
+                     <Image.GestureRecognizers>
+
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Attachment_Click"/>
+
+                    </Image.GestureRecognizers>
+                    </Image>-->
+
+                    <Label x:Name="titleLbl" Text="My TimeSheet" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+                
+
+                </Grid>
+            
+
+
+        </StackLayout>
+
+            <BoxView HeightRequest="1" BackgroundColor="White"/>
+
+
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+            <!-- <AbsoluteLayout Padding="0" VerticalOptions="FillAndExpand">-->
+                
+
+
+                <StackLayout Orientation="Vertical">
+                
+
+                <Grid Margin="10">
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="50" />
+
+                        <RowDefinition Height="50" />
+
+                        <RowDefinition Height="50" />
+
+                            
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="2.4*" />
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <Label Text="Project" Grid.Row="0" Grid.Column="0" FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center"/>
+
+                    <Label Text="Sub Task" Grid.Row="1" Grid.Column="0" FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center"  />
+
+                    <Label Text="Activity" Grid.Row="2" Grid.Column="0" FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" VerticalOptions="Center"/>
+
+                    <local:CustomPicker   x:Name="ProjectPicker" HeightRequest="35" VerticalOptions="CenterAndExpand" ItemsSource="{Binding mList}"   SelectedIndexChanged="PickerProject_SelectedIndexChanged" ItemDisplayBinding="{Binding projectName}" Title="Select Project" Grid.Row="0" Grid.Column="1">
+                    </local:CustomPicker>
+                    
+                    <Label x:Name="ProjectLbl" Grid.Row="0" VerticalTextAlignment="Center" Grid.Column="1" FontSize="18" Text="{Binding projectName}" IsVisible="false"/>
+
+                    <local:CustomPicker   x:Name="TaskPicker" HeightRequest="35" VerticalOptions="CenterAndExpand" Title="Select Tasks" ItemsSource="{Binding taskLists}" ItemDisplayBinding="{Binding taskName}" SelectedIndexChanged="PickerTask_SelectedIndexChanged" Grid.Row="1" Grid.Column="1" >
+                    </local:CustomPicker>
+
+                    <Label x:Name="TaskLbl" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" FontSize="18" Text="{Binding taskName}" IsVisible="false"/>
+
+                    <local:CustomPicker   x:Name="ActivityPicker" HeightRequest="35" VerticalOptions="CenterAndExpand" Title="Select Activity" Grid.Row="2" ItemsSource="{Binding subTaskLists}" ItemDisplayBinding="{Binding subTaskName}" SelectedIndexChanged="PickerActivity_SelectedIndexChanged" Grid.Column="1" >
+                    </local:CustomPicker>
+
+                    <Label x:Name="ActivityLbl" Grid.Row="2" Grid.Column="1" VerticalTextAlignment="Center" FontSize="18" Text="{Binding subTaskName}" IsVisible="false"/>
+
+                </Grid>
+
+                <StackLayout x:Name="MonStack" BackgroundColor="{StaticResource TitleColor}" Padding="10,5,5,5" VerticalOptions="Center">
+
+                     <Label x:Name="Monday" FontSize="16" TextColor="White"   VerticalOptions="Center" />
+                </StackLayout>
+
+                <Grid x:Name="MondayGrid" Margin="10">
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="40" />
+
+                       
+
+
+
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="2.4*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="MonHours" Text="Hours spent" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0"  FontFamily="{StaticResource NormalFont}" VerticalOptions="Center"/>
+
+
+
+                    <local:CustomEntry x:Name="hoursSpentMon" TextColor="{StaticResource PrimaryColor}" Keyboard="Numeric" Text= "{Binding workDetails[0].workHours}" FontFamily="{StaticResource NormalFont}" Grid.Row="0" Grid.Column="1" FontSize="16"></local:CustomEntry>
+
+
+
+                    </Grid>
+
+                <StackLayout x:Name="TueStack" BackgroundColor="{StaticResource TitleColor}" Padding="10,5,5,5" VerticalOptions="Center">
+
+                     <Label x:Name="Tuesday" FontSize="16"  TextColor="White"   VerticalOptions="Center" />
+                </StackLayout>
+
+                <Grid x:Name="TuesdayGrid" Margin="10">
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="40" />
+
+
+
+
+
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="2.4*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="TueHours" Text="Hours spent" TextColor="{StaticResource PrimaryGray}" FontSize="18"  Grid.Row="0" Grid.Column="0"  FontFamily="{StaticResource NormalFont}" VerticalOptions="Center"/>
+
+
+
+                     <local:CustomEntry x:Name="hoursSpentTue" TextColor="{StaticResource PrimaryColor}" Keyboard="Numeric" Text= "{Binding workDetails[1].workHours}" FontFamily="{StaticResource NormalFont}" Grid.Row="0" Grid.Column="1" FontSize="16"></local:CustomEntry>
+
+                   
+                    
+                    </Grid>
+
+                <StackLayout x:Name="WedStack" BackgroundColor="{StaticResource TitleColor}" Padding="10,5,5,5" VerticalOptions="Center">
+
+                     <Label x:Name="Wednesday" FontSize="16" TextColor="White"   VerticalOptions="Center" />
+                </StackLayout>
+
+                <Grid  x:Name="WednesdayGrid" Margin="10">
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="40" />
+
+                       
+
+
+
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="2.4*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="WedHours" Text="Hours spent" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0"  FontFamily="{StaticResource NormalFont}" VerticalOptions="Center"/>
+
+
+
+                     <local:CustomEntry x:Name="hoursSpentWed" TextColor="{StaticResource PrimaryColor}" Keyboard="Numeric" Text= "{Binding workDetails[2].workHours}" FontFamily="{StaticResource NormalFont}" Grid.Row="0" Grid.Column="1" FontSize="16"></local:CustomEntry>
+
+                   
+                    
+                    </Grid>
+
+                <StackLayout x:Name="ThuStack"  BackgroundColor="{StaticResource TitleColor}" Padding="10,5,5,5" VerticalOptions="Center">
+
+                     <Label x:Name="Thursday" FontSize="16" TextColor="White"   VerticalOptions="Center" />
+                </StackLayout>
+
+                <Grid x:Name="ThursdayGrid" Margin="10">
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="40" />
+
+
+
+
+
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="2.4*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="ThuHours" Text="Hours spent" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0"  FontFamily="{StaticResource NormalFont}" VerticalOptions="Center"/>
+
+
+
+                     <local:CustomEntry x:Name="hoursSpentThu" TextColor="{StaticResource PrimaryColor}" Keyboard="Numeric" Text= "{Binding workDetails[3].workHours}" FontFamily="{StaticResource NormalFont}" Grid.Row="0" Grid.Column="1" FontSize="16"></local:CustomEntry>
+
+                   
+                    
+                    </Grid>
+
+                <StackLayout x:Name="FriStack" BackgroundColor="{StaticResource TitleColor}" Padding="10,5,5,5" VerticalOptions="Center">
+
+                     <Label x:Name="Friday" FontSize="16" TextColor="White"   VerticalOptions="Center" />
+                </StackLayout>
+
+                <Grid x:Name="FridayGrid" Margin="10">
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="40" />
+
+
+
+
+
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="2.4*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="FriHours" Text="Hours spent" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0"  FontFamily="{StaticResource NormalFont}" VerticalOptions="Center"/>
+
+
+
+                     <local:CustomEntry x:Name="hoursSpentFri" TextColor="{StaticResource PrimaryColor}" Keyboard="Numeric" Text= "{Binding workDetails[4].workHours}" FontFamily="{StaticResource NormalFont}" Grid.Row="0" Grid.Column="1" FontSize="16"></local:CustomEntry>
+
+                    
+                    
+                    </Grid>
+
+                <StackLayout x:Name="SatStack"  BackgroundColor="{StaticResource TitleColor}" Padding="10,5,5,5" VerticalOptions="Center">
+
+                     <Label x:Name="Saturday" FontSize="16" TextColor="White"   VerticalOptions="Center" />
+                </StackLayout>
+
+                <Grid x:Name="SaturdayGrid" Margin="10">
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="40" />
+                            
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="2.4*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="SatHours" Text="Hours spent" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0"  FontFamily="{StaticResource NormalFont}" VerticalOptions="Center"/>
+
+                   
+                     <local:CustomEntry x:Name="hoursSpentSat" TextColor="{StaticResource PrimaryColor}" Keyboard="Numeric" Text= "{Binding workDetails[5].workHours}" FontFamily="{StaticResource NormalFont}" Grid.Row="0" Grid.Column="1" FontSize="16"></local:CustomEntry>
+
+                   
+                    
+                    </Grid>
+
+                <StackLayout x:Name="SunStack" BackgroundColor="{StaticResource TitleColor}" Padding="10,5,5,5" VerticalOptions="Center">
+
+                     <Label x:Name="Sunday" FontSize="16" TextColor="White"   VerticalOptions="Center" />
+                </StackLayout>
+
+                <Grid x:Name="SundayGrid" Margin="10">
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="40" />
+
+
+
+
+
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="2.4*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="SunHours" Text="Hours spent" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" VerticalOptions="Center"/>
+
+                   
+
+                     <local:CustomEntry x:Name="hoursSpentSun" TextColor="{StaticResource PrimaryColor}" Keyboard="Numeric" Text= "{Binding workDetails[6].workHours}" FontFamily="{StaticResource NormalFont}" Grid.Row="0" Grid.Column="1" FontSize="16"></local:CustomEntry>
+
+                    
+                    
+                    </Grid>
+
+                <!--<Button x:Name="submitBtn" Margin="0" Clicked="Submit_Click" Text="Submit" FontSize="16" TextColor="White" BackgroundColor="{StaticResource TitleColor}" IsVisible="false"></Button>-->
+
+
+                    <StackLayout Orientation="Horizontal" HeightRequest="40" Margin="10,0,10,0">
+                        <Button Text="Choose File" TextColor="White" WidthRequest="120" BackgroundColor="White" BorderWidth="1" CornerRadius="10" BorderColor="{StaticResource Button}" FontSize="18"
+                                Clicked="Attachment_Click"/>
+                        <Label x:Name="File_Name" TextColor="White" FontFamily="{StaticResource NormalFont}" Text="No File Chosen" VerticalOptions="CenterAndExpand"/>
+                    </StackLayout>
+
+                    <Label Text="Supported file formats .pdf,.doc,.docx,.png,.jpg,.jpeg,.gif,.zip,.7z" TextColor="White"
+                           FontSize="10" Margin="10,0,10,10" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}"/>
+
+                    <Label Text="Download Attachment" x:Name="downloadFileBtn" TextColor="White"  FontSize="18"
+                                 IsVisible="false" Margin="10,0,10,10" >
+
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Download_Click" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+
+
+                    </Label>
+                    
+
+                </StackLayout>
+
+
+
+            </ScrollView>  
+
+            <StackLayout BackgroundColor="{StaticResource Buttons}" x:Name="btnGrid" HeightRequest="45" Padding="5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+
+           <Label Text="SAVE" TextColor="White" FontSize="18"  FontFamily="{StaticResource NormalFont}"
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="0"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Save_Click" NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+            
+        </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+
+</ContentPage>

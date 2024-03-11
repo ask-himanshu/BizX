@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" x:Class="bizx.popups.CCMailPopupPage" xmlns:local="clr-namespace:bizx.customViews">
+
+<ScrollView>
+        
+   
+    <StackLayout VerticalOptions="Center" Orientation="Vertical" Padding="20">
+
+        <StackLayout Orientation="Vertical" BackgroundColor="White">
+                    <Grid BackgroundColor="{StaticResource TitleColor}"  Padding="10,5,5,5" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="CC To" Grid.Column="0" FontSize="20" TextColor="White" VerticalOptions="Center" />
+                        <Image Source="ic_close_white" Grid.Column="1" HorizontalOptions="End">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ClickTap" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                    <Grid Margin="10,7,10,7">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Label Text="CC To" FontSize="18" TextColor="{StaticResource TitleColor}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+                            <local:CustomEntry x:Name="CCToEntry" FontSize="16" Placeholder="Search here" PlaceholderColor="{StaticResource PrimaryGray}" TextColor="{StaticResource PrimaryColor}" Grid.Column="0" FontFamily="{StaticResource NormalFont}">
+                            </local:CustomEntry>
+                            <Image Grid.Column="1" Source="ic_search_black" HorizontalOptions="End">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_TextChanged" />
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                        <!--<local:AutoCompleteView x:Name="CCTo" Grid.Column="0"  TextChanged="Handle_TextChanged" >
+
+
+                        </local:AutoCompleteView>-->
+                        </Grid>
+                        <!-- <local:AutoCompleteView x:Name="CCToEntry" Grid.Row="1" Grid.Column="0" TextChanged="Handle_TextChanged" >
+
+                </local:AutoCompleteView>-->
+                    </Grid>
+                
+        
+        <ListView x:Name="Employee_listView" ItemsSource="{Binding Response}" BackgroundColor="White">
+
+            
+            <!-- <ListView.Header>
+                
+            </ListView.Header>-->
+            <ListView.ItemTemplate>
+               <DataTemplate>
+                    <ViewCell>
+                       <StackLayout Orientation="Horizontal"  Margin="10,7,10,7" VerticalOptions="CenterAndExpand">
+                        <Label TextColor="{StaticResource PrimaryColor}" Text="{Binding fullName}" />
+                        <Label TextColor="{StaticResource PrimaryColor}" Text="{Binding employeeNo}" />
+
+                        </StackLayout> 
+                    </ViewCell>
+                   
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+        </StackLayout>
+         </ScrollView>
+</pages:PopupPage>

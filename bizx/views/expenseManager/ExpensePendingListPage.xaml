@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="bizx.views.expenseManager.ExpensePendingListPage"
+             NavigationPage.HasNavigationBar="False" BackgroundColor="{StaticResource BackgroundColors}">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HeightRequest="50" HorizontalOptions="FillAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0" >
+                      <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                       
+                    </Image>  
+                         <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label x:Name="titleLbl" Text="Expense Details" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+                </Grid>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="White" />
+            
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10">
+
+                    <Grid Margin="5,0,5,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="17"/>
+                            <RowDefinition Height="17"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="{Binding name}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontSize="18" VerticalOptions="StartAndExpand" TextColor="Gray" />
+                        <Label Text="{Binding claimType}" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="Gray" />
+                        <Label Text="{Binding billableType}" HorizontalOptions="StartAndExpand" Grid.Row="2" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="Gray" />
+                        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand">
+                            <Label Text="&#8377;" TextColor="{StaticResource Buttons}" FontSize="30" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" />
+                            <Label Text="{Binding formattedTotalAmount}" TextColor="{StaticResource Buttons}" FontSize="30" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                        </StackLayout>
+                        <Label Text="Total Amount" HorizontalOptions="EndAndExpand" Grid.Row="1" Grid.Column="1" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="Gray" />
+                    </Grid>
+
+                    <Frame Margin="10,5,10,20" Padding="0,0,0,0" HeightRequest="50" HasShadow="False"  BorderColor="{StaticResource Buttons}" CornerRadius="10" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White">
+                        <StackLayout HeightRequest="50" VerticalOptions="StartAndExpand">
+                            <Grid HorizontalOptions="FillAndExpand" HeightRequest="60"  Padding="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="1" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="Details" Grid.Column="0" TextColor="{StaticResource Buttons}" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                                </Grid>
+
+                                <Grid Grid.Column="1" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="1" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="Expenses" Grid.Column="0" TextColor="{StaticResource Buttons}" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Handle_Expense_Clicked" NumberOfTapsRequired="1" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+
+                                <Grid Grid.Column="2" BackgroundColor="{StaticResource Buttons}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="Receipts" Grid.Column="0" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                    </Label>
+                                </Grid>
+                                
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+
+                    <ListView x:Name="AttachmentList" HasUnevenRows="True" IsVisible="true" VerticalOptions="FillAndExpand" BackgroundColor="White">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Margin="5,0,5,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="17"/>
+                                                <RowDefinition Height="17"/>
+                                                <RowDefinition Height="17"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Text="{Binding attachmentFileName}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontSize="18" VerticalOptions="StartAndExpand" TextColor="Black" />
+                                            <Label Text="{Binding createdOn,StringFormat='{0:dd MMM yyyy}'}" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="0" FontSize="16" VerticalOptions="CenterAndExpand" TextColor="Gray" />
+                                           <Label Text="{Binding description}" Grid.Row="2" Grid.Column="0" TextColor="Black" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

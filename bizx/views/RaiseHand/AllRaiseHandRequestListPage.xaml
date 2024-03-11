@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="bizx.views.RaiseHand.AllRaiseHandRequestListPage"
+    NavigationPage.HasNavigationBar="False" BackgroundColor="White">
+    <ContentPage.Content>
+
+        <StackLayout Orientation="Vertical">
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HorizontalOptions="FillAndExpand" HeightRequest="50" Orientation="Vertical" VerticalOptions="Center">
+                <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="80" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0">
+                        <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="50" >
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" >
+                            <Image Source="Raise_the_Hand_White_96X48.png"  Margin="20,0,0,0"  />
+
+                        </StackLayout>
+
+
+
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="White" />
+            
+            <StackLayout x:Name="errorTxt" BackgroundColor="White" Margin="5" HorizontalOptions="CenterAndExpand" IsVisible="false" VerticalOptions="CenterAndExpand">
+                <Label Text="No Request" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" FontSize="18" x:Name="errorLbl" FontFamily="{StaticResource NormalFont}" />
+            </StackLayout>
+            <StackLayout x:Name="loadingStack" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <ActivityIndicator IsRunning="true" Color="Blue" IsEnabled="true" />
+                <Label Text="Loading" TextColor="{StaticResource PrimaryColor}" />
+            </StackLayout>
+            
+            <ListView x:Name="RequestList" HasUnevenRows="True" IsVisible="false" BackgroundColor="White">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell x:Name="outerListviewCell">
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <StackLayout HorizontalOptions="FillAndExpand">
+                                          <Frame IsClippedToBounds="true" OutlineColor="White">
+                                               <StackLayout Orientation="Vertical" Padding="0">
+                                                    <Grid Padding="0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="25" />
+                                                        </Grid.RowDefinitions>
+                                                        <Label Text="{Binding LoggedTime,StringFormat='{0:dd MMM yyyy}'}" Grid.Row="0" Grid.Column="1" TextColor="{StaticResource PrimaryGray}" FontSize="16" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" />
+                                                         <Label Text="{Binding TicketNo,StringFormat='Ticket-{0}'}" Grid.Row="0" Grid.Column="0" TextColor="{StaticResource PrimaryColor}" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                                                    </Grid>
+                                                   <Grid Padding="0">
+
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding EmployeeName}" MaxLines="2" Grid.Column="0" Grid.Row="0" TextColor="{StaticResource PrimaryGray}" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+
+                                                    <Grid Grid.Column="1" BackgroundColor="{Binding BackgroundColor}">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="1" />
+                                                        </Grid.ColumnDefinitions>
+                                                        
+                                                        <Label Text="{Binding StatusValue}" Grid.Column="0" TextColor="White" FontSize="16" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+                                                        </Label>
+                                                    </Grid>
+                                                    <!--<Label Text="{Binding StatusValue}" Grid.Column="1" MaxLines="2" TextColor="{StaticResource PrimaryGray}" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />-->
+
+                                                </Grid>
+                                                   <Grid Padding="0">
+                                                        
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="20" />
+                                                            <RowDefinition Height="20" />
+                                                        </Grid.RowDefinitions>
+                                                       <!--<Label Text="{Binding EmployeeName}" MaxLines="2" Grid.Column="0" Grid.Row="0" TextColor="{StaticResource PrimaryGray}" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />-->
+                                                        
+                                                        <Label Text="{Binding CategoryName}" MaxLines="2" Grid.Column="0" Grid.Row="0" TextColor="{StaticResource PrimaryGray}" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                                                        <Label Text="{Binding StatusValue}" Grid.Column="0" Grid.Row="2" MaxLines="1" TextColor="{StaticResource PrimaryGray}" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                                                       
+                                                   </Grid>
+
+                                                   
+                                            </StackLayout>
+                                          </Frame>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

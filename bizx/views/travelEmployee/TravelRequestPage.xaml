@@ -1,0 +1,1285 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bizx.views.travelEmployee.TravelRequestPage"
+             xmlns:local="clr-namespace:bizx.customViews"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:custom="clr-namespace:bizx.CustomControls;assembly=bizx"
+             xmlns:behaviors="clr-namespace:bizx.Behaviors;assembly=bizx"
+             xmlns:viewModels="clr-namespace:bizx.viewModel;assembly=bizx"
+             NavigationPage.HasNavigationBar="False" BackgroundColor="White">
+    <ContentPage.BindingContext>
+        <viewModels:MainPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HorizontalOptions="FillAndExpand" HeightRequest="50" Orientation="Vertical" VerticalOptions="Center">
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0" >
+                        <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label x:Name="titleLbl" Text="Travel Request" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+                </Grid>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="White" />
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout x:Name="travelInfoStack" IsVisible="true" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,5,0,10">
+                            <Frame x:Name="travelInfoFrame" IsClippedToBounds="True" Padding="13,10,13,10" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HasShadow="true" CornerRadius="16" BackgroundColor="{StaticResource TitleColor}">
+                                <Label Text="1" TextColor="White" FontSize="10" VerticalTextAlignment="Center">
+                                </Label>
+                            </Frame>
+                            <Label x:Name="travelInfoLbl" HorizontalOptions="CenterAndExpand" Text="Travel Information" VerticalOptions="CenterAndExpand" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" FontSize="18" />
+                        </StackLayout>
+                        <Grid Margin="20,0,20,7">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <RelativeLayout Grid.Column="0">
+                                    <CheckBox  IsChecked="true" x:Name="domesticCheckedBox" 
+                                               Color="{StaticResource PrimaryColor}" CheckedChanged="Handle_Domestic_Check_Click">
+                                    </CheckBox>
+                                </RelativeLayout>
+                                <Label Text="Domestic" Grid.Column="1" TextColor="{StaticResource PrimaryGray}" Margin="5,0,0,0" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="10,0,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <RelativeLayout Grid.Column="0">
+                                    <CheckBox  IsChecked="false" x:Name="internationalCheckedBox" 
+                                               Color="{StaticResource PrimaryColor}" CheckedChanged="Handle_International_Check_Click">
+                                    </CheckBox>
+                                </RelativeLayout>
+                                <Label Text="International" Grid.Column="1" Margin="5,0,0,0" TextColor="{StaticResource PrimaryGray}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" IsVisible="false" />
+                        <!--<custom:BindableRadioGroup x:Name="MyRadioGroup" ItemsSource="{Binding Path=MyList.Values}" SelectedIndex="{Binding SelectedIndex}" 
+                                                    VerticalOptions="Start"  />-->
+                        <Grid Margin="20,0,20,7" x:Name="travelTypeNameGrid" IsVisible="true">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="1" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Departure" Grid.Column="0" FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" />
+                            <BoxView WidthRequest="1" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" />
+                            <Label Text="Return" FontSize="18" Margin="10,0,0,0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" Grid.Column="2" />
+                        </Grid>
+                        <Grid Margin="20,0,20,7" x:Name="travelTypeDateGrid" IsVisible="true">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="1" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+                                <Label Text="Departure" IsVisible="false" FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource TitleColor}" />
+                                <StackLayout  Orientation="Horizontal" HeightRequest="60">
+                                    <Image Source="ic_small_calendar" VerticalOptions="Center">
+                                    </Image>
+                                    <local:BorderlessDatePicker x:Name="fromTravelInfoDatePicker" HorizontalOptions="FillAndExpand" HeightRequest="50" TextColor="{StaticResource PrimaryColor}"  VerticalOptions="Center" DateSelected="Handle_TravelInfo_From_Date" Date="{x:Static sys:DateTime.Now}">
+                                        <!--DateSelected="Handle_DateSelected_From"-->
+                                        <DatePicker.Format>dd MMM yyyy</DatePicker.Format>
+                                    </local:BorderlessDatePicker>
+                                </StackLayout>
+                            </StackLayout>
+                            <BoxView WidthRequest="1" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryColor}" />
+                            <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="2">
+                                <Label Text="Return" FontSize="18" IsVisible="false" Margin="10,0,0,0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource TitleColor}" />
+                                <StackLayout Orientation="Horizontal" HeightRequest="60">
+                                    <BoxView WidthRequest="1" IsVisible="false" HorizontalOptions="Start" VerticalOptions="FillAndExpand" BackgroundColor="White" />
+                                    <Image Source="ic_small_calendar" VerticalOptions="Center">
+                                    </Image>
+                                    <local:BorderlessDatePicker x:Name="toTravelInfoDatePicker" HorizontalOptions="FillAndExpand" HeightRequest="50" TextColor="{StaticResource PrimaryColor}"
+                                                                DateSelected="Handle_TravelInfo_To_Date" VerticalOptions="Center" >
+                                        <!--DateSelected="Handle_DateSelected_To"-->
+                                        <DatePicker.Format>dd MMM yyyy</DatePicker.Format>
+                                    </local:BorderlessDatePicker>
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                        <BoxView x:Name="dateLine" HeightRequest="1" BackgroundColor="{StaticResource PrimaryGray}" IsVisible="true" />
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Travel Purpose" FontSize="18" TextColor="{StaticResource PrimaryGray}"  FontFamily="{StaticResource NormalFont}" />
+
+                                <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                            </StackLayout>
+                            <local:CustomPicker HeightRequest="35"
+                                    x:Name="travelPurpose"
+                                    Title="Select purpose of travelling"
+                                     SelectedIndexChanged="PickerTravelPurpose_SelectedIndexChanged"
+                                                BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}"
+                                    Grid.Row="1" Grid.Column="0">
+                                <local:CustomPicker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Auditing</x:String>
+                                        <x:String>Business Meeting</x:String>
+                                        <x:String>Client Meeting</x:String>
+                                        <x:String>Conference</x:String>
+                                        <x:String>Follow Supplier</x:String>
+                                        <x:String>On-Site Transfer</x:String>
+                                        <x:String>Service Job</x:String>
+                                        <x:String>Relocation</x:String>
+                                        <x:String>Visa Interview</x:String>
+                                    </x:Array>
+                                </local:CustomPicker.ItemsSource>
+                            </local:CustomPicker>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="100" />
+                            </Grid.RowDefinitions>
+                            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Reason*(Why a Physical Presence is required?) " FontSize="12" TextColor="{StaticResource PrimaryGray}"  FontFamily="{StaticResource NormalFont}" />
+
+                                </StackLayout>
+                            <local:CustomEditor  x:Name="reasonEntry" HeightRequest="110" FontFamily="{StaticResource NormalFont}" BackgroundColor="WhiteSmoke" BorderColor="WhiteSmoke" Grid.Row="1" Grid.Column="0" FontSize="18">
+
+                            </local:CustomEditor>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="100" />
+                            </Grid.RowDefinitions>
+                            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Additional Info.*(Deliverable expected after travel)" FontSize="12" TextColor="{StaticResource PrimaryGray}"  FontFamily="{StaticResource NormalFont}" />
+                                    </StackLayout>
+                            <local:CustomEditor  x:Name="commentsEntry" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" BorderColor="WhiteSmoke" HeightRequest="110" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="18">
+                            </local:CustomEditor>
+                        </Grid>
+                        <BoxView x:Name="userCommentsLine" HeightRequest="1" IsVisible="false" BackgroundColor="White" />
+
+                        <Grid Margin="20,7,20,5" x:Name="homeCountryGrid" IsVisible="false">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Home Country Manager*" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomEntry x:Name="homeManagerEntry" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" TextChanged="Handle_TextChanged" Placeholder="Atleast 3 characters" HeightRequest="35" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16">
+
+                            </local:CustomEntry>
+                        </Grid>
+                        <ListView x:Name="Employee_listView" BackgroundColor="White" IsVisible="false">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal" Margin="10,7,10,7" VerticalOptions="CenterAndExpand">
+                                            <Label TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" Text="{Binding fullName}" />
+                                            <Label TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" Text="{Binding employeeNo}" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <BoxView x:Name="homeCountryLine" HeightRequest="1" BackgroundColor="White" IsVisible="false" />
+                        <Grid Margin="20,7,20,5" x:Name="onsiteManagerGrid" IsVisible="false">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Onsite Manager*" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomEntry x:Name="onsiteManagerEntry" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" TextChanged="Handle_TextChanged1" Placeholder="Atleast 3 characters" HeightRequest="35" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16">
+
+                            </local:CustomEntry>
+                        </Grid>
+                        <ListView x:Name="Employee_listView1" BackgroundColor="White" IsVisible="false">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal" Margin="10,7,10,7" VerticalOptions="CenterAndExpand">
+                                            <Label TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" Text="{Binding fullName}" />
+                                            <Label TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" Text="{Binding employeeNo}" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <BoxView x:Name="VisaCountryLine" HeightRequest="1" BackgroundColor="White" IsVisible="false" />
+                        <Grid Margin="20,7,20,5" x:Name="VisaGrid" IsVisible="false">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Visa Type*" FontSize="18" TextColor="{StaticResource PrimaryGray}"  FontFamily="{StaticResource NormalFont}" />
+                                 </StackLayout>
+                             <local:CustomPicker HeightRequest="35" x:Name="VisaType" BackgroundColor="WhiteSmoke" Title="Visa Type" ItemDisplayBinding="{Binding attributeElementName}" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerVisa_SelectedIndexChanged" VerticalOptions="CenterAndExpand" />
+                          
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,5" x:Name="VisaOthersGrid" IsVisible="false">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Type your visa" FontSize="18" TextColor="{StaticResource PrimaryGray}"  FontFamily="{StaticResource NormalFont}" />
+
+                                <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                            </StackLayout>
+                            <local:CustomEditor  x:Name="othersvisa" FontFamily="{StaticResource NormalFont}" BackgroundColor="WhiteSmoke" BorderColor="WhiteSmoke" Grid.Row="1" Grid.Column="0" FontSize="18">
+
+                            </local:CustomEditor>
+                        </Grid>
+                    </StackLayout>
+
+
+                    
+
+
+
+                    <StackLayout x:Name="reservationDetailsStack" IsVisible="false" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,5,0,10">
+                            <Frame x:Name="reservationDetailsFrame" IsClippedToBounds="True" Padding="13,10,13,10" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HasShadow="true" CornerRadius="16" BackgroundColor="{StaticResource TitleColor}">
+                                <Label Text="2" TextColor="White" FontSize="10" VerticalTextAlignment="Center">
+                                </Label>
+                            </Frame>
+                            <Label x:Name="reservationDetailsLbl" HorizontalOptions="CenterAndExpand" Text="Reservation Details" VerticalOptions="CenterAndExpand" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" FontSize="18" />
+                        </StackLayout>
+                        <Grid Margin="20,0,20,7">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <RelativeLayout Grid.Column="0">
+                                    <CheckBox  IsChecked="true" x:Name="oneWayCheckedBox" 
+                                               Color="{StaticResource PrimaryColor}" CheckedChanged="Handle_OneWay_Check_Click">
+                                    </CheckBox>
+                                </RelativeLayout>
+                                <Label Text="One Way Trip" Grid.Column="1" Margin="5,0,0,0" TextColor="{StaticResource PrimaryGray}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="10,0,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <RelativeLayout Grid.Column="0">
+                                    <CheckBox  IsChecked="false" x:Name="roundTripCheckedBox" 
+                                               Color="{StaticResource PrimaryColor}" CheckedChanged="Handle_RoundWay_Check_Click">
+                                    </CheckBox>
+                                </RelativeLayout>
+                                <Label Text="Round Trip" Grid.Column="1" Margin="5,0,0,0" TextColor="{StaticResource PrimaryGray}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" IsVisible="false" />
+                        <Grid Margin="20,0,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="1" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Departure" Grid.Column="0" FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" />
+                            <BoxView x:Name="divider" WidthRequest="1" IsVisible="false" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryColor}" />
+                            <Label Text="Return" x:Name="returnText" IsVisible="false" FontSize="18" Margin="10,0,0,0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" Grid.Column="2" />
+                        </Grid>
+                        <Grid Margin="20,0,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="1" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+                                <Label Text="Departure" IsVisible="false" FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" />
+                                <StackLayout Orientation="Horizontal" HeightRequest="60" x:Name="roundTripDepartureGrid">
+                                    <Image Source="ic_small_calendar" VerticalOptions="Center">
+                                    </Image>
+                                    <local:BorderlessDatePicker x:Name="roundTripDeparturePicker" HorizontalOptions="FillAndExpand" HeightRequest="50" TextColor="{StaticResource PrimaryColor}"  VerticalOptions="Center" Date="{x:Static sys:DateTime.Now}" DateSelected="Handle_RoundTrip_From_Date">
+                                        <DatePicker.Format>dd MMM yyyy</DatePicker.Format>
+                                    </local:BorderlessDatePicker>
+                                </StackLayout>
+                            </StackLayout>
+                            <BoxView WidthRequest="1" Grid.Column="1" x:Name="roundLine" IsVisible="false" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" />
+                            <StackLayout Orientation="Vertical" IsVisible="false" Grid.Row="0" Grid.Column="2" x:Name="roundTripReturnGrid">
+                                <Label Text="Return" FontSize="18" IsVisible="false" Margin="10,0,0,0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" />
+                                <StackLayout Orientation="Horizontal" HeightRequest="60">
+                                    <BoxView WidthRequest="1" HorizontalOptions="Start" VerticalOptions="FillAndExpand" IsVisible="false" BackgroundColor="White" />
+                                    <Image Source="ic_small_calendar" VerticalOptions="Center">
+                                    </Image>
+                                    <local:BorderlessDatePicker x:Name="roundTripReturnPicker" HorizontalOptions="FillAndExpand" HeightRequest="50"
+                                                                IsEnabled="true" TextColor="{StaticResource PrimaryColor}"
+                                                                VerticalOptions="Center" DateSelected="Handle_RoundTrip_To_Date"
+                                                                >
+                                        <!--DateSelected="Handle_DateSelected_To"-->
+                                        <DatePicker.Format>dd MMM yyyy</DatePicker.Format>
+                                    </local:BorderlessDatePicker>
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Mode of Transport" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35"
+                                    x:Name="modeOfTransport" Title="Select Mode of Transport" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}"
+                                    SelectedIndexChanged="PickerTravelMode_SelectedIndexChanged" 
+                                    Grid.Row="1" Grid.Column="0">
+                                <local:CustomPicker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Air</x:String>
+                                        <x:String>Train</x:String>
+                                        <x:String>Bus</x:String>
+                                        <x:String>CAB</x:String>
+                                        <x:String>Own Transport</x:String>
+                                    </x:Array>
+                                </local:CustomPicker.ItemsSource>
+                            </local:CustomPicker>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="From Country" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}"
+                                    x:Name="fromCountry" ItemDisplayBinding="{Binding name}"
+                                    Title="Select Departure Country"  Grid.Row="1"
+                                    Grid.Column="0" SelectedIndexChanged="PickerFromCountry_SelectedIndexChanged" />
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="From State" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35"
+                                    x:Name="fromState" ItemDisplayBinding="{Binding name}" BackgroundColor="WhiteSmoke"
+                                    Title="Select Departure State" TextColor="{StaticResource PrimaryColor}" Grid.Row="1"
+                                    Grid.Column="0" SelectedIndexChanged="PickerFromState_SelectedIndexChanged" />
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="From City" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35" x:Name="fromCity" BackgroundColor="WhiteSmoke" ItemDisplayBinding="{Binding name}" Title="Select Departure City" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerFromCity_SelectedIndexChanged" />
+                        </Grid>
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="From Airport" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35" x:Name="fromAirport" BackgroundColor="WhiteSmoke" ItemDisplayBinding="{Binding airportCode}" Title="Select Airport" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0"  />
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="To Country" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35" x:Name="toCountry" BackgroundColor="WhiteSmoke" ItemDisplayBinding="{Binding name}" Title="Select To Country" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerToCountry_SelectedIndexChanged" />
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="To State" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35"
+                                    x:Name="toState" ItemDisplayBinding="{Binding name}" BackgroundColor="WhiteSmoke"
+                                    Title="Select To State" TextColor="{StaticResource PrimaryColor}" Grid.Row="1"
+                                    Grid.Column="0" SelectedIndexChanged="PickerFromState1_SelectedIndexChanged" />
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="To City" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35" x:Name="toCity" BackgroundColor="WhiteSmoke" ItemDisplayBinding="{Binding name}" Title="Select To City" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerToCity_SelectedIndexChanged" />
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" IsVisible="false" />
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="To Airport" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35" x:Name="toAirport" BackgroundColor="WhiteSmoke" ItemDisplayBinding="{Binding airportCode}" Title="Select Airport" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0"  />
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Preferred Departure Time*" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35" Title="Select Time" BackgroundColor="WhiteSmoke" x:Name="departureTime"  SelectedIndexChanged="PickerDepartureTime_SelectedIndexChanged" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0">
+                                <local:CustomPicker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>0:00 AM</x:String>
+                                        <x:String>1:00 AM</x:String>
+                                        <x:String>2:00 AM</x:String>
+                                        <x:String>3:00 AM</x:String>
+                                        <x:String>4:00 AM</x:String>
+                                        <x:String>5:00 AM</x:String>
+                                        <x:String>6:00 AM</x:String>
+                                        <x:String>7:00 AM</x:String>
+                                        <x:String>8:00 AM</x:String>
+                                        <x:String>9:00 AM</x:String>
+                                        <x:String>10:00 AM</x:String>
+                                        <x:String>11:00 AM</x:String>
+                                        <x:String>12:00 PM</x:String>
+                                        <x:String>1:00 PM</x:String>
+                                        <x:String>2:00 PM</x:String>
+                                        <x:String>3:00 PM</x:String>
+                                        <x:String>4:00 PM</x:String>
+                                        <x:String>5:00 PM</x:String>
+                                        <x:String>6:00 PM</x:String>
+                                        <x:String>7:00 PM</x:String>
+                                        <x:String>8:00 PM</x:String>
+                                        <x:String>9:00 PM</x:String>
+                                        <x:String>10:00 PM</x:String>
+                                        <x:String>11:00 PM</x:String>
+                                    </x:Array>
+                                </local:CustomPicker.ItemsSource>
+                            </local:CustomPicker>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" IsVisible="true" />
+                        <StackLayout Orientation="Vertical" x:Name="roundStack" IsVisible="false">
+                            <!--starts from here-->
+                            <Grid Margin="20,7,20,7">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Label Text="Mode of Transport" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                                <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke" x:Name="modeOfTransport1" Grid.Row="1" Title="Select Mode of Transport" SelectedIndexChanged="PickerTravelMode_SelectedIndexChanged_1" TextColor="{StaticResource PrimaryColor}">
+                                    <local:CustomPicker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Air</x:String>
+                                            <x:String>Train</x:String>
+                                            <x:String>Bus</x:String>
+                                            <x:String>CAB</x:String>
+                                            <x:String>Own Transport</x:String>
+                                        </x:Array>
+                                    </local:CustomPicker.ItemsSource>
+                                </local:CustomPicker>
+                            </Grid>
+                            <BoxView HeightRequest="1" BackgroundColor="White" />
+                            <Grid Margin="20,7,20,7">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Label Text="From Country" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                                <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke" x:Name="fromCountry1" ItemDisplayBinding="{Binding name}"
+                                                    Title="Select Departure Country" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0"
+                                                    SelectedIndexChanged="PickerFromCountry_SelectedIndexChanged_1" />
+                            </Grid>
+                            <BoxView HeightRequest="1" BackgroundColor="White" />
+                            <Grid Margin="20,7,20,7">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Label Text="From State" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                                <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke"
+                                        x:Name="fromState1" ItemDisplayBinding="{Binding name}"
+                                        Title="Select Departure State" TextColor="{StaticResource PrimaryColor}" Grid.Row="1"
+                                        Grid.Column="0" SelectedIndexChanged="PickerFromState_SelectedIndexChanged_1" />
+                            </Grid>
+                            <BoxView HeightRequest="1" BackgroundColor="White" />
+                            <Grid Margin="20,7,20,7">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Label Text="From City" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                                <local:CustomPicker HeightRequest="35"  BackgroundColor="WhiteSmoke" x:Name="fromCity1" ItemDisplayBinding="{Binding name}" Title="Select Departure City" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerFromCity_SelectedIndexChanged_1" />
+                            </Grid>
+                            <BoxView HeightRequest="1" BackgroundColor="White" />
+                            <Grid Margin="20,7,20,7">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Label Text="From Airport" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                                <local:CustomPicker HeightRequest="35" x:Name="fromAirport1" BackgroundColor="WhiteSmoke" ItemDisplayBinding="{Binding airportCode}" Title="Select Airport" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0"  />
+                            </Grid>
+                            <Grid Margin="20,7,20,7">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Label Text="To Country" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                                <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke" x:Name="toCountry1" ItemDisplayBinding="{Binding name}" Title="Select To Country" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" 
+                                                    SelectedIndexChanged="PickerToCountry_SelectedIndexChanged_1" />
+                            </Grid>
+                            <BoxView HeightRequest="1" BackgroundColor="White" />
+                            <Grid Margin="20,7,20,7">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Label Text="To State" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                                <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke"
+                                        x:Name="toState1" ItemDisplayBinding="{Binding name}"
+                                        Title="Select To State" TextColor="{StaticResource PrimaryColor}" Grid.Row="1"
+                                        Grid.Column="0" SelectedIndexChanged="PickerToState_SelectedIndexChanged_1" />
+                            </Grid>
+                            <BoxView HeightRequest="1" BackgroundColor="White" />
+                            <Grid Margin="20,7,20,7">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Label Text="To City" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                                <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke" x:Name="toCity1" ItemDisplayBinding="{Binding name}" Title="Select To City" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerToCity_SelectedIndexChanged_1" />
+                            </Grid>
+                            <Grid Margin="20,7,20,7">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Label Text="To Airport" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                                <local:CustomPicker HeightRequest="35" x:Name="toAirport1" BackgroundColor="WhiteSmoke" ItemDisplayBinding="{Binding airportCode}" Title="Select Airport" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0"  />
+                            </Grid>
+                            <BoxView HeightRequest="1" BackgroundColor="White" />
+                            <Grid Margin="20,7,20,7">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Label Text="Preferred Departure Time" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                                <local:CustomPicker HeightRequest="35" Grid.Row="1" BackgroundColor="WhiteSmoke" Title="Select Time" x:Name="departureTime1" SelectedIndexChanged="PickerDepartureTime_SelectedIndexChanged_1" TextColor="{StaticResource PrimaryColor}" >
+                                    <local:CustomPicker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>0:30 AM</x:String>
+                                            <x:String>1:30 AM</x:String>
+                                            <x:String>2:30 AM</x:String>
+                                            <x:String>3:30 AM</x:String>
+                                            <x:String>4:30 AM</x:String>
+                                            <x:String>5:30 AM</x:String>
+                                            <x:String>6:30 AM</x:String>
+                                            <x:String>7:30 AM</x:String>
+                                            <x:String>8:30 AM</x:String>
+                                            <x:String>9:30 AM</x:String>
+                                            <x:String>10:30 AM</x:String>
+                                            <x:String>11:30 AM</x:String>
+                                            <x:String>12:30 PM</x:String>
+                                            <x:String>1:30 PM</x:String>
+                                            <x:String>2:30 PM</x:String>
+                                            <x:String>3:30 PM</x:String>
+                                            <x:String>4:30 PM</x:String>
+                                            <x:String>5:30 PM</x:String>
+                                            <x:String>6:30 PM</x:String>
+                                            <x:String>7:30 PM</x:String>
+                                            <x:String>8:30 PM</x:String>
+                                            <x:String>9:30 PM</x:String>
+                                            <x:String>10:30 PM</x:String>
+                                            <x:String>11:30 PM</x:String>
+                                        </x:Array>
+                                    </local:CustomPicker.ItemsSource>
+                                </local:CustomPicker>
+                            </Grid>
+                            <BoxView HeightRequest="1" BackgroundColor="White" IsVisible="true" />
+                            <!--ends here-->
+                        </StackLayout>
+                        <Grid Margin="20,0,20,7">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Food Preference" Grid.Row="0" TextColor="{StaticResource PrimaryGray}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                            <Grid Grid.Column="0" Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <RelativeLayout Grid.Column="0">
+                                    <CheckBox  IsChecked="false" x:Name="foodVegCheckedBox" 
+                                               Color="{StaticResource PrimaryColor}" CheckedChanged="Handle_FoodVeg_Check_Click">
+                                    </CheckBox>
+                                </RelativeLayout>
+                                <Label Text="Veg" Grid.Column="1" Margin="5,0,0,0" TextColor="{StaticResource PrimaryColor}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="10,0,0,0" Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <RelativeLayout Grid.Column="0">
+                                    <CheckBox  IsChecked="false" x:Name="foodNonVegCheckedBox" 
+                                               Color="{StaticResource PrimaryColor}" CheckedChanged="Handle_FoodNonVeg_Check_Click">
+                                    </CheckBox>
+                                </RelativeLayout>
+                                <Label Text="Non-Veg" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" Margin="5,0,0,0" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" IsVisible="true" />
+                        <Grid Margin="20,0,20,7">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Seat Preference" Grid.Row="0" TextColor="{StaticResource PrimaryGray}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                            <Grid Grid.Column="0" Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <RelativeLayout Grid.Column="0">
+                                    <CheckBox  IsChecked="false" x:Name="seatWindowCheckedBox" 
+                                               Color="{StaticResource PrimaryColor}" CheckedChanged="Handle_SeatWindow_Check_Click">
+                                    </CheckBox>
+
+                                </RelativeLayout>
+                                <Label Text="Window" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="10,0,0,0" Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <RelativeLayout Grid.Column="0">
+                                    <CheckBox  IsChecked="false" x:Name="seatAisleCheckedBox" 
+                                               Color="{StaticResource PrimaryColor}" CheckedChanged="Handle_SeatAisle_Check_Click">
+                                    </CheckBox>
+                                </RelativeLayout>
+                                <Label Text="Aisle" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" IsVisible="true" />
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Travel Desk Location*" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke" x:Name="travelDeskLocation" ItemDisplayBinding="{Binding unitName}" Title="Select travel desk location" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerTravelDesk_SelectedIndexChanged" />
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" IsVisible="true" />
+                        <Grid Margin="20,7,20,7" IsVisible="true">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Additional Information" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" FontFamily="{StaticResource NormalFont}" IsVisible="true" />
+                            <Grid Grid.Column="0" Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <RelativeLayout Grid.Column="0">
+                                    <CheckBox  IsChecked="false" x:Name="accCheckedBox" 
+                                               Color="{StaticResource PrimaryColor}" CheckedChanged="Handle_Acc_Check_Click">
+                                    </CheckBox>
+                                </RelativeLayout>
+                                <Label Text="Accommodation" Grid.Column="1" Margin="5,0,0,0" TextColor="{StaticResource PrimaryColor}" FontSize="15" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                            <Grid Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" IsVisible="true">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <RelativeLayout Grid.Column="0">
+                                    <CheckBox IsChecked="false" x:Name="advCheckedBox"
+                                              Color="{StaticResource PrimaryColor}" CheckedChanged="Handle_Advance_Check_Click">
+                                    </CheckBox>
+                                </RelativeLayout>
+                                <Label Text="Advance Required" Grid.Column="1" Margin="5,0,0,0" TextColor="{StaticResource PrimaryColor}" FontSize="15" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout x:Name="accDetailsStack" IsVisible="false" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,5,0,10">
+                            <Frame x:Name="accDetailsFrame" IsClippedToBounds="True" Padding="13,10,13,10" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HasShadow="true" CornerRadius="16" BackgroundColor="{StaticResource TitleColor}">
+                                <Label Text="3" TextColor="White" FontSize="10" VerticalTextAlignment="Center">
+                                </Label>
+                            </Frame>
+                            <Label x:Name="accDetailsLbl" HorizontalOptions="CenterAndExpand" Text="Accommodation Details" VerticalOptions="CenterAndExpand" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" FontSize="18" />
+                        </StackLayout>
+                        <BoxView HeightRequest="1" BackgroundColor="White" IsVisible="false" />
+                        <Grid Margin="20,0,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="1" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Departure" Grid.Column="0" FontSize="18" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" />
+                            <BoxView WidthRequest="1" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" />
+                            <Label Text="Return" FontSize="18" Margin="10,0,0,0" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" Grid.Column="2" />
+                        </Grid>
+                        <Grid Margin="20,0,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="1" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+                                <Label Text="Departure" IsVisible="false" FontSize="18" FontFamily="{StaticResource NormalFont}"
+                                       TextColor="{StaticResource PrimaryGray}" />
+                                <StackLayout Orientation="Horizontal" HeightRequest="60">
+                                    <Image Source="ic_small_calendar" VerticalOptions="Center">
+                                    </Image>
+                                    <local:BorderlessDatePicker x:Name="fromAccDateAccPicker"
+                                                                   TextColor="{StaticResource PrimaryColor}" HorizontalOptions="FillAndExpand" HeightRequest="50" VerticalOptions="Center" DateSelected="Handle_FromAcc_From_Date">
+                                        <!--DateSelected="Handle_DateSelected_From"-->
+                                        <DatePicker.Format>dd MMM yyyy</DatePicker.Format>
+                                    </local:BorderlessDatePicker>
+                                </StackLayout>
+                            </StackLayout>
+                            <BoxView WidthRequest="1" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" />
+                            <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="2">
+                                <Label Text="Return" FontSize="18" IsVisible="false" Margin="10,0,0,0"
+                                       FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource PrimaryGray}" />
+                                <StackLayout Orientation="Horizontal" HeightRequest="60">
+                                    <BoxView WidthRequest="1" HorizontalOptions="Start" VerticalOptions="FillAndExpand" BackgroundColor="White" />
+                                    <Image Source="ic_small_calendar" VerticalOptions="Center">
+                                    </Image>
+                                    <local:BorderlessDatePicker x:Name="toAccDatePicker" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" HeightRequest="50" DateSelected="Handle_ToAcc_From_Date">
+                                        <!--DateSelected="Handle_DateSelected_To"-->
+                                        <DatePicker.Format>dd MMM yyyy</DatePicker.Format>
+                                    </local:BorderlessDatePicker>
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Country" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke" x:Name="country" ItemDisplayBinding="{Binding name}" Title="Select Country" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerCountry_SelectedIndexChanged" />
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="State" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke" x:Name="accState" ItemDisplayBinding="{Binding name}" Title="Select State" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerAccState_SelectedIndexChanged" />
+                        </Grid>
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="City" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke" x:Name="accCity" ItemDisplayBinding="{Binding name}" Title="Select City" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerAccCity_SelectedIndexChanged" />
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Room Type" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35" BackgroundColor="WhiteSmoke" x:Name="roomType" Title="Select Room Type" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerRoomType_SelectedIndexChanged">
+                                <local:CustomPicker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Single</x:String>
+                                        <x:String>Double</x:String>
+                                    </x:Array>
+                                </local:CustomPicker.ItemsSource>
+                            </local:CustomPicker>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="No. of Persons" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomEntry x:Name="headCountEntry" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" Keyboard="Numeric" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16">
+                                <Entry.Behaviors>
+                                    <local:EntryLengthValidatorBehavior MaxLength="2" />
+                                </Entry.Behaviors>
+                            </local:CustomEntry>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="100" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Preferred Hotel and Contact Details" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomEditor  x:Name="hotelDetailEditor" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" HeightRequest="110" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16">
+                            </local:CustomEditor>
+                        </Grid>
+                        <Label Text="Do you want advance?" FontSize="18" IsVisible="false" TextColor="White"
+                               FontFamily="{StaticResource NormalFont}" Margin="20,0,20,7" />
+                    </StackLayout>
+                    <StackLayout x:Name="advanceDetailsStack" IsVisible="false" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,5,0,10">
+                            <Frame x:Name="advanceDetailsFrame" IsClippedToBounds="True" Padding="13,10,13,10" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HasShadow="true" CornerRadius="16" BackgroundColor="{StaticResource TitleColor}">
+                                <Label Text="4" TextColor="White" FontSize="10" VerticalTextAlignment="Center">
+                                </Label>
+                            </Frame>
+                            <Label x:Name="advanceDetailsLbl" HorizontalOptions="CenterAndExpand" Text="Advance Information" VerticalOptions="CenterAndExpand" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" FontSize="18" />
+                        </StackLayout>
+                        <Grid Margin="20,7,20,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Currency" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35" x:Name="currencyType" BackgroundColor="WhiteSmoke" Title="Select Currency" ItemDisplayBinding="{Binding attributeElementName}" IsVisible="{Binding domesticur}" TextColor="{StaticResource PrimaryColor}" Grid.Column="1" SelectedIndexChanged="CurrencyType_SelectedIndexChanged" VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                        <Grid Margin="20,7,20,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Advance Amount(Cash)*" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}"  />
+                            <local:CustomEntry x:Name="cashAmtEntry" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" Keyboard="Numeric" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16">
+                                <Entry.Behaviors>
+                                    <local:EntryLengthValidatorBehavior MaxLength="10" />
+                                </Entry.Behaviors>
+                            </local:CustomEntry>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Money Card Amount" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomEntry x:Name="cardAmtEntry" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" Keyboard="Numeric" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16">
+                                <Entry.Behaviors>
+                                    <local:EntryLengthValidatorBehavior MaxLength="10" />
+                                </Entry.Behaviors>
+                            </local:CustomEntry>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Accommodation Expense" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomEntry x:Name="expenseAmtEntry" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" Keyboard="Numeric" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16">
+                                <Entry.Behaviors>
+                                    <local:EntryLengthValidatorBehavior MaxLength="10" />
+                                </Entry.Behaviors>
+                            </local:CustomEntry>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Taxi Expense" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomEntry x:Name="taxiAmtEntry" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" Keyboard="Numeric" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16">
+                                <Entry.Behaviors>
+                                    <local:EntryLengthValidatorBehavior MaxLength="10" />
+                                </Entry.Behaviors>
+                            </local:CustomEntry>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Communication Expense" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomEntry x:Name="commAmtEntry" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" Keyboard="Numeric" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16">
+                                <Entry.Behaviors>
+                                    <local:EntryLengthValidatorBehavior MaxLength="10" />
+                                </Entry.Behaviors>
+                            </local:CustomEntry>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Visa Expense" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomEntry x:Name="visaAmtEntry" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" Keyboard="Numeric" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16">
+                                <Entry.Behaviors>
+                                    <local:EntryLengthValidatorBehavior MaxLength="10" />
+                                </Entry.Behaviors>
+                            </local:CustomEntry>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Other Expense" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomEntry x:Name="otherAmtEntry" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" Keyboard="Numeric" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="16">
+                                <Entry.Behaviors>
+                                    <local:EntryLengthValidatorBehavior MaxLength="10" />
+                                </Entry.Behaviors>
+                            </local:CustomEntry>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" IsVisible="false" />
+                    </StackLayout>
+                    <StackLayout x:Name="billableInfoStack" IsVisible="false" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,5,0,10">
+                            <Frame x:Name="billableInfoFrame" IsClippedToBounds="True" Padding="13,10,13,10" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HasShadow="true" CornerRadius="16" BackgroundColor="{StaticResource TitleColor}">
+                                <Label Text="5" TextColor="White" FontSize="10" VerticalTextAlignment="Center">
+                                </Label>
+                            </Frame>
+                            <Label x:Name="billablelInfoLbl" HorizontalOptions="CenterAndExpand" Text="Billable Information" VerticalOptions="CenterAndExpand" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" FontSize="18" />
+                        </StackLayout>
+
+
+                        <Grid Margin="20,0,20,7">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <RelativeLayout Grid.Column="0">
+                                    <CheckBox  IsChecked="true" x:Name="billableUncheckedBox" 
+                                               Color="{StaticResource PrimaryColor}" CheckedChanged="Handle_Billable_Uncheck_Click">
+                                    </CheckBox>
+                                </RelativeLayout>
+                                <Label Text="Billable" Grid.Column="1" TextColor="{StaticResource PrimaryGray}" Margin="5,0,0,0" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="10,0,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <RelativeLayout Grid.Column="0">
+                                    <CheckBox  IsChecked="false" x:Name="nonBillableUncheckedBox" 
+                                               Color="{StaticResource PrimaryColor}" CheckedChanged="Handle_NonBillable_Uncheck_Click">
+                                    </CheckBox>
+                                </RelativeLayout>
+                                <Label Text="Non-Billable" Grid.Column="1" Margin="5,0,0,0" TextColor="{StaticResource PrimaryGray}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                             <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Billable To" FontSize="18" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}" />
+                            
+                                <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                            </StackLayout>
+                            <local:CustomPicker HeightRequest="35" x:Name="billableTo" BackgroundColor="WhiteSmoke" Title="Select Billable To" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerBillable_SelectedIndexChanged" >
+                                <local:CustomPicker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Billable to employee project</x:String>
+                                        <x:String>Billable to other project</x:String>
+                                    </x:Array>
+                                </local:CustomPicker.ItemsSource>
+                            </local:CustomPicker>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,7" IsVisible="false" x:Name="clientGrid">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Client" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35" x:Name="client" BackgroundColor="WhiteSmoke" ItemDisplayBinding="{Binding clientName}" Title="Select Client" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerClient_SelectedIndexChanged" />
+                        </Grid>
+                        <BoxView x:Name="clientLine" HeightRequest="1" BackgroundColor="White" IsVisible="false" />
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Project*" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomPicker HeightRequest="35" x:Name="project" BackgroundColor="WhiteSmoke" ItemDisplayBinding="{Binding projectName}" Title="Select Project" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerProject_SelectedIndexChanged" />
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="100" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Remarks" FontSize="18" TextColor="{StaticResource PrimaryGray}" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                            <local:CustomEditor  x:Name="remarksEntry" BackgroundColor="WhiteSmoke"
+                                                 TextColor="{StaticResource PrimaryColor}" HeightRequest="110"
+                                                 FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="18">
+                                <Entry.Behaviors>
+                                    <local:EntryLengthEditorBehavior MaxLength="500" />
+                                </Entry.Behaviors>
+                            </local:CustomEditor>
+                        </Grid>
+                        <StackLayout Orientation="Horizontal" HeightRequest="40" Margin="20,7,20,7">
+                            <Button Text="Choose File" TextColor="{StaticResource PrimaryColor}" WidthRequest="120" BackgroundColor="{StaticResource BackgroundColors}" BorderWidth="1" CornerRadius="10" BorderColor="{StaticResource Button}" FontSize="18" Clicked="Attachment_Click" />
+                            <Label x:Name="File_Name" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}" Text="No File Chosen" VerticalOptions="CenterAndExpand" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout x:Name="KYCInfoStack" IsVisible="false" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,5,0,10">
+                            <Frame x:Name="KYCInfoFrame" IsClippedToBounds="True" Padding="13,10,13,10" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HasShadow="true" CornerRadius="16" BackgroundColor="{StaticResource TitleColor}">
+                                <Label Text="6" TextColor="White" FontSize="10" VerticalTextAlignment="Center">
+                                </Label>
+                            </Frame>
+                            <Label x:Name="KYCInfoLbl" HorizontalOptions="CenterAndExpand" Text="KYC Documents" VerticalOptions="CenterAndExpand" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" FontSize="18" />
+                        </StackLayout>
+                        <Grid Margin="20,7,20,7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Document Type" FontSize="18" TextColor="{StaticResource PrimaryGray}"  FontFamily="{StaticResource NormalFont}" />
+
+                                <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+                                 </StackLayout>
+                             <local:CustomPicker HeightRequest="35" x:Name="DocumentType" BackgroundColor="WhiteSmoke" Title="Document Type" ItemDisplayBinding="{Binding attributeElementName}" TextColor="{StaticResource PrimaryColor}" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="PickerDocumentType_SelectedIndexChanged" VerticalOptions="CenterAndExpand" />
+                            
+                            <!--<local:CustomPicker  x:Name="CategoryPickedMon" HeightRequest="35" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}"  VerticalOptions="CenterAndExpand" 
+                                              Title="Select Document Type" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding mlist1}" ItemDisplayBinding="{Binding attributeElementName}" SelectedIndexChanged="MonPickerCatergory_SelectedIndexChanged" >
+                        </local:CustomPicker>-->
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Identity No." FontSize="18" TextColor="{StaticResource PrimaryGray}"  FontFamily="{StaticResource NormalFont}" />
+
+                                <Label Text="*" VerticalOptions="CenterAndExpand" FontSize="15" TextColor="{StaticResource HighlightErrorColor}" Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource NormalFont}" />
+
+                            </StackLayout>
+                            <local:CustomEditor  x:Name="identityno" FontFamily="{StaticResource NormalFont}" BackgroundColor="WhiteSmoke" BorderColor="WhiteSmoke" Grid.Row="1" Grid.Column="0" FontSize="18">
+
+                            </local:CustomEditor>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="White" />
+                        <Grid Margin="20,7,20,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="100" />
+                            </Grid.RowDefinitions>
+                            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Remarks" FontSize="18" TextColor="{StaticResource PrimaryGray}"  FontFamily="{StaticResource NormalFont}" />
+                              </StackLayout>
+                            <local:CustomEditor  x:Name="kycremarks" BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryColor}" BorderColor="WhiteSmoke" HeightRequest="110" FontFamily="{StaticResource NormalFont}" Grid.Row="1" Grid.Column="0" FontSize="18">
+                            </local:CustomEditor>
+                        </Grid>
+                        <BoxView x:Name="remarkssectionline" HeightRequest="1" IsVisible="true" BackgroundColor="White" />
+                        
+                        <StackLayout Orientation="Horizontal" HeightRequest="40" Margin="20,7,20,7">
+                            <Button Text="Choose File" TextColor="{StaticResource PrimaryColor}" WidthRequest="120" BackgroundColor="{StaticResource BackgroundColors}" BorderWidth="1" CornerRadius="10" BorderColor="{StaticResource Button}" FontSize="16" Clicked="Attachment_ClickAsync"/>
+                            <Label x:Name="File_Name3" TextColor="{StaticResource PrimaryGray}" FontFamily="{StaticResource NormalFont}" Text="No File Chosen" VerticalOptions="CenterAndExpand" />
+                        </StackLayout>
+                        <Grid Margin="20,7,20,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                        <StackLayout Orientation="Horizontal" HeightRequest="35" Grid.Row="0" Grid.Column="0">
+                            <Button Text="Add" TextColor="White" WidthRequest="120" BackgroundColor="#44c785" BorderWidth="1" CornerRadius="10" BorderColor="{StaticResource Button}" FontSize="14" Clicked="InsertKycDocument"/>
+                            </StackLayout>
+                        <StackLayout Orientation="Horizontal" HeightRequest="35" Grid.Row="0" Grid.Column="1">
+                            <Button Text="Reset" TextColor="White" WidthRequest="120" BackgroundColor="Red" BorderWidth="1" CornerRadius="10" BorderColor="{StaticResource Button}" FontSize="14" Clicked="ResetKYCDocuments"/>
+                            </StackLayout>
+                            </Grid>
+
+                        <ListView x:Name="TravelKYCDocumentList" Margin="20,5,0,0" IsVisible="true" VerticalOptions="FillAndExpand"  BackgroundColor="White">
+                            <ListView.Header>
+                                 
+            <StackLayout Orientation="Horizontal">  
+               <Label Text="Travel KYC Documents" x:Name="travelkyctab" IsVisible="false" Margin="0,5,0,0" FontFamily="{StaticResource NormalFont}" TextColor="Red" VerticalOptions="CenterAndExpand" FontSize="16" />                   
+            </StackLayout>  
+
+                            </ListView.Header>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout>
+                                             <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding DocumentType}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" FontSize="14" VerticalOptions="StartAndExpand" TextColor="{StaticResource PrimaryColor}" />
+                                            <Label Text="{Binding IdentityNo}" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="1" FontSize="14" TextColor="{StaticResource PrimaryColor}" />
+                                            <Label Text="{Binding Remarks}" HorizontalOptions="StartAndExpand"  Grid.Row="1" Grid.Column="0" FontSize="14" TextColor="{StaticResource PrimaryColor}" />
+                                           <Image Source="ic_search_black" HorizontalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="2" VerticalOptions="CenterAndExpand">
+                                                                    <Image.GestureRecognizers>
+                                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="KYC_Attachment_Download" CommandParameter="{Binding TravelDocumentMasterId}" />
+                                                                    </Image.GestureRecognizers>
+                                                                </Image>
+                                                <Image Source="ic_delete" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="3"  VerticalOptions="CenterAndExpand">
+                                                                    <Image.GestureRecognizers>
+                                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Delete_KYC_Travel" CommandParameter="{Binding TravelDocumentMasterId}" />
+                                                                    </Image.GestureRecognizers>
+                                                                </Image>
+
+                                            </Grid>
+                                                </StackLayout>
+                                        
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </StackLayout>
+
+                    <StackLayout x:Name="approvalInfoStack" IsVisible="false" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,5,0,10">
+                            <Frame x:Name="approvalInfoFrame" IsClippedToBounds="True" Padding="13,10,13,10" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HasShadow="true" CornerRadius="16" BackgroundColor="{StaticResource TitleColor}">
+                                <Label Text="7" TextColor="White" FontSize="10" VerticalTextAlignment="Center">
+                                </Label>
+                            </Frame>
+                            <Label x:Name="approvalInfoLbl" HorizontalOptions="CenterAndExpand" Text="Approval Information" VerticalOptions="CenterAndExpand" Grid.Column="1" TextColor="{StaticResource PrimaryColor}" FontSize="18" />
+                        </StackLayout>
+                        <Grid BackgroundColor="White" Margin="10,7,10,7" Padding="5" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Approver Name" TextColor="{StaticResource PrimaryGray}" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="0" VerticalOptions="Center" />
+                            <Label Text="Role" TextColor="{StaticResource PrimaryGray}" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" FontSize="16" Grid.Column="1" VerticalOptions="Center" />
+                        </Grid>
+                        <ListView x:Name="ApproverList" HasUnevenRows="True" IsVisible="true" BackgroundColor="White" VerticalOptions="FillAndExpand" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <!--<ViewCell.View>-->
+                                        <StackLayout Orientation="Vertical">
+                                            <Grid Margin="10,7,10,7">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="25" />
+                                                </Grid.RowDefinitions>
+                                                <!-- <Label Text="Approver Name" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0"
+                                                      FontSize="16" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}"
+                                                      TextColor="{StaticResource TitleColor}"/> -->
+                                                <Label x:Name="approvarName" Text="{Binding approvarName}" HorizontalOptions="StartAndExpand" Grid.Row="0" FontSize="18" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" Grid.Column="0" />
+                                                <!-- <Label Text="Role" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="1"
+                                                                          FontSize="16" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}"
+                                                                          TextColor="{StaticResource TitleColor}"/>-->
+                                                <Label x:Name="role" Text="{Binding role}" HorizontalOptions="EndAndExpand" Grid.Row="0" FontSize="18" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" Grid.Column="1" />
+                                            </Grid>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout x:Name="nextStack" BackgroundColor="{StaticResource Buttons}" Padding="5" IsVisible="true" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0">
+                        <Label x:Name="btnName" Text="NEXT" TextColor="White" FontSize="18" FontFamily="{StaticResource NormalFont}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+            <Button x:Name="nextBtn" Text="Next" BackgroundColor="{StaticResource TitleColor}" FontSize="16" TextColor="White" VerticalOptions="EndAndExpand" IsVisible="false" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

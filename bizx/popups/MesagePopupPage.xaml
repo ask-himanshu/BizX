@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="bizx.popups.MesagePopupPage" xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" CloseWhenBackgroundIsClicked="False">
+    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+        <ActivityIndicator Color="Green" IsRunning="True" IsEnabled="True" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="50" WidthRequest="50" />
+        <Label x:Name="LoadingIndicator" HorizontalOptions="Center" VerticalOptions="Center" TextColor="AliceBlue" FontSize="Small">
+        </Label>
+    </StackLayout>
+</pages:PopupPage>

@@ -1,0 +1,1273 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="bizx.views.DashBoardPage"
+                  BackgroundColor="{StaticResource BackgroundColor}"
+                  NavigationPage.HasNavigationBar="False" xmlns:local="clr-namespace:bizx.customViews" xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
+     <MasterDetailPage.Master>
+        <ContentPage BackgroundColor="{StaticResource BackgroundColor}" Title="Master" Icon="menu.png">
+            <ContentPage.Content>
+                <StackLayout Margin="10,0,10,10" BackgroundColor="{StaticResource BackgroundColor}" Orientation="Vertical">
+                    <Grid Margin="5,10,5,5" Padding="0,20,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="20" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <!--<Image x:Name="profile_image" Source="avatar_circle.png" Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />-->
+                        <controls:CircleImage x:Name="profile_image" Source="avatar_circle.png" Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                             
+                            
+                            </controls:CircleImage>
+                        <Image Source="logoff.png" Grid.Column="2" HeightRequest="24" WidthRequest="20">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Logout_Click" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <FlexLayout Direction="Column" Margin="10,10,0,0" Grid.Column="1" AlignContent="Stretch">
+                            <Label x:Name="userName"  TextColor="White" FontSize="20"
+                                   FontFamily="{StaticResource NormalFont}" VerticalOptions="EndAndExpand"
+                                   HorizontalOptions="StartAndExpand" IsVisible="true" />
+
+                            <Label x:Name="designation"  TextColor="White" FontSize="16"
+                                   FontFamily="{StaticResource NormalFont}" VerticalOptions="EndAndExpand"
+                                   HorizontalOptions="StartAndExpand" />
+                        </FlexLayout>
+                    </Grid>
+                    <BoxView HeightRequest="1" BackgroundColor="White" Margin="0,5,0,0" />
+                    <ScrollView>
+                        <StackLayout Orientation="Vertical">
+                        <FlexLayout Direction="Row" AlignContent="Stretch" Margin="0,15,0,0" x:Name="isManagerGrid" IsVisible="false">
+                        <Image Source="ic_dashboard.png"   />
+                         <Label Text="Dashboard" FontSize="18" TextColor="White" Margin="10,0,0,0" VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_Dashboard_Manager" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </FlexLayout>
+
+                    <FlexLayout Direction="Row" AlignContent="Stretch" Margin="0,10,0,0">
+                        <Image Source="home.png" />
+                         <Label Text="Home" FontSize="18" TextColor="White" Margin="10,0,0,0"  VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_Dashboard" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </FlexLayout>
+
+                    <FlexLayout Direction="Row" AlignContent="Stretch" Margin="0,10,0,0" >
+                         <Image Source="profile.png"  />
+                          <Label Text="Profile" FontSize="18" Margin="10,0,0,0" VerticalTextAlignment="Center" TextColor="White">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_Profile" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </FlexLayout>
+
+                    <!--<FlexLayout Direction="Row" AlignContent="Stretch" Margin="0,10,0,0" x:Name="timesheetFlex">
+                        <Image Source="ic_timesheet.png"/>
+                         <Label Text="TimeSheet" FontSize="18" Margin="10,0,0,0" VerticalTextAlignment="Center" TextColor="White">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_Timesheet" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </FlexLayout>-->
+
+                    <FlexLayout Direction="Row" AlignContent="Stretch" Margin="0,10,0,0" x:Name="leaveFlex">
+                        <Image Source="ic_leave.png" />
+                         <Label Text="Leave" FontSize="18" Margin="10,0,0,0" VerticalTextAlignment="Center" TextColor="White" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_Leave" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </FlexLayout>
+
+                    <FlexLayout Direction="Row" AlignContent="Stretch" Margin="0,10,0,0" x:Name="travelFlex">
+                        <Image Source="ic_travel.png" />
+                         <Label Text="Travel" FontSize="18" Margin="10,0,0,0" VerticalTextAlignment="Center" TextColor="White" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_Travel" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </FlexLayout>
+
+                    <FlexLayout Direction="Row" AlignContent="Stretch" Margin="0,10,0,0" x:Name="expenseFlex">
+                        <Image Source="ic_expense.png"/>
+                         <Label Text="Expense" FontSize="18" Margin="10,0,0,0" VerticalTextAlignment="Center" TextColor="White" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_Expense" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </FlexLayout>
+
+                    <FlexLayout Direction="Row" AlignContent="Stretch" Margin="0,10,0,0" x:Name="visaFlex">
+                       <Image Source="ic_visa.png"/>
+                         <Label Text="Visa" FontSize="18" Margin="10,0,0,0" VerticalTextAlignment="Center" TextColor="White" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_Visa" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </FlexLayout>
+
+                    <FlexLayout Direction="Row" AlignContent="Stretch" Margin="0,10,0,0" x:Name="incidentFlex">
+                        <Image Source="ic_incident.png"/>
+                         <Label Text="Incident Management" FontSize="18" Margin="10,0,0,0" VerticalTextAlignment="Center" TextColor="White"
+                               Grid.Column="1" Grid.Row="7">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_Incident" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </FlexLayout>
+
+                    <FlexLayout Direction="Row" AlignContent="Stretch" Margin="0,10,0,0" x:Name="srFlex">
+                        <Image Source="ic_sr.png"/>
+                         <Label Text="Service Request" FontSize="18" Margin="10,0,0,0" VerticalTextAlignment="Center" TextColor="White"
+                               >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_SR" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </FlexLayout>
+
+                    <FlexLayout Direction="Row" AlignContent="Stretch" Margin="0,10,0,0" x:Name="isManagerRaiseHand" IsVisible="false">
+                        <Image Source="ic_rin.png"/>
+                         <Label Text="Raise Your Hand" FontSize="18" Margin="10,0,0,0" VerticalTextAlignment="Center" TextColor="White"
+                                >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_RaiseHand" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </FlexLayout>
+
+                    <FlexLayout Direction="Row" AlignContent="Stretch" Margin="0,10,0,0" x:Name="isManagerRIN" IsVisible="false">
+                        <Image Source="ic_rin.png"/>
+                         <Label Text="Recruitment" FontSize="18" Margin="10,0,0,0" VerticalTextAlignment="Center" TextColor="White"
+                                >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_Recruitment" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </FlexLayout>
+
+                    <FlexLayout Direction="Row" AlignContent="Stretch" Margin="0,10,0,0" x:Name="a1" >
+                        <Image Source="attendance2.png"/>
+                         <Label Text="Attendance" FontSize="18" Margin="10,0,0,0" VerticalTextAlignment="Center" TextColor="White">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_Attendance" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </FlexLayout>
+
+                    <StackLayout VerticalOptions="EndAndExpand" Orientation="Vertical" Margin="0,10,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="infinite_logo" Grid.Column="0" />
+                            <StackLayout Orientation="Vertical" Grid.Column="1">
+                                <Label Text="Version 3.6" FontSize="10" TextColor="White" />
+                                <Label Text="Infinite Computer Solutions" FontSize="12" TextColor="White" />
+                                <Label Text="All Rights Reserved" FontSize="8" TextColor="White" />
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                    </StackLayout>
+                    </ScrollView>
+                    
+
+                    
+                </StackLayout>
+            </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Master>
+     <MasterDetailPage.Detail>
+        <ContentPage>
+            <ContentPage.Content>
+                <StackLayout BackgroundColor="White" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HorizontalOptions="FillAndExpand" HeightRequest="50" Orientation="Horizontal" VerticalOptions="Center">
+                        <Grid Margin="10,5,5,5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="0,0,15,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35" />
+                            </Grid.RowDefinitions>
+                            <Image Source="menu.png" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="0,0,0,0">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Menu" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Image Source="home_logo.png" IsVisible="false" Grid.Column="1" HeightRequest="100" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
+                            <Image Source="logo_bizx.png" Grid.Column="1" Grid.Row="0" Margin="20,0,0,0" Aspect="AspectFill"  VerticalOptions="Center"/>
+                        
+                        </Grid>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="White" />
+                    <StackLayout x:Name="loadingStack" IsVisible="false" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <ActivityIndicator IsRunning="true" IsEnabled="true" Color="White" />
+                        <Label Text="Loading" TextColor="White" />
+                    </StackLayout>
+
+                    <ScrollView BackgroundColor="White">
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Vertical" Margin="10,5,0,0" Padding="10">
+                                <Label Text="Welcome" TextColor="{StaticResource PrimaryGray}" FontSize="22"/>
+                                <Label x:Name="EmployeeName" TextColor="{StaticResource PrimaryGray}" FontSize="22"/>
+                            </StackLayout>
+                             <StackLayout x:Name="ManagerStackView" IsVisible="false" Orientation="Horizontal" Margin="10,0,0,0" Padding="10,0,0,0">
+
+                                 <Label Text="0" FontSize="45" TextColor="{StaticResource PrimaryColor}" x:Name="TotalRequestTextView"/>
+
+                                 <Grid Margin="0,20,0,0" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
+
+                                     <Grid.RowDefinitions>
+                                         <RowDefinition Height="2"/>
+                                         <RowDefinition Height="*"/>
+                                     </Grid.RowDefinitions>
+
+                                     <Grid Grid.Row="0">
+                                         <Grid.ColumnDefinitions>
+                                             <ColumnDefinition Width="15"/>
+                                             <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                          <BoxView BackgroundColor="Red" WidthRequest="5" Grid.Column="0"/>
+                                     </Grid>
+                                     <StackLayout Padding="0" Grid.Row="1">
+                                          <Label Text="Pending Request" FontSize="14" TextColor="{StaticResource PrimaryGray}"/>
+                                     </StackLayout>
+                                 </Grid>
+                            </StackLayout>
+                             <Grid Margin="10,30,10,10" x:Name="ManagerDashBoardView" IsVisible="false">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="1"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+
+                                 <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Column="1" Grid.Row="0"/>
+                                 <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Column="1" Grid.Row="1"/>
+                                 <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Column="1" Grid.Row="2"/>
+                                 <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Column="1" Grid.Row="3"/>
+                         <BoxView x:Name="raiseHandBox" IsVisible="false" WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryWhite}"
+                                  Grid.Column="1" Grid.Row="4"/>
+                                 
+                                 
+                                 <Grid Grid.Column="0" Grid.Row="0">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                  
+                                        <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+
+                                       <!--<Grid Grid.Row="0">
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                        
+
+                                           <Image Source="icon_timesheet.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                           <StackLayout Grid.Column="1" HeightRequest="90">
+                                               <Grid >
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label x:Name="timesheet_count" Text="0"  TextColor="{StaticResource PrimaryColor}" FontSize="40"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="1" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="TimeSheet"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                               <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_ItemTapped_TimeSheet" />
+                                               </StackLayout.GestureRecognizers>
+                                           </StackLayout>
+                                           
+                                       </Grid>-->
+                                       <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                  
+                                      
+                                       <Grid Grid.Row="0">
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                        
+
+                                           <Image Source="icon_servicemanagement.png" Grid.Column="0" Margin="10,0,0,0"/>
+
+                                           <StackLayout Grid.Column="1" HeightRequest="90">
+                                                <Grid Grid.Column="1" HeightRequest="90">
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label x:Name="sr_count" Text="0"  TextColor="{StaticResource PrimaryColor}" FontSize="40"/>
+                                               </StackLayout>
+
+                                               <StackLayout Grid.Row="1" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Service Request"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+
+                                           </Grid>
+
+                                                <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_ItemTapped_SR" />
+                                               </StackLayout.GestureRecognizers>
+
+                                            </StackLayout>
+                                           
+                                       </Grid>
+                                    </Grid>
+
+                                    </Grid>
+                                </Grid>
+                                 <Grid Grid.Column="0" Grid.Row="1">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                  
+                                        <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+
+                                       <Grid Grid.Row="0">
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                        
+
+                                           <Image Source="icon_leave.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                            <StackLayout Grid.Column="1" HeightRequest="90">
+                                                <Grid Grid.Column="1" HeightRequest="90">
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label x:Name="leave_count" Text="0"  TextColor="{StaticResource PrimaryColor}" FontSize="40"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="1" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Leave"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                                <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_ItemTapped_Leave" />
+                                               </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+                                           
+                                       </Grid>
+                                    </Grid>
+                                </Grid>
+                                 <Grid Grid.Column="0" Grid.Row="2">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                  <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+
+                                       <Grid Grid.Row="0">
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+
+                                           <Image Source="icon_travel.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                           <StackLayout Grid.Column="1" HeightRequest="90">
+                                               <Grid Grid.Column="1" HeightRequest="90">
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label x:Name="travel_count" Text="0"  TextColor="{StaticResource PrimaryColor}" FontSize="40"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="1" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Travel"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                               <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_ItemTapped_Travel" />
+                                               </StackLayout.GestureRecognizers>
+                                           </StackLayout>
+                                           
+                                       </Grid>
+                                    </Grid>
+                                </Grid>
+                                 <Grid Grid.Column="2" Grid.Row="0">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                  
+                                        <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+
+                                       <Grid Grid.Row="0">
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                        
+
+                                           <Image Source="icon_expense.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                           <StackLayout Grid.Column="1" HeightRequest="90">
+                                               <Grid Grid.Column="1" HeightRequest="90">
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label x:Name="expense_count" Text="0"  TextColor="{StaticResource PrimaryColor}" FontSize="40"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="1" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Expense"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                               <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_ItemTapped_Expense" />
+                                               </StackLayout.GestureRecognizers>
+                                           </StackLayout>
+                                           
+                                       </Grid>
+                                    </Grid>
+                                </Grid>
+                                 <Grid Grid.Column="2" Grid.Row="1">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                  
+                                        <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+
+                                       <Grid Grid.Row="0">
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                        
+
+                                           <Image Source="icon_visa.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                            <StackLayout Grid.Column="1" HeightRequest="90">
+                                                 <Grid Grid.Column="1" HeightRequest="90">
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label x:Name="visa_count" Text="0"  TextColor="{StaticResource PrimaryColor}" FontSize="40"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="1" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Visa"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                                <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_ItemTapped_Visa" />
+                                               </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+                                          
+                                       </Grid>
+                                    </Grid>
+                                </Grid>
+                                 <Grid Grid.Column="2" Grid.Row="2">
+
+                                     <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                  <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+
+                                       
+                                       <Grid Grid.Row="0">
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                        
+
+                                           <Image Source="icon_buhead_approval_list.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                            <StackLayout Grid.Column="1" HeightRequest="90">
+                                                <Grid Grid.Column="1" HeightRequest="90">
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label x:Name="offer_count" Text="0"  TextColor="{StaticResource PrimaryColor}" FontSize="40"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="1" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Offer"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                                <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_ItemTapped_OFFER" />
+                                               </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+                                           
+                                       </Grid>
+                                    </Grid>
+
+                                </Grid>
+                                 <Grid Grid.Column="0" Grid.Row="3" >
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                  <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+
+                                       <Grid Grid.Row="0">
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+
+                                           <Image Source="icon_recruitment.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                           <StackLayout Grid.Column="1" HeightRequest="90">
+                                               <Grid Grid.Column="1" HeightRequest="90">
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label x:Name="rin_count" Text="0"  TextColor="{StaticResource PrimaryColor}" FontSize="40"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="1" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="RIN"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                               <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_ItemTapped_RIN" />
+                                               </StackLayout.GestureRecognizers>
+                                           </StackLayout>
+                                           
+                                       </Grid>
+                                    </Grid>
+                                </Grid>
+                                 <Grid Grid.Column="2" Grid.Row="3">
+                                   
+                                </Grid>
+
+                                  
+                                   <Grid Grid.Column="2" Grid.Row="3" x:Name="RaiseHandGrid" IsVisible="false">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                        
+                                       <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+                                       
+                                       <Grid Grid.Row="0">
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                        
+
+                                           <Image Source="Hand_Icon_64x64.png" Grid.Column="0" Margin="10,0,0,10"/>
+                                            <StackLayout Grid.Column="1" HeightRequest="90">
+                                                <Grid Grid.Column="1" HeightRequest="90">
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label x:Name="raiseHand_count" Text="0"  TextColor="{StaticResource PrimaryColor}" FontSize="40"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="1" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Raise Your Hand" HorizontalTextAlignment="Center"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                                <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_RaiseHand" />
+                                               </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+                                           
+                                       </Grid>
+                                       
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                             <Grid Margin="10,30,10,10" x:Name="EmployeeDashBoardView" IsVisible="false">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="1"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+
+                                 <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}"
+                                          Grid.Column="1" Grid.Row="0"/>
+                                 <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}"
+                                          Grid.Column="1" Grid.Row="1"/>
+                                 <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}"
+                                          Grid.Column="1" Grid.Row="2"/>
+                                 <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}"
+                                          Grid.Column="1" Grid.Row="3"/>
+                                 <BoxView x:Name="RINLine" WidthRequest="1" IsVisible="false" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}"
+                                          Grid.Column="1" Grid.Row="4"/>
+                                 <Grid Grid.Column="0" Grid.Row="0">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                  
+                                        <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+
+                                       <!--<StackLayout Grid.Row="0" x:Name="timesheetStack">
+                                            <Grid >
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                           <Grid Grid.Column="0" HeightRequest="100">
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Image Source="icon_timesheet.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="TimeSheet"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Timesheet" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>-->
+
+                                       <Grid Grid.Column="0" Grid.Row="0" x:Name="leaveStack">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                  
+                                       
+                                       <StackLayout  Grid.Row="0">
+                                           <Grid>
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                           <Grid Grid.Column="0" HeightRequest="100">
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Image Source="icon_leave.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Leave"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Leave" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>
+                                       
+                                    </Grid>
+                                </Grid>
+                                      
+                                    </Grid>
+                                </Grid>
+                                 <!--<Grid Grid.Column="0" Grid.Row="1" x:Name="leaveStack">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                  
+                                        <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+                                       <StackLayout  Grid.Row="0">
+                                           <Grid>
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                           <Grid Grid.Column="0" HeightRequest="100">
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Image Source="icon_leave.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Leave"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Leave" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>
+                                       
+                                    </Grid>
+                                </Grid>-->
+                                 <Grid  Grid.Column="0" Grid.Row="3"  x:Name="travelStack">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+
+                                     <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+                                       <StackLayout Grid.Row="0">
+                                           <Grid >
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                           
+                                           <Grid Grid.Column="0" HeightRequest="100">
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Image Source="icon_travel.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Travel"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Travel" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>
+                                       
+                                    </Grid>
+                                </Grid>
+                                 <Grid Grid.Column="2" Grid.Row="0" x:Name="expenseStack">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                  
+                                        <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+                                       <StackLayout Grid.Row="0">
+                                        <Grid>
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+
+                                           <Grid Grid.Column="0" HeightRequest="100">
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <Image Source="icon_expense.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Expense"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Expense" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>
+                                       
+                                    </Grid>
+                                </Grid>
+                                 <Grid Grid.Column="2" Grid.Row="1" x:Name="visaStack">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                  
+                                        <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+                                       <StackLayout Grid.Row="0">
+                                           <Grid >
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+
+                                           <Grid Grid.Column="0" HeightRequest="100">
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <Image Source="icon_visa.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Visa"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Visa" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>
+                                       
+                                    </Grid>
+                                </Grid>
+                                 <Grid Grid.Column="0" Grid.Row="1" x:Name="incidentStack">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+
+                                       <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+                                       <StackLayout Grid.Row="0">
+                                           <Grid >
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                           <Grid Grid.Column="0" HeightRequest="100" >
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <Image Source="icon_Incidentmanagement.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Incident"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Incident" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>
+
+                                       
+                                    </Grid>
+                                </Grid>
+                                 <Grid Grid.Column="0" Grid.Row="2" x:Name="srStack">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                       <!--<BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>-->
+                                       <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+                                       <StackLayout Grid.Row="0">
+                                           <Grid>
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                           <Grid Grid.Column="0" HeightRequest="100" >
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <Image Source="icon_servicemanagement.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Service Request"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_SR" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>
+                                       
+                                    </Grid>
+                                </Grid>
+                                 <Grid  Grid.Column="2" Grid.Row="3"  x:Name="raiseHandStack">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+
+                                       <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+                                       <StackLayout Grid.Row="0">
+                                           <Grid >
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                           <Grid Grid.Column="0" HeightRequest="100" >
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <Image Source="Hand_Icon_64x64.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Raise Your Hand"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Raise_Hand" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>
+
+                                       
+                                    </Grid>
+                                </Grid>
+                                 <!--Grid.Column="0" Grid.Row="4"-->
+                                  <Grid  Grid.Column="2" Grid.Row="2" x:Name="covidStack" IsVisible="false">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                       <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+                                       <StackLayout Grid.Row="0">
+                                           <Grid>
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                           <Grid Grid.Column="0" HeightRequest="100" >
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <Image Source="icon_covid.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Covid Vaccination"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Vaccine" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>
+                                       
+                                    </Grid>
+                                </Grid>
+                                 <!--Grid.Column="0" Grid.Row="4"-->
+                                 <Grid   Grid.Column="2" Grid.Row="2" x:Name="covidStackCopy" IsVisible="false">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                       <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+                                       <StackLayout Grid.Row="0">
+                                           <Grid>
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                           <Grid Grid.Column="0" HeightRequest="100" >
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <Image Source="icon_covid.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Covid Vaccination"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Vaccine" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>
+                                       
+                                    </Grid>
+                                </Grid>
+                                 <Grid Grid.Column="0" Grid.Row="4" x:Name="RINStackCopy" IsVisible="false">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                       <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+                                       <StackLayout Grid.Row="0">
+                                           <Grid>
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                           <Grid Grid.Column="0" HeightRequest="100" >
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <Image Source="icon_recruitment.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="RIN"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_RIN" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>
+                                       
+                                    </Grid>
+                                </Grid>
+                                 <Grid  Grid.Column="0" Grid.Row="4" x:Name="RINStack">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                       <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+                                       <StackLayout Grid.Row="0">
+                                           <Grid>
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                           <Grid Grid.Column="0" HeightRequest="100" >
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <Image Source="icon_recruitment.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="RIN"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_RIN" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>
+                                       
+                                    </Grid>
+                                </Grid>
+
+                                 <Grid  Grid.Column="2" Grid.Row="4" x:Name="Attendance" IsVisible="false">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                       <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+                                       <StackLayout Grid.Row="0">
+                                           <Grid>
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                           <Grid Grid.Column="0" HeightRequest="100" >
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <Image Source="attendance.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Attendance"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Attendance" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>
+                                       
+                                    </Grid>
+                                </Grid>
+
+                                 <Grid Grid.Column="1" Grid.Row="5" x:Name="ji" IsVisible="false" >
+                                      <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" />
+                                     </Grid>
+
+                                 <Grid  Grid.Column="0" Grid.Row="5" x:Name="Attendancecopy" IsVisible="false">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                       <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+                                      
+                                       <StackLayout Grid.Row="0">
+                                           <Grid>
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                           <Grid Grid.Column="0" HeightRequest="100" >
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <Image Source="attendance.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Attendance"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                               
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Attendance" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>
+                                       
+                                    </Grid>
+                                </Grid>
+
+                                 <Grid Grid.Column="2" Grid.Row="3"  x:Name="raiseHandStackCopy" IsVisible="false">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+
+                                       <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+                                       <StackLayout Grid.Row="0">
+                                           <Grid >
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                           <Grid Grid.Column="0" HeightRequest="100" >
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <Image Source="Hand_Icon_64x64.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Raise Your Hand"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Raise_Hand" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>
+
+                                       
+                                    </Grid>
+                                </Grid>
+                                 
+                            </Grid>
+
+                            <Grid Margin="10,30,10,10" x:Name="EmployeeDashBoardViewConvergence" IsVisible="false">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="1"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+
+                                 <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}"
+                                          Grid.Column="1" Grid.Row="0"/>
+                                 
+                                 <Grid Grid.Column="0" Grid.Row="0">
+                                   <Grid>
+                                       <Grid.RowDefinitions>
+                                           <RowDefinition Height="*"/>
+                                           <RowDefinition Height="1"/>
+                                       </Grid.RowDefinitions>
+                                  
+                                        <BoxView WidthRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}" Grid.Row="1"/>
+
+                                       <StackLayout Grid.Row="0" >
+                                            <Grid >
+                                           <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                         </Grid.ColumnDefinitions>
+                                           <Grid Grid.Column="0" HeightRequest="100">
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="*"/>
+                                                   <RowDefinition Height="*"/>
+                                               </Grid.RowDefinitions>
+                                               <StackLayout Grid.Row="0" Margin="0"  HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Image Source="icon_leave.png" Grid.Column="0" Margin="10,0,0,0"/>
+                                               </StackLayout>
+                                               <StackLayout Grid.Row="2" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                                   <Label Text="Leave"  TextColor="{StaticResource PrimaryGray}" FontSize="18"/>
+                                               </StackLayout>
+                                           </Grid>
+                                       </Grid>
+                                           <StackLayout.GestureRecognizers>
+                                                   <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_Leave" />
+                                               </StackLayout.GestureRecognizers>
+                                       </StackLayout>
+
+                                      
+                                    </Grid>
+                                </Grid>
+                                 
+                            </Grid>
+                        </StackLayout>
+
+                       
+                         
+                    </ScrollView>
+
+                   
+                </StackLayout>
+               
+            </ContentPage.Content>
+        </ContentPage>
+       
+
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Xamarin.Forms.4.3.0.908675\build\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.4.3.0.908675\build\Xamarin.Forms.props')" />
+  <Import Project="..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.props" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{D1BEED8E-CF70-48CE-8058-2B483109A859}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>bizx.iOS</RootNamespace>
+    <AssemblyName>bizx.iOS</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>Apple Distribution: Infinite Computer Solutions India Ltd (7A3GLR283E)</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <IOSDebuggerPort>65217</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision>Automatic</CodesignProvision>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchExtraArgs>--registrar:static</MtouchExtraArgs>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
+    <MtouchNoSymbolStrip>
+    </MtouchNoSymbolStrip>
+    <OptimizePNGs>
+    </OptimizePNGs>
+    <MtouchVerbosity>2</MtouchVerbosity>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <NoStdLib>false</NoStdLib>
+    <WarningsNotAsErrors>
+    </WarningsNotAsErrors>
+    <CodesignExtraArgs>
+    </CodesignExtraArgs>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <OnDemandResourcesInitialInstallTags>
+    </OnDemandResourcesInitialInstallTags>
+    <OnDemandResourcesPrefetchOrder>
+    </OnDemandResourcesPrefetchOrder>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <OnDemandResourcesInitialInstallTags>
+    </OnDemandResourcesInitialInstallTags>
+    <OnDemandResourcesPrefetchOrder>
+    </OnDemandResourcesPrefetchOrder>
+    <MtouchFastDev>
+    </MtouchFastDev>
+    <MtouchUseThumb>
+    </MtouchUseThumb>
+    <CodesignProvision>BizX_Appstore_Profile</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <MtouchVerbosity>2</MtouchVerbosity>
+    <MtouchVerbosity>2</MtouchVerbosity>
+    <ExternalConsole>false</ExternalConsole>
+    <CodesignProvision>
+    </CodesignProvision>
+    <MtouchDebug>
+    </MtouchDebug>
+    <IOSDebugOverWiFi>
+    </IOSDebugOverWiFi>
+    <MtouchUseThumb>
+    </MtouchUseThumb>
+    <MtouchFloat32>
+    </MtouchFloat32>
+    <IpaIncludeArtwork>
+    </IpaIncludeArtwork>
+    <IpaMetadata>
+    </IpaMetadata>
+    <CrashReportingEnabled>false</CrashReportingEnabled>
+    <LangVersion>Default</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchFloat32>true</MtouchFloat32>
+    <IOSDebuggerPort>58679</IOSDebuggerPort>
+    <MtouchLink>Full</MtouchLink>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodesignExtraArgs>
+    </CodesignExtraArgs>
+    <CodesignExtraArgs>
+    </CodesignExtraArgs>
+    <IOSDebugOverWiFi>
+    </IOSDebugOverWiFi>
+    <MtouchEnableBitcode>
+    </MtouchEnableBitcode>
+    <MtouchI18n>
+    </MtouchI18n>
+    <OnDemandResourcesPrefetchOrder>
+    </OnDemandResourcesPrefetchOrder>
+    <RunWithWarnings>true</RunWithWarnings>
+    <CodesignProvision>BizX_Development</CodesignProvision>
+    <CodesignProvision>BizX_Development</CodesignProvision>
+    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Plugin.Connectivity.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Connectivity.3.1.1\lib\Xamarin.iOS10\Plugin.Connectivity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Connectivity">
+      <HintPath>..\packages\Xam.Plugin.Connectivity.3.1.1\lib\Xamarin.iOS10\Plugin.Connectivity.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageCircle.Forms.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Forms.ImageCircle.2.0.2\lib\Xamarin.iOS10\ImageCircle.Forms.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageCircle.Forms.Plugin.iOS">
+      <HintPath>..\packages\Xam.Plugins.Forms.ImageCircle.2.0.2\lib\Xamarin.iOS10\ImageCircle.Forms.Plugin.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SuaveControls.FloatingActionButton">
+      <HintPath>..\packages\SuaveControls.FloatingActionButton.2018.1.5\lib\xamarinios10\SuaveControls.FloatingActionButton.dll</HintPath>
+    </Reference>
+    <Reference Include="SuaveControls.FloatingActionButton.iOS">
+      <HintPath>..\packages\SuaveControls.FloatingActionButton.2018.1.5\lib\xamarinios10\SuaveControls.FloatingActionButton.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.DownloadManager.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.DownloadManager.1.3.6\lib\Xamarin.iOS10\Plugin.DownloadManager.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.DownloadManager">
+      <HintPath>..\packages\Xam.Plugins.DownloadManager.1.3.6\lib\Xamarin.iOS10\Plugin.DownloadManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\packages\Xamarin.Forms.4.3.0.908675\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\packages\Xamarin.Forms.4.3.0.908675\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\packages\Xamarin.Forms.4.3.0.908675\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.FilePicker">
+      <HintPath>..\packages\Xamarin.Plugin.FilePicker.2.1.44-beta\lib\xamarinios10\Plugin.FilePicker.dll</HintPath>
+    </Reference>
+    <Reference Include="DLToolkit.Forms.Controls.FlowListView">
+      <HintPath>..\packages\DLToolkit.Forms.Controls.FlowListView.2.0.11\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+netstandard1.0\DLToolkit.Forms.Controls.FlowListView.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup">
+      <HintPath>..\packages\Rg.Plugins.Popup.1.1.4.168\lib\Xamarin.IOS\Rg.Plugins.Popup.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup.IOS">
+      <HintPath>..\packages\Rg.Plugins.Popup.1.1.4.168\lib\Xamarin.IOS\Rg.Plugins.Popup.IOS.dll</HintPath>
+    </Reference>
+    <Reference Include="ExifLib">
+      <HintPath>..\packages\ExifLib.PCL.1.0.1\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Core">
+      <HintPath>..\packages\XLabs.Core.2.0.5782\lib\Xamarin.iOS10\XLabs.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Platform">
+      <HintPath>..\packages\XLabs.Platform.2.0.5782\lib\Xamarin.iOS10\XLabs.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Platform.iOS">
+      <HintPath>..\packages\XLabs.Platform.2.0.5782\lib\Xamarin.iOS10\XLabs.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Ioc">
+      <HintPath>..\packages\XLabs.IoC.2.0.5782\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Ioc.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Serialization">
+      <HintPath>..\packages\XLabs.Serialization.2.0.5782\lib\Xamarin.iOS10\XLabs.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Forms">
+      <HintPath>..\packages\XLabs.Forms.2.0.5782\lib\Xamarin.iOS10\XLabs.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Forms.iOS">
+      <HintPath>..\packages\XLabs.Forms.2.0.5782\lib\Xamarin.iOS10\XLabs.Forms.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions">
+      <HintPath>..\packages\Plugin.Permissions.3.0.0.12\lib\xamarinios10\Plugin.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="Analytics.NET">
+      <HintPath>..\packages\Analytics.3.0.0\lib\Analytics.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="Microsoft.AppCenter">
+      <HintPath>..\packages\Microsoft.AppCenter.1.13.2\lib\Xamarin.iOS10\Microsoft.AppCenter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.iOS.Bindings">
+      <HintPath>..\packages\Microsoft.AppCenter.1.13.2\lib\Xamarin.iOS10\Microsoft.AppCenter.iOS.Bindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Analytics">
+      <HintPath>..\packages\Microsoft.AppCenter.Analytics.1.13.2\lib\Xamarin.iOS10\Microsoft.AppCenter.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Analytics.iOS.Bindings">
+      <HintPath>..\packages\Microsoft.AppCenter.Analytics.1.13.2\lib\Xamarin.iOS10\Microsoft.AppCenter.Analytics.iOS.Bindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Crashes">
+      <HintPath>..\packages\Microsoft.AppCenter.Crashes.1.13.2\lib\Xamarin.iOS10\Microsoft.AppCenter.Crashes.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Crashes.iOS.Bindings">
+      <HintPath>..\packages\Microsoft.AppCenter.Crashes.1.13.2\lib\Xamarin.iOS10\Microsoft.AppCenter.Crashes.iOS.Bindings.dll</HintPath>
+    </Reference>
+    <Reference Include="dotMorten.Xamarin.Forms.AutoSuggestBox">
+      <HintPath>..\packages\dotMorten.Xamarin.Forms.AutoSuggestBox.1.1.1\lib\xamarinios10\dotMorten.Xamarin.Forms.AutoSuggestBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing">
+      <HintPath>..\packages\Syncfusion.Licensing.17.2.0.34\lib\Xamarin.iOS10\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Core.XForms">
+      <HintPath>..\packages\Syncfusion.Xamarin.Core.17.2.0.34\lib\Xamarin.iOS10\Syncfusion.Core.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Core.XForms.iOS">
+      <HintPath>..\packages\Syncfusion.Xamarin.Core.17.2.0.34\lib\Xamarin.iOS10\Syncfusion.Core.XForms.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfAutoComplete.iOS">
+      <HintPath>..\packages\Syncfusion.Xamarin.SfAutoComplete.17.2.0.34\lib\Xamarin.iOS10\Syncfusion.SfAutoComplete.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfAutoComplete.XForms">
+      <HintPath>..\packages\Syncfusion.Xamarin.SfAutoComplete.17.2.0.34\lib\Xamarin.iOS10\Syncfusion.SfAutoComplete.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfAutoComplete.XForms.iOS">
+      <HintPath>..\packages\Syncfusion.Xamarin.SfAutoComplete.17.2.0.34\lib\Xamarin.iOS10\Syncfusion.SfAutoComplete.XForms.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Essentials">
+      <HintPath>..\packages\Xamarin.Essentials.1.7.0\lib\xamarinios10\Xamarin.Essentials.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK-1.0" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="Xamarin.Forms.Platform.iOS">
+      <HintPath>..\packages\Xamarin.Forms.4.3.0.908675\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.LatestVersion">
+      <HintPath>..\packages\Xam.Plugin.LatestVersion.2.1.0\lib\xamarinios10\Plugin.LatestVersion.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\bizx\bizx.csproj">
+      <Project>{4E63C067-FFE8-477E-9745-C9FE7D93A885}</Project>
+      <Name>bizx</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\.DS_Store">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcon.appiconset\bizx-40x40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcon.appiconset\bizx-60x60.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcon.appiconset\bizx-58x58.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcon.appiconset\bizx-87x87.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcon.appiconset\bizx-80x80.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcon.appiconset\bizx-120x120.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcon.appiconset\bizx-180x180.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcon.appiconset\bizx-20x20.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcon.appiconset\bizx-29x29.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\40x40-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\60x60-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58x58.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\87x87.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\80x80.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\120x120.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\120x120-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\29x29.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58x58-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\40x40-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\80x80-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\76x76.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\152x152.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\167x167.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024x1024-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\192x192_180x180.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\29x29_20x20.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="customViews\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="NetworkConnection.cs" />
+    <Compile Include="customViews\NavigationPageRenderer.cs" />
+    <Compile Include="customViews\CustomEntryRenderer.cs" />
+    <Compile Include="customViews\CustomEditorRenderer.cs" />
+    <Compile Include="customViews\CustomPickerRenderer.cs" />
+    <Compile Include="customViews\BorderlessDatePickerRenderer.cs" />
+    <Compile Include="customViews\ShowHidePasswordEntryRenderer.cs" />
+    <Compile Include="customViews\TabNavigationPageRenderer.cs" />
+    <Compile Include="customViews\RadioButtonRenderer.cs" />
+    <Compile Include="customViews\RadioButtonView.cs" />
+    <Compile Include="customViews\BorderlessEntryRenderer.cs" />
+    <Compile Include="customViews\BorderlessDatePickerCenterRenderer.cs" />
+    <Compile Include="customViews\BorderlessDatePickerNewRenderer.cs" />
+    <Compile Include="customViews\DownloadPdfFile.cs" />
+    <Compile Include="customViews\QLPreviewItemFileSystem.cs" />
+    <Compile Include="customViews\PreviewControllerDS.cs" />
+    <Compile Include="customViews\MySwitchRendererd.cs" />
+    <Compile Include="customViews\IosForceKeyboardDismissalService.cs" />
+    <Compile Include="customViews\QuitApplication.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\.DS_Store" />
+    <BundleResource Include="Resources\Pass.png" />
+    <BundleResource Include="Resources\Person.png" />
+    <BundleResource Include="Resources\ic_action_keyboard_arrow_right.png" />
+    <BundleResource Include="Resources\Fonts\Ubuntu-B.ttf" />
+    <BundleResource Include="Resources\Fonts\Ubuntu-BI.ttf" />
+    <BundleResource Include="Resources\Fonts\Ubuntu-C.ttf" />
+    <BundleResource Include="Resources\Fonts\Ubuntu-L.ttf" />
+    <BundleResource Include="Resources\Fonts\Ubuntu-LI.ttf" />
+    <BundleResource Include="Resources\Fonts\Ubuntu-M.ttf" />
+    <BundleResource Include="Resources\Fonts\Ubuntu-MI.ttf" />
+    <BundleResource Include="Resources\Fonts\Ubuntu-R.ttf" />
+    <BundleResource Include="Resources\Fonts\Ubuntu-RI.ttf" />
+    <BundleResource Include="Resources\ic_action_expand_more.png" />
+    <BundleResource Include="Resources\ic_action_more_vert.png" />
+    <BundleResource Include="Resources\ic_add_white_.png" />
+    <BundleResource Include="Resources\ic_date_range.png" />
+    <BundleResource Include="Resources\ic_done_all_white.png" />
+    <BundleResource Include="Resources\ic_left_arrow.png" />
+    <BundleResource Include="Resources\ic_log_off.png" />
+    <BundleResource Include="Resources\ic_log_out.png" />
+    <BundleResource Include="Resources\ic_no_internet.png" />
+    <BundleResource Include="Resources\ic_note_add_white.png" />
+    <BundleResource Include="Resources\ic_right_arrow.png" />
+    <BundleResource Include="Resources\ic_save_white.png" />
+    <BundleResource Include="Resources\left_arrow.png" />
+    <BundleResource Include="Resources\right_arrow.png" />
+    <BundleResource Include="Resources\ic_visibility_off_black.png" />
+    <BundleResource Include="Resources\ic_visibility.png" />
+    <BundleResource Include="Resources\timesheet1.png" />
+    <BundleResource Include="Resources\travel1.png" />
+    <BundleResource Include="Resources\ic_arrow_back_white.png" />
+    <BundleResource Include="Resources\ic_arrow_right.png" />
+    <BundleResource Include="Resources\ic_chevron_right_black.png" />
+    <BundleResource Include="Resources\ic_keyboard_arrow_down_black.png" />
+    <BundleResource Include="Resources\ic_left_right_arrow.png" />
+    <BundleResource Include="Resources\ic_search_black.png" />
+    <BundleResource Include="Resources\ic_team.png" />
+    <BundleResource Include="Resources\ic_timesheet.png" />
+    <BundleResource Include="Resources\ic_radio_button_unchecked_2x.png" />
+    <BundleResource Include="Resources\ic_radio_button_unchecked_3x.png" />
+    <BundleResource Include="Resources\ic_radio_button_unchecked.png" />
+    <BundleResource Include="Resources\ic_radio_button_checked_2x.png" />
+    <BundleResource Include="Resources\ic_radio_button_checked_3x.png" />
+    <BundleResource Include="Resources\ic_radio_button_checked.png" />
+    <BundleResource Include="Resources\ic_close_black_2x.png" />
+    <BundleResource Include="Resources\ic_close_black.png" />
+    <BundleResource Include="Resources\ic_add_white.png" />
+    <BundleResource Include="Resources\baseline_check_circle_black_18dp.png" />
+    <BundleResource Include="Resources\baseline_check_circle_outline_black_18dp.png" />
+    <BundleResource Include="Resources\ic_checked_checkbox.png" />
+    <BundleResource Include="Resources\ic_unchecked_checkbox.png" />
+    <BundleResource Include="Resources\expense1.png" />
+    <BundleResource Include="Resources\circle.png" />
+    <BundleResource Include="Resources\ic_close_white.png" />
+    <BundleResource Include="Resources\ic_attach_file_white.png" />
+    <BundleResource Include="Resources\ic_delete.png" />
+    <BundleResource Include="Resources\ic_settings_power.png" />
+    <BundleResource Include="Resources\menu.png" />
+    <BundleResource Include="Resources\home.png" />
+    <BundleResource Include="Resources\user.png" />
+    <BundleResource Include="Resources\profile.png" />
+    <BundleResource Include="Resources\logoff.png" />
+    <BundleResource Include="Resources\profile_icon.png" />
+    <BundleResource Include="Resources\avatar_circle.png" />
+    <BundleResource Include="Resources\login_screen.png" />
+    <BundleResource Include="Resources\splash_screen.png" />
+    <BundleResource Include="Resources\servicemanagement1.png" />
+    <BundleResource Include="Resources\visa1.png" />
+    <BundleResource Include="Resources\bizx_logo.png" />
+    <BundleResource Include="Resources\splash_icon.png" />
+    <BundleResource Include="Resources\home_logo.png" />
+    <BundleResource Include="Resources\Fonts\Arimo-Bold.ttf" />
+    <BundleResource Include="Resources\Fonts\Arimo-Regular.ttf" />
+    <BundleResource Include="Resources\infinite_logo.png" />
+    <BundleResource Include="Resources\timesheet.png" />
+    <BundleResource Include="Resources\expense.png" />
+    <BundleResource Include="Resources\travel.png" />
+    <BundleResource Include="Resources\visa.png" />
+    <BundleResource Include="Resources\servicedesk.png" />
+    <BundleResource Include="Resources\leave1.png" />
+    <BundleResource Include="Resources\leave.png" />
+    <BundleResource Include="Resources\dashboard.png" />
+    <BundleResource Include="GoogleService-Info.plist" />
+    <BundleResource Include="Resources\change_password.png" />
+    <BundleResource Include="Resources\ic_close_white_new_1.png" />
+    <BundleResource Include="Resources\Incidentmanagement1.png" />
+    <BundleResource Include="Resources\servicedesk1.png" />
+    <BundleResource Include="Resources\logo_bizx.png" />
+    <BundleResource Include="Resources\icon_expense.png" />
+    <BundleResource Include="Resources\icon_leave.png" />
+    <BundleResource Include="Resources\icon_servicemanagement.png" />
+    <BundleResource Include="Resources\icon_timesheet.png" />
+    <BundleResource Include="Resources\icon_travel.png" />
+    <BundleResource Include="Resources\icon_visa.png" />
+    <BundleResource Include="Resources\icon_Incidentmanagement.png" />
+    <BundleResource Include="Resources\ic_small_calendar.png" />
+    <BundleResource Include="Resources\ic_expense.png" />
+    <BundleResource Include="Resources\ic_incident.png" />
+    <BundleResource Include="Resources\ic_sr.png" />
+    <BundleResource Include="Resources\ic_travel.png" />
+    <BundleResource Include="Resources\ic_visa.png" />
+    <BundleResource Include="Resources\ic_home.png" />
+    <BundleResource Include="Resources\ic_profile.png" />
+    <BundleResource Include="Resources\ic_filter.png" />
+    <BundleResource Include="Resources\icons_home_all.png" />
+    <BundleResource Include="Resources\ic_leave.png" />
+    <BundleResource Include="Resources\ic_dashboard.png" />
+    <BundleResource Include="Resources\icon_recruitment.png" />
+    <BundleResource Include="Resources\icon_buhead_approval_list.png" />
+    <BundleResource Include="Resources\ic_rin.png" />
+    <BundleResource Include="Resources\Advantage_Logo_120x20.png" />
+    <BundleResource Include="Resources\career_aspirations_96X96.png" />
+    <BundleResource Include="Resources\career_aspirations_256X256.png" />
+    <BundleResource Include="Resources\career_aspirations.png" />
+    <BundleResource Include="Resources\IDEA_96X96.png" />
+    <BundleResource Include="Resources\IDEA_256X256.png" />
+    <BundleResource Include="Resources\Infinite_Logo_White_48X48.png" />
+    <BundleResource Include="Resources\New_Submission_64x64.png" />
+    <BundleResource Include="Resources\OTHERS_96X96.png" />
+    <BundleResource Include="Resources\OTHERS_256X256.png" />
+    <BundleResource Include="Resources\Raise_the_Hand_White_64X64.png" />
+    <BundleResource Include="Resources\Raise_the_Hand_White_128X128.png" />
+    <BundleResource Include="Resources\raiseHand_96X96.png" />
+    <BundleResource Include="Resources\raiseHand_128X128.png" />
+    <BundleResource Include="Resources\raiseHand.png" />
+    <BundleResource Include="Resources\Report_Harassment_96X96.png" />
+    <BundleResource Include="Resources\Report_Harassment_256X256.png" />
+    <BundleResource Include="Resources\review_64x64.png" />
+    <BundleResource Include="Resources\Search_64x64.png" />
+    <BundleResource Include="Resources\Whistleblowing_96X96.png" />
+    <BundleResource Include="Resources\Whistleblowing_256X256.png" />
+    <BundleResource Include="Resources\Whistleblowing.png" />
+    <BundleResource Include="Resources\Logo_96X96.png" />
+    <BundleResource Include="Hand_Icon_64x64.png" />
+    <BundleResource Include="Resources\Raise_the_Hand_White_96X48.png" />
+    <BundleResource Include="Resources\icon_covid.png" />
+    <BundleResource Include="Resources\attendance.png" />
+    <BundleResource Include="Resources\attendance2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\ic_trash.png">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets')" />
+  <Import Project="..\packages\Xamarin.Forms.4.3.0.908675\build\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.4.3.0.908675\build\Xamarin.Forms.targets')" />
+  <Import Project="..\packages\Microsoft.Packaging.Tools.1.0.0-preview1-25301-01\build\Microsoft.Packaging.Tools.targets" Condition="Exists('..\packages\Microsoft.Packaging.Tools.1.0.0-preview1-25301-01\build\Microsoft.Packaging.Tools.targets')" />
+  <Import Project="..\packages\NETStandard.Library.2.0.0-preview1-25301-01\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.0-preview1-25301-01\build\netstandard2.0\NETStandard.Library.targets')" />
+</Project>

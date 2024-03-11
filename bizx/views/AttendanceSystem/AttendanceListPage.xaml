@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="bizx.views.AttendanceSystem.AttendanceListPage"
+    xmlns:local="clr-namespace:bizx.customViews"
+    NavigationPage.HasNavigationBar="False" BackgroundColor="White">
+
+    <ContentPage.Content>
+
+        <StackLayout Orientation="Vertical">
+            <StackLayout x:Name="header" BackgroundColor="{StaticResource BackgroundColor}" HorizontalOptions="FillAndExpand" HeightRequest="50" Orientation="Vertical" VerticalOptions="Center">
+                <Grid Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="30" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0" >
+                        <Image Source="ic_arrow_back_white.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Back_Click" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label x:Name="titleLbl" Text="Attendance List" Grid.Column="1" Margin="20,0,0,0" FontFamily="{StaticResource NormalFont}" FontSize="22" TextColor="White" VerticalOptions="Center" />
+                     
+                </Grid>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="White" />
+
+
+            <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="1.5*" />
+                         <ColumnDefinition Width="1.5*" />
+                    </Grid.ColumnDefinitions>
+                   
+                    
+               
+                        <local:CustomPicker Grid.Column="0" HeightRequest="35" x:Name="MonthPicker" Title="Select Month"
+                                            BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryGray}"
+                                            VerticalOptions="CenterAndExpand"
+                                    SelectedIndexChanged="MonthPicker_SelectedIndexChanged">
+                            <local:CustomPicker.ItemsSource >
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>January</x:String>
+                                    <x:String>Feburary</x:String>
+                                    <x:String>March</x:String>
+                                     <x:String>April</x:String>
+                                    <x:String>May</x:String>
+                                    <x:String>June</x:String>
+                                     <x:String>July</x:String>
+                                    <x:String>August</x:String>
+                                    <x:String>September</x:String>
+                                     <x:String>October</x:String>
+                                    <x:String>November</x:String>
+                                    <x:String>December</x:String>
+
+                                </x:Array>
+                                </local:CustomPicker.ItemsSource>
+                        </local:CustomPicker>
+                <local:CustomPicker HeightRequest="35" Grid.Column="1" x:Name="YearPicker" Title="Select Year"
+                                            BackgroundColor="WhiteSmoke" TextColor="{StaticResource PrimaryGray}"
+                                            VerticalOptions="CenterAndExpand"
+                                    SelectedIndexChanged="YearPicker_SelectedIndexChanged">
+                            <local:CustomPicker.ItemsSource >
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>2022</x:String>
+                                    <x:String>2023</x:String>
+                                    <x:String>2024</x:String>
+                                     <x:String>2025</x:String>
+                                    
+                                </x:Array>
+                                </local:CustomPicker.ItemsSource>
+                        </local:CustomPicker>
+
+                 <StackLayout x:Name="submitBtn" Grid.Column="2" BackgroundColor="{StaticResource Buttons}" Padding="5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Column="0">
+                        <Label Text="Search" TextColor="White" VerticalOptions="CenterAndExpand"
+                               FontSize="16" FontFamily="{StaticResource NormalFont}" HorizontalOptions="CenterAndExpand" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Submit_Clicked" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+
+
+                </Grid>
+
+
+                  
+            <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PrimaryGray}"/>
+
+
+
+            <StackLayout x:Name="errorTxt" Margin="5" HorizontalOptions="CenterAndExpand" IsVisible="false" VerticalOptions="CenterAndExpand">
+                <Label Text="No Attendance List" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" FontSize="20" x:Name="errorLbl" FontFamily="{StaticResource NormalFont}" />
+            </StackLayout>
+
+            <ListView x:Name="AttendanceList" HasUnevenRows="True" IsVisible="false" BackgroundColor="White">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <StackLayout HorizontalOptions="FillAndExpand">
+                                        <Frame IsClippedToBounds="true" OutlineColor="White">
+                                            <StackLayout Orientation="Vertical">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="*" />
+                                                        
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                         <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                         <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Label Text="Date" Grid.Row="0" Grid.Column="0"
+                                                           TextColor="{StaticResource PrimaryColor}" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                                                    <Label Text="Punch-In" Grid.Row="1" Grid.Column="0"
+                                                           TextColor="{StaticResource PrimaryColor}" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                                                    <Label Text="Punch-Out" Grid.Row="2" Grid.Column="0"
+                                                           TextColor="{StaticResource PrimaryColor}" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                                                    <Label Text="Worked Hours" Grid.Row="3" Grid.Column="0"
+                                                           TextColor="{StaticResource PrimaryColor}" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+
+
+                                                    <Label Text="{Binding CreatedOn,StringFormat='{0:dd MMM yyyy}'}" Grid.Row="0" Grid.Column="1"
+                                                           TextColor="{StaticResource PrimaryGray}" FontSize="16" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" LineBreakMode="TailTruncation"/>
+
+                                                    <Label Text="{Binding LoggedInTime,Converter={StaticResource cnvDateTimeConverter}}" Grid.Row="1" Grid.Column="1" 
+                                                           TextColor="{StaticResource PrimaryGray}" FontSize="16" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" LineBreakMode="TailTruncation" />
+
+                                                    <Label Text="{Binding LoggedOutTime,Converter={StaticResource cnvDateConverter}}" Grid.Row="2" Grid.Column="1"
+                                                           TextColor="{StaticResource PrimaryGray}" FontSize="16" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" LineBreakMode="TailTruncation" />
+
+                                                    
+                                                    <Label Text="{Binding work}" Grid.Row="3" Grid.Column="1"
+                                                           TextColor="{StaticResource PrimaryGray}" FontSize="16" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" />
+
+                                                </Grid>
+                                                 
+                                            </StackLayout>
+                                        </Frame>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
